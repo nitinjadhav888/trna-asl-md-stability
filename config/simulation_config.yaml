@@ -1,9 +1,15 @@
 # ==============================================================================
 # Simulation Configuration - tRNA ASL Structural Stability Study
 #
-# NOTE: This configuration contains ONLY verified parameters explicitly required
-# by the project specification. Parameters pending selection in Phase 2 are marked
-# with explicit placeholders (<PENDING_SELECTION>).
+# NOTE: This configuration encodes verified requirements from the Transloka Bio
+# take-home brief alongside implementation choices. Unresolved scientific values
+# are explicitly designated with placeholders (<PENDING_SELECTION>).
+#
+# Taxonomy:
+#   [PROMPT MANDATE]       - Directly dictated by take-home instructions
+#   [SCIENTIFIC ASSUMPTION] - Explicit physical/biological assumption
+#   [IMPLEMENTATION CHOICE] - Operational software/numerical parameter
+#   [PENDING VERIFICATION]  - Deferred to Phase 2 public database audit
 # ==============================================================================
 
 project:
@@ -17,59 +23,60 @@ systems:
   wild_type:
     name: "wt_asl"
     description: "Wild-type human cytoplasmic tRNA ASL"
-    target_trna: "<PENDING_T_RNA_SELECTION_PHASE_2>"
-    sequence_5_to_3: "<PENDING_T_RNA_SELECTION_PHASE_2>"
-    anticodon: "<PENDING_T_RNA_SELECTION_PHASE_2>"
-    anticodon_positions: [34, 35, 36]
-    stem_length_bp: 5
-    loop_length_nt: 7
-    total_length_nt: 17
-    modifications: "none (unmodified nucleotides as specified)"
+    target_trna: "<PENDING_SELECTION_PHASE_2>"           # [PENDING VERIFICATION]
+    sequence_5_to_3: "<PENDING_SELECTION_PHASE_2>"       # [PENDING VERIFICATION]
+    anticodon: "<PENDING_SELECTION_PHASE_2>"             # [PENDING VERIFICATION]
+    anticodon_positions: [34, 35, 36]                    # [PROMPT MANDATE]
+    stem_length_bp: 5                                    # [PROMPT MANDATE]
+    loop_length_nt: 7                                    # [PROMPT MANDATE]
+    total_length_nt: 17                                  # [PROMPT MANDATE]
+    modifications: "none (unmodified nucleotides)"       # [PROMPT MANDATE]
+    anticodon_hamming_distance_to_cua: 2                 # [PROMPT MANDATE] Must convert to CUA by exactly 2 substitutions
 
   suppressor:
     name: "suppressor_asl"
     description: "CUA suppressor anticodon mutant of the selected human cytoplasmic tRNA ASL"
-    target_trna: "<PENDING_T_RNA_SELECTION_PHASE_2>"
-    sequence_5_to_3: "<PENDING_T_RNA_SELECTION_PHASE_2>"
-    anticodon: "CUA"
-    anticodon_positions: [34, 35, 36]
-    stem_length_bp: 5
-    loop_length_nt: 7
-    total_length_nt: 17
-    modifications: "none (unmodified nucleotides as specified)"
+    target_trna: "<PENDING_SELECTION_PHASE_2>"           # [PENDING VERIFICATION]
+    sequence_5_to_3: "<PENDING_SELECTION_PHASE_2>"       # [PENDING VERIFICATION]
+    anticodon: "CUA"                                     # [PROMPT MANDATE]
+    anticodon_positions: [34, 35, 36]                    # [PROMPT MANDATE]
+    stem_length_bp: 5                                    # [PROMPT MANDATE]
+    loop_length_nt: 7                                    # [PROMPT MANDATE]
+    total_length_nt: 17                                  # [PROMPT MANDATE]
+    modifications: "none (unmodified nucleotides)"       # [PROMPT MANDATE]
 
 solvent_and_ions:
-  solvent_model: "explicit"
-  water_model: "<PENDING_SELECTION_PHASE_2>"  # Candidates: OPC, TIP3P, TIP4P-EW
-  salt_type: "KCl"
-  salt_concentration_molar: 0.15  # Approximately 0.15 M KCl
-  neutralization: true
-  ion_parameters: "<PENDING_SELECTION_PHASE_2>" # e.g., Joung-Cheatham or standard AMBER
+  solvent_model: "explicit"                              # [PROMPT MANDATE]
+  water_model: "TIP3P"                                   # [IMPLEMENTATION CHOICE] Baseline model natively compatible with OL3; alternatives require justification
+  salt_type: "KCl"                                       # [PROMPT MANDATE]
+  salt_concentration_molar: 0.15                         # [PROMPT MANDATE] Approximately 0.15 M KCl
+  neutralization: true                                   # [SCIENTIFIC ASSUMPTION] Polyanionic backbone neutralized
+  ion_parameters: "ionsjc_tip3p"                         # [IMPLEMENTATION CHOICE] Joung-Cheatham parameters matched to TIP3P; water and ions must be coupled
 
 forcefield:
-  rna: "OL3"  # AMBER OL3 RNA force field (ff99bsc0chiOL3)
-  water_and_ions: "<PENDING_SELECTION_MATCHING_WATER_MODEL>"
+  rna: "OL3"                                             # [PROMPT MANDATE] AMBER OL3 RNA force field (ff99bsc0chiOL3)
+  water_and_ions: "matched_to_water_model"               # [IMPLEMENTATION CHOICE] Strictly coupled to water model selection
 
 thermodynamic_conditions:
-  ensemble: "NPT"
-  temperature_kelvin: 310.0   # 310 K (physiological)
-  pressure_bar: 1.0           # 1 bar
-  friction_coeff_ps: 1.0      # Langevin thermostat collision frequency
-  barostat_frequency_steps: 25
+  ensemble: "NPT"                                        # [PROMPT MANDATE]
+  temperature_kelvin: 310.0                              # [PROMPT MANDATE] 310 K
+  pressure_bar: 1.0                                      # [PROMPT MANDATE] 1 bar
+  friction_coeff_ps: 1.0                                 # [IMPLEMENTATION CHOICE] Langevin thermostat collision frequency
+  barostat_frequency_steps: 25                           # [IMPLEMENTATION CHOICE] Monte Carlo barostat exchange frequency
 
 simulation_sampling:
-  replicates_per_construct: 3
-  production_time_ns_per_replicate: 20.0  # Minimum 20 ns
-  total_replicates: 6
-  total_production_time_ns: 120.0
-  timestep_fs: 2.0
-  trajectory_save_interval_ps: 10.0
-  energy_save_interval_ps: 10.0
+  replicates_per_construct: 3                            # [PROMPT MANDATE]
+  production_time_ns_per_replicate: 20.0                 # [PROMPT MANDATE] Minimum 20 ns
+  total_replicates: 6                                    # [PROMPT MANDATE] Total 6 production simulations
+  total_production_time_ns: 120.0                        # [PROMPT MANDATE] Total 120 ns
+  timestep_fs: 2.0                                       # [IMPLEMENTATION CHOICE] Standard timestep with constrained hydrogen bonds
+  trajectory_save_interval_ps: 10.0                      # [IMPLEMENTATION CHOICE] Frame archiving frequency
+  energy_save_interval_ps: 10.0                          # [IMPLEMENTATION CHOICE] State energy frequency
   random_seeds:
-    wt: [1001, 1002, 1003]
-    suppressor: [2001, 2002, 2003]
+    wt: [1001, 1002, 1003]                               # [IMPLEMENTATION CHOICE] Deterministic seeds for initial velocity distribution
+    suppressor: [2001, 2002, 2003]                       # [IMPLEMENTATION CHOICE] Deterministic seeds for initial velocity distribution
 
 box_geometry:
-  box_type: "<PENDING_SELECTION_PHASE_2>"  # Candidates: Truncated Octahedron or Cubic
-  padding_distance_angstrom: 10.0          # Minimum clearance from RNA to box edge
-  pme_cutoff_angstrom: 10.0
+  box_type: "<PENDING_SELECTION_PHASE_2>"                # [PENDING VERIFICATION] Candidates: Truncated Octahedron or Cubic
+  padding_distance_angstrom: 10.0                        # [IMPLEMENTATION CHOICE] Minimum clearance from solute to box boundary
+  pme_cutoff_angstrom: 10.0                              # [IMPLEMENTATION CHOICE] Direct space electrostatics cutoff

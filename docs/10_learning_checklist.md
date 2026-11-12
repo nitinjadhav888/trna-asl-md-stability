@@ -11,6 +11,9 @@ This checklist synthesizes the core biophysical, molecular dynamics, and statist
   - Locate the 17-nt ASL domain spanning residues 27 to 43.
   - Identify the 5-bp Watson-Crick anticodon stem (pairs 27:43, 28:42, 29:41, 30:40, 31:39).
   - Identify the 7-nt anticodon loop (residues 32, 33, 34, 35, 36, 37, 38).
+- [ ] **tRNA Mutation Constraint for Amber Suppression**
+  - Understand why the wild-type anticodon must differ from `CUA` by **exactly two nucleotide substitutions** ($\text{Hamming} = 2$).
+  - Review how this constraint filters eligible human cytoplasmic tRNA candidates in public databases (GtRNAdb).
 - [ ] **The Canonical U-Turn Motif (Quigley & Rich, 1976)**
   - Understand how invariant residue U33 initiates the sharp $180^\circ$ reversal of the phosphodiester backbone.
   - Identify key stabilizing hydrogen bonds: U33 N3-H donor to the non-bridging phosphate oxygens of residue 36 (OP1/OP2), and U33 O2'-H to residue 36/35.
@@ -37,8 +40,9 @@ This checklist synthesizes the core biophysical, molecular dynamics, and statist
   - Non-bonded terms: Lennard-Jones 12-6 potential and Coulomb electrostatics.
   - The history of AMBER RNA parameter development: why ff99 suffered from unphysical laddering, how bsc0 fixed $\alpha/\zeta$ torsions, and how OL3 (Zgarbová et al., 2011) corrected the $\chi$ glycosidic dihedral.
 - [ ] **Solvation & Water Models for Nucleic Acids**
-  - Understand differences between 3-site models (TIP3P) and 4-site/optimal models (TIP4P-EW, OPC).
-  - Understand why classical TIP3P can overestimate RNA base stacking and drive artificial loop compaction in nanosecond-to-microsecond simulations.
+  - Understand why standard TIP3P serves as the native baseline solvent for AMBER OL3 (`ff99bsc0chiOL3`).
+  - Understand the requirement that water model and ion parameters must form a strictly matched, coupled set (e.g., `ionsjc_tip3p` for TIP3P).
+  - Learn the trade-offs of alternative 4-point models (OPC, TIP4P-EW) and why using them requires explicit justification and matched ion parameters.
 - [ ] **Ionic Strength & Electrostatic Neutralization**
   - RNA as a polyanionic electrolyte (charge $-1e$ per phosphodiester linkage; $-16e$ for a 17-nt hairpin).
   - Net neutralization with $\text{K}^+$ counterions vs. physiological buffer ($\sim 0.15\ \text{M}\ \text{KCl}$).
@@ -60,14 +64,13 @@ This checklist synthesizes the core biophysical, molecular dynamics, and statist
 - [ ] **Temporal Autocorrelation in Molecular Dynamics**
   - Understand why trajectory frames sampled at short intervals ($\Delta t = 10\ \text{ps}$) are not statistically independent.
   - Calculating autocorrelation functions $C(\tau)$ and integrated autocorrelation time $\tau_{\text{int}}$.
-  - Determining effective independent sample size ($N_{\text{eff}} = N / 2\tau_{\text{int}}$) to avoid artificial degrees-of-freedom inflation ($p$-hacking).
-- [ ] **Block Averaging & Bootstrap Resampling**
+  - Determining effective independent sample size ($N_{\text{eff}} = N / 2\tau_{\text{int}}$) within a single trajectory.
+- [ ] **Block Averaging & Replicate Independence**
   - Grouping autocorrelated time series into stationary blocks larger than $2\tau_{\text{int}}$.
-  - Calculating non-parametric $95\%$ confidence intervals via bootstrap resampling ($10,000$ iterations).
-- [ ] **Replicate-Aware Hypothesis Testing**
-  - Why independent replicates ($N=3$), rather than individual trajectory frames, constitute the true independent experimental units.
-  - Evaluating inter-replicate variance vs. intra-replicate variance.
-  - Applying non-parametric tests (two-tailed permutation test, Mann-Whitney $U$ test) on replicate distributions.
+  - Strictly avoiding pseudoreplication: understanding why trajectory frames cannot be pooled across replicates as independent data points.
+- [ ] **Small Sample Size Power Constraints ($N=3$)**
+  - Understand why traditional two-sided non-parametric tests (such as Mann-Whitney $U$) cannot achieve $p < 0.05$ with $N=3$ vs. $N=3$ (minimum achievable $p = 0.10$).
+  - Framing statistical comparisons around replicate-level effect sizes (Hedges' $g$, Cohen's $d$) with 95% bootstrap confidence intervals ($10,000$ iterations).
 - [ ] **Scientific Candor & Handling Inconclusive Results**
   - Recognizing when data show overlapping distributions or high replicate divergence.
   - Reporting inconclusive findings without bias or forced narrative.

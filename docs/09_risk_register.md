@@ -8,9 +8,9 @@ This document identifies, assesses, and outlines mitigation strategies for scien
 
 | Severity \ Likelihood | Low | Medium | High |
 | :--- | :--- | :--- | :--- |
-| **Critical** | — | **RSK-SCI-02** (Timescale/Kinetic Trapping) | — |
-| **High** | **RSK-COMP-01** (Numerical/GPU divergence) | **RSK-SCI-01** (Force field loop bias)<br>**RSK-INT-02** (Extrapolating to cellular suppression) | **RSK-INT-01** (Over-interpreting non-significant shifts) |
-| **Medium** | **RSK-REPR-02** (Library version drift) | **RSK-COMP-02** (Simulation crash/memory leak)<br>**RSK-REPR-01** (Trajectory storage bloat) | **RSK-SCI-03** (Terminal stem fraying artifact) |
+| **Critical** | — | **RSK-SCI-02** (Timescale / Kinetic Trapping) | — |
+| **High** | **RSK-COMP-01** (Numerical / Platform Divergence) | **RSK-SCI-01** (Force Field / Solvent Coupling)<br>**RSK-INT-02** (Extrapolating to Cellular Suppression) | **RSK-INT-01** (Over-Interpreting Small Sample Shifts) |
+| **Medium** | **RSK-REPR-02** (Library Version Drift) | **RSK-COMP-02** (Simulation Interruptions)<br>**RSK-REPR-01** (Trajectory Storage Bloat) | **RSK-SCI-03** (Terminal Stem Fraying Artifact) |
 | **Low** | — | — | — |
 
 ---
@@ -19,26 +19,26 @@ This document identifies, assesses, and outlines mitigation strategies for scien
 
 ### 1. Scientific Risks
 
-#### RSK-SCI-01: Force Field Bias & Unphysical Loop Compaction
-- **Description:** Empirical nucleic acid force fields historically exhibit tendencies toward unphysical base-stacking or non-canonical hydrogen bonding in flexible single-stranded RNA loops, potentially obscuring true physiological dynamics.
+#### RSK-SCI-01: Force Field & Solvent Parameter Inconsistency
+- **Description:** Empirical RNA force fields (AMBER OL3) require matched solvent and ion parameters. Introducing mismatched water models or ion sets can cause artificial RNA-ion clustering, spurious base pairing, or unphysical loop compaction.
 - **Likelihood:** Medium | **Impact:** High
 - **Mitigation:**
-  - Standardize on AMBER OL3 (`ff99bsc0chiOL3`), which was specifically re-parameterized to eliminate non-canonical $\alpha/\zeta$ and $\chi$ rotamer artifacts.
-  - Pair OL3 with modern water models (OPC or TIP4P-EW per SDR-06) that reduce artificial hydrophobic compaction relative to TIP3P.
-  - Continuously track U-turn hydrogen-bonding and backbone dihedral metrics to flag unphysical conformations early.
+  - Standardize on AMBER OL3 (`ff99bsc0chiOL3`) paired natively with standard TIP3P explicit water as the benchmark baseline.
+  - Enforce strictly matched monovalent ion parameters (e.g., Joung-Cheatham `ionsjc_tip3p` for TIP3P).
+  - Require documented scientific justification and matched parameters for any alternative solvent model.
 
 #### RSK-SCI-02: Timescale Insufficiency & Kinetic Trapping
 - **Description:** A simulation duration of 20 ns per replicate is insufficient to observe full thermodynamic folding/unfolding equilibria ($\mu\text{s}-\text{ms}$ process). The system may remain trapped in its initial starting basin regardless of the true global free energy minimum.
 - **Likelihood:** Medium | **Impact:** Critical
 - **Mitigation:**
-  - Execute 3 independent replicates per construct initialized with different random velocity seeds to probe divergence across phase space.
+  - Execute 3 independent replicates per construct initialized with different random velocity seeds to probe phase space divergence.
   - Formally assess whether 3 × 20 ns is sufficient in the project report (REQ-20) and explicitly characterize any lack of transition as kinetically limited sampling.
 
 #### RSK-SCI-03: Artificial End-Fraying of the 17-nt Stem Termini
 - **Description:** In an isolated 17-nt hairpin, terminal base pair 27:43 lacks flanking base stacking and may fray artificially due to end-solvent exposure or charged terminal groups.
 - **Likelihood:** High | **Impact:** Medium
 - **Mitigation:**
-  - Employ neutral 5'-OH and 3'-OH termini (SDR-09) to avoid placing repulsive $-2e$ charges on residue 27.
+  - Employ neutral 5'-OH and 3'-OH termini (SDR-09 baseline) to avoid placing repulsive $-2e$ charges on residue 27.
   - Monitor H-bond occupancy for each individual base pair (27:43 through 31:39) separately rather than lumping stem stability into a single scalar average.
 
 ---
@@ -81,12 +81,14 @@ This document identifies, assesses, and outlines mitigation strategies for scien
 
 ### 4. Interpretation & Reporting Risks
 
-#### RSK-INT-01: Over-Interpreting Non-Significant Structural Shifts
-- **Description:** Observing small numerical differences in RMSD or RMSF between WT and Suppressor and asserting that the suppressor is "destabilized" without statistical significance.
+#### RSK-INT-01: Over-Interpreting Small Sample Size Inferences ($N=3$)
+- **Description:** Asserting statistically significant differences between WT and Suppressor constructs based on $N=3$ replicates, or committing pseudoreplication by treating autocorrelated trajectory frames as independent data points.
 - **Likelihood:** High | **Impact:** High
 - **Mitigation:**
-  - Mandate replicate-aware statistical hypothesis testing (Mann-Whitney U or permutation testing across replicate means).
-  - Explicit rule: If differences do not reach statistical significance ($p < 0.05$ after multiplicity correction) or if replicate variance exceeds between-construct variance, report results as inconclusive (REQ-21).
+  - Explicitly acknowledge that with $N=3$ per group, traditional two-sided non-parametric tests cannot achieve $p < 0.05$ (minimum achievable $p = 0.10$).
+  - Primary reporting will rely on standardized effect sizes (Hedges' $g$, Cohen's $d$) with 95% bootstrap confidence intervals.
+  - Never pool trajectory frames across replicates as independent observations.
+  - If differences show high replicate variance or overlap, report results transparently as inconclusive (REQ-21).
 
 #### RSK-INT-02: Conflating ASL Structural Stability with Cellular Suppression Efficiency
 - **Description:** Concluding that because an ASL is structurally stable in MD, the suppressor tRNA will exhibit high readthrough efficiency in human cells.

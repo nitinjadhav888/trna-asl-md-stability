@@ -10,29 +10,35 @@ A reproducible scientific research engineering pipeline investigating the struct
 
 This study conducts a controlled, replicate-aware molecular dynamics comparison between:
 1. **Wild-Type Construct:** An isolated 17-nt human cytoplasmic tRNA ASL with its native anticodon.
-2. **Suppressor Construct:** The identical 17-nt ASL containing the `CUA` amber suppressor anticodon.
+   - **Crucial Requirement:** The native anticodon must convert to `CUA` by **exactly two nucleotide substitutions** ($\text{Hamming}(\text{Anticodon}_{\text{WT}}, \text{CUA}) = 2$).
+   - Target tRNA identity is **pending Phase 2 verification** against public GtRNAdb records.
+2. **Suppressor Construct:** The identical 17-nt ASL containing the `CUA` amber suppressor anticodon at positions 34–36.
 
 ---
 
 ## 2. Benchmark Simulation Specifications
 
-- **Construct Definition:** 17-nucleotide isolated ASL (5-bp stem, 7-nt loop, unmodified RNA).
-- **Force Field:** AMBER OL3 (`ff99bsc0chiOL3`).
-- **Solvent & Ions:** Explicit water, $\approx 0.15\ \text{M}\ \text{KCl}$ (net neutralizing $\text{K}^+$ plus physiological excess).
-- **Thermodynamic Ensemble:** $NPT$ at $T = 310.0\ \text{K}$ ($37^\circ\text{C}$), $P = 1.0\ \text{bar}$.
-- **Sampling Scheme:** 3 independent replicates per construct, minimum $20.0\ \text{ns}$ production per replicate ($N=6$ simulations, $\ge 120.0\ \text{ns}$ aggregate production).
+- **Construct Definition:** 17-nucleotide isolated ASL (5-bp stem, 7-nt loop, unmodified RNA). `[PROMPT MANDATE]`
+- **Force Field:** AMBER OL3 (`ff99bsc0chiOL3`). `[PROMPT MANDATE]`
+- **Solvent & Ions:** Explicit water, $\approx 0.15\ \text{M}\ \text{KCl}$ (net neutralizing $\text{K}^+$ plus physiological excess). `[PROMPT MANDATE]`
+  - **Water Model:** Standard TIP3P is established as the baseline solvent model natively compatible with AMBER OL3. Alternative models (e.g., OPC, TIP4P-EW) remain optional only if accompanied by explicit scientific justification and matched ion parameters.
+  - **Parameter Coupling:** Water model and ion parameters form a strictly coupled, internally consistent parameter set (`ionsjc_tip3p` for TIP3P).
+- **Thermodynamic Ensemble:** $NPT$ at $T = 310.0\ \text{K}$ ($37^\circ\text{C}$), $P = 1.0\ \text{bar}$. `[PROMPT MANDATE]`
+- **Sampling Scheme:** 3 independent replicates per construct, minimum $20.0\ \text{ns}$ production per replicate ($N=6$ simulations, $\ge 120.0\ \text{ns}$ aggregate production). `[PROMPT MANDATE]`
 
 ---
 
 ## 3. Analysis Framework
 
-1. **Backbone RMSD:** Evaluated separately for the 5-bp stem and 7-nt loop.
-2. **Per-Residue RMSF:** Backbone root-mean-square fluctuations across residues 1 to 17.
-3. **Stem Base-Pair Hydrogen-Bond Occupancy:** Time-resolved geometric analysis of the 5 canonical base pairs.
-4. **Canonical U-Turn Diagnostic:** Distance between U33 N3 (and O2') and phosphate 36 oxygens; $\alpha/\zeta$ backbone reversal angles.
-5. **3'-Anticodon Stacking:** Centroid distances and inter-planar angles across residues 34–35, 35–36, and 36–37.
-6. **Additional Justified Metric:** Loop Radius of Gyration ($R_{g,\text{loop}}$) to quantify global loop expansion or compaction.
-7. **Replicate-Aware Statistical Synthesis:** Autocorrelation time estimation ($\tau_{\text{int}}$), effective sample size calculation ($N_{\text{eff}}$), block averaging, bootstrap confidence intervals, and non-parametric hypothesis testing between replicate distributions.
+1. **Backbone RMSD:** Evaluated separately for the 5-bp stem and 7-nt loop. `[PROMPT MANDATE]`
+2. **Per-Residue RMSF:** Backbone root-mean-square fluctuations across residues 1 to 17. `[PROMPT MANDATE]`
+3. **Stem Base-Pair Hydrogen-Bond Occupancy:** Time-resolved geometric analysis of the 5 canonical base pairs. `[PROMPT MANDATE]`
+4. **Canonical U-Turn Diagnostic:** Distance between U33 N3 (and O2') and phosphate 36 oxygens; $\alpha/\zeta$ backbone reversal angles. `[PROMPT MANDATE]`
+5. **3'-Anticodon Stacking:** Centroid distances and inter-planar angles across residues 34–35, 35–36, and 36–37. `[PROMPT MANDATE]`
+6. **Additional Justified Metric:** Pending formal justification and selection in Phase 2. Candidates under evaluation include Loop Radius of Gyration ($R_{g,\text{loop}}$), Anticodon Solvent-Accessible Surface Area (SASA), and Stem-Loop Interhelical Tilt Angle. `[PENDING VERIFICATION]`
+7. **Replicate-Aware Statistical Synthesis:**
+   - **Sample Size Limitation:** $N=3$ replicates per construct provide limited statistical power for traditional significance tests (e.g., a two-sided Mann-Whitney $U$ test cannot achieve $p < 0.05$; minimum achievable $p = 0.10$).
+   - **Reporting Methodology:** Primary inferences will be drawn from replicate-level effect sizes (Hedges' $g$ / Cohen's $d$, difference in replicate means/medians) with 95% bootstrap confidence intervals. Trajectory frames are never treated as independent biological replicates (avoiding pseudoreplication).
 
 ---
 
@@ -85,10 +91,10 @@ trna-asl-md-stability/
 
 ## 6. Current Project Status
 
-- **Phase 1 (Complete):**
-  - Requirements inspection and traceability matrix constructed.
+- **Phase 1 (Complete - Corrected Scaffolding):**
+  - Requirements inspection and traceability matrix updated with strict audit corrections.
   - Repository structure, `.gitignore`, license, and environment configurations initialized.
   - Scientific protocols, architecture, risk register, learning checklist, and configuration placeholders established.
 - **Phase 2 (Pending User Approval):**
-  - Candidate human cytoplasmic tRNA selection.
+  - Public GtRNAdb screening for human cytoplasmic tRNAs meeting the $\text{Hamming} = 2$ requirement.
   - Structural modeling of 17-nt ASL (WT and CUA suppressor).

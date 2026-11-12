@@ -1,128 +1,124 @@
 # 04 - Scientific Decision Log
 
-This log formally records all scientific and technical decisions, their rationales, alternatives considered, and governance status. In accordance with project instructions, no scientific decision is made silently.
+This log formally records all scientific and technical decisions, their rationales, alternatives considered, and governance status. In accordance with project instructions, decisions mandated by the take-home are distinguished from implementation choices and open decisions.
 
 ---
 
 ## Record Index
 
-| ID | Title | Status | Scope |
+| ID | Title | Status | Classification |
 | :--- | :--- | :--- | :--- |
-| **SDR-01** | ASL Structural Boundary (17-nt, 5-bp Stem, 7-nt Loop) | **APPROVED** (Prompt) | System Architecture |
-| **SDR-02** | Force Field Parameterization: AMBER OL3 (`ff99bsc0chiOL3`) | **APPROVED** (Prompt) | Molecular Mechanics |
-| **SDR-03** | Thermodynamic Ensemble (NPT at 310 K, 1 bar) | **APPROVED** (Prompt) | Simulation Protocol |
-| **SDR-04** | Sampling Budget (3 replicates × 20 ns per construct = 120 ns) | **APPROVED** (Prompt) | Simulation Protocol |
-| **SDR-05** | Ionic Environment (~0.15 M KCl in Explicit Water) | **APPROVED** (Prompt) | Solvation & Physics |
-| **SDR-06** | Water Model Selection (OPC vs. TIP3P vs. TIP4P-EW) | **PENDING USER APPROVAL** | Solvation & Physics |
-| **SDR-07** | Selection of Candidate Human Cytoplasmic tRNA | **PENDING USER APPROVAL** | Biological Construct |
-| **SDR-08** | Selection & Justification of Metric 6 | **PENDING USER APPROVAL** | Trajectory Analysis |
-| **SDR-09** | ASL Terminal Chemistry (5'-OH / 3'-OH vs. 5'-monophosphate) | **PENDING USER APPROVAL** | Structure Preparation |
-| **SDR-10** | Statistical Autocorrelation & Replicate Pooling Methodology | **PENDING USER APPROVAL** | Statistical Inference |
+| **SDR-01** | ASL Structural Boundary (17-nt, 5-bp Stem, 7-nt Loop) | **APPROVED** | `[PROMPT MANDATE]` |
+| **SDR-02** | Force Field Parameterization: AMBER OL3 (`ff99bsc0chiOL3`) | **APPROVED** | `[PROMPT MANDATE]` |
+| **SDR-03** | Thermodynamic Ensemble (NPT at 310 K, 1 bar) | **APPROVED** | `[PROMPT MANDATE]` |
+| **SDR-04** | Sampling Budget (3 replicates × 20 ns per construct = 120 ns) | **APPROVED** | `[PROMPT MANDATE]` |
+| **SDR-05** | Ionic Environment (~0.15 M KCl in Explicit Water) | **APPROVED** | `[PROMPT MANDATE]` |
+| **SDR-06** | Solvent Model & Matched Ion Parameter Selection | **BASELINE ESTABLISHED** | `[IMPLEMENTATION CHOICE]` |
+| **SDR-07** | Target Human Cytoplasmic tRNA Selection Criteria | **DEFERRED TO PHASE 2** | `[PENDING VERIFICATION]` |
+| **SDR-08** | Selection & Justification of Metric 6 | **DEFERRED TO PHASE 2** | `[PENDING VERIFICATION]` |
+| **SDR-09** | ASL Terminal Chemistry (5'-OH / 3'-OH) | **PROPOSED BASELINE** | `[SCIENTIFIC ASSUMPTION]` |
+| **SDR-10** | Replicate-Aware Statistical Inference & Sample Size Constraints | **METHODOLOGY DEFINED** | `[SCIENTIFIC ASSUMPTION]` |
 
 ---
 
 ## Detailed Scientific Decision Records
 
 ### SDR-01: ASL Structural Boundary Definition
-- **Status:** APPROVED (Mandated by project specification)
-- **Context:** An anticodon stem-loop (ASL) within a full tRNA spans residues 27–43 in canonical Sprinzl numbering.
+- **Status:** APPROVED `[PROMPT MANDATE]`
+- **Context:** An anticodon stem-loop (ASL) within a canonical tRNA spans residues 27–43 in Sprinzl numbering.
 - **Decision:** Model an isolated 17-nucleotide hairpin comprising a 5-bp Watson-Crick stem (base pairs 27:43, 28:42, 29:41, 30:40, 31:39) and a 7-nucleotide anticodon loop (residues 32–38).
-- **Rationale:** The isolated 17-nt ASL is the established minimal autonomous folding domain for studying anticodon dynamics and U-turn stability in biophysical literature.
-- **Alternatives Considered:** 21-nt ASL (including base pairs 26:44). Rejected because prompt mandates a 5-bp stem and 17-nt length.
+- **Rationale:** Minimal autonomous structural unit representing the anticodon domain mandated by the take-home requirements.
 
 ---
 
 ### SDR-02: Force Field Parameterization (AMBER OL3)
-- **Status:** APPROVED (Mandated by project specification)
-- **Context:** Classical force fields (e.g., standard AMBER ff99 or CHARMM27) suffer from known artifacts in RNA simulations, such as non-canonical $\alpha/\zeta$ and $\chi$ torsion flips leading to unphysical laddering or loop collapse.
+- **Status:** APPROVED `[PROMPT MANDATE]`
+- **Context:** Empirical force fields require accurate glycosidic torsions to avoid unphysical RNA laddering or loop collapse.
 - **Decision:** Utilize the AMBER OL3 parameter set (`ff99bsc0chiOL3`).
-- **Rationale:** OL3 provides re-parameterized glycosidic $\chi$ torsions that accurately maintain RNA loop geometries and A-form helices, and is recognized as a benchmark standard in nucleic acid MD.
-- **Alternatives Considered:** CHARMM36, DES-Amber. AMBER OL3 is explicitly mandated by the project requirements.
+- **Rationale:** OL3 specifically corrects RNA $\chi$ glycosidic torsion biases and represents the established standard for RNA hairpins.
 
 ---
 
 ### SDR-03: Thermodynamic Ensemble (NPT at 310 K, 1 bar)
-- **Status:** APPROVED (Mandated by project specification)
+- **Status:** APPROVED `[PROMPT MANDATE]`
 - **Context:** Human cytoplasmic tRNAs function in vivo at physiological body temperature.
 - **Decision:** Simulate in the isothermal-isobaric ensemble ($NPT$) at $T = 310.0\ \text{K}$ and $P = 1.0\ \text{bar}$.
-- **Rationale:** Matches physiological human body temperature ($37^\circ\text{C}$) and physiological atmospheric pressure, ensuring biological relevance of conformational sampling.
+- **Rationale:** Matches physiological human body temperature ($37^\circ\text{C}$) and standard pressure.
 
 ---
 
 ### SDR-04: Sampling Budget & Replicate Control
-- **Status:** APPROVED (Mandated by project specification)
+- **Status:** APPROVED `[PROMPT MANDATE]`
 - **Context:** RNA hairpin trajectories can become trapped in local kinetic minima.
 - **Decision:** Execute 3 statistically independent replicates per construct (WT and CUA suppressor), each running for a minimum of 20 ns production, totaling 6 simulations and 120 ns aggregate sampling. Assign initial velocities using distinct pseudo-random seeds.
-- **Rationale:** Multiple independent trajectories provide an assessment of conformational divergence and replicate reproducibility that cannot be captured by a single long trajectory.
+- **Rationale:** Multiple independent trajectories provide an assessment of replicate variability that cannot be captured by a single trajectory.
 
 ---
 
 ### SDR-05: Ionic Environment (~0.15 M KCl)
-- **Status:** APPROVED (Mandated by project specification)
-- **Context:** RNA is a highly charged polyanion requiring monovalent counterions to screen phosphate repulsions.
-- **Decision:** Solvate with explicit water and neutralize the 16 negative phosphate charges with $\text{K}^+$, then add $\text{K}^+$ and $\text{Cl}^-$ co-ions to reach an ionic strength of approximately $0.15\ \text{M}$.
-- **Rationale:** Matches intracellular human cytoplasmic potassium concentrations ($\sim 140\text{--}150\ \text{mM}\ \text{K}^+$), reflecting physiological conditions superior to unphysiological $\text{NaCl}$.
+- **Status:** APPROVED `[PROMPT MANDATE]`
+- **Context:** RNA is a polyanion requiring monovalent counterions to screen phosphate repulsions.
+- **Decision:** Solvate in explicit water, neutralize the 16 negative charges with $\text{K}^+$, and add $\text{K}^+$ and $\text{Cl}^-$ co-ions to reach an ionic strength of approximately $0.15\ \text{M}$.
+- **Rationale:** Matches physiological human cytoplasmic potassium concentrations ($\sim 140\text{--}150\ \text{mM}\ \text{K}^+$).
 
 ---
 
-### SDR-06: Water Model Selection
-- **Status:** PENDING USER APPROVAL
-- **Context:** Water models strongly modulate nucleic acid conformational equilibria. Standard TIP3P is known to overestimate RNA base-stacking and allow artificial loop compaction over longer timescales. Four-point (TIP4P-EW, TIP4P-D) or optimal four-point (OPC) models improve RNA conformational sampling.
-- **Proposed Options:**
-  - *Option A (Recommended):* **OPC** (Optimal Point Charge). Shown in literature (e.g., Shabane et al., J. Chem. Theory Comput. 2019) to yield superior RNA hairpin and loop geometries when paired with AMBER OL3.
-  - *Option B:* **TIP4P-EW**. Well-balanced electrostatic screening, widely validated with AMBER nucleic acid parameters.
-  - *Option C:* **TIP3P**. Traditional, highly compatible, but higher tendency toward artificial loop compaction.
-- **Action Required:** User approval on preferred solvent model prior to Phase 3 system setup.
+### SDR-06: Solvent Model & Matched Ion Parameter Selection
+- **Status:** BASELINE ESTABLISHED `[IMPLEMENTATION CHOICE]`
+- **Context:** The take-home prompt explicitly permits TIP3P or an equivalent model. The water model must be compatible with AMBER OL3 and matched with appropriate ion parameters.
+- **Decision:** 
+  - Establish **TIP3P** as the primary baseline water model for this project because AMBER OL3 (`ff99bsc0chiOL3`) was parameterized and validated natively in TIP3P.
+  - Pair TIP3P with matched monovalent ion parameters (e.g., Joung-Cheatham `ionsjc_tip3p` or standard AMBER ion libraries).
+  - Alternative water models (such as OPC or TIP4P-EW) remain optional only if accompanied by explicit, documented scientific justification and strictly matched ion parameters (e.g., `ionsjc_opc`).
+- **Rationale:** Enforces internal consistency across force field, solvent, and ion parameters, avoiding arbitrary or unverified solvent preferences.
 
 ---
 
-### SDR-07: Selection of Candidate Wild-Type Human Cytoplasmic tRNA
-- **Status:** PENDING USER APPROVAL
-- **Context:** The prompt requires comparing a wild-type human cytoplasmic tRNA ASL against its CUA suppressor mutant. No specific tRNA was pre-selected.
-- **Proposed Candidates (Public Data Only):**
-  - *Candidate 1 (Recommended):* **Human cytoplasmic tRNA-Tyr (GTA / UUA)**
-    - High historical relevance: tRNA-Tyr is the archetypal amber suppressor studied extensively in genetic code expansion (engineered amber suppressor tRNAs).
-    - Clear 5-bp stem and canonical U33-containing loop.
-    - Abundant high-resolution crystallographic reference structures available in PDB (e.g., PDB ID: 4TRA, 1EHZ, 6U8D homologs).
-  - *Candidate 2:* **Human cytoplasmic tRNA-Trp (CCA)**
-    - Single mutation at position 34 ($C \rightarrow U$) converts the native `CCA` anticodon to `UCA` (opal) or dual mutation ($C34U, C35A$) yields `CUA` (amber).
-  - *Candidate 3:* **Human cytoplasmic tRNA-Leu (CAA)**
-    - Well-characterized human cytoplasmic tRNA; suppression efficiency studied in synthetic biology.
-- **Action Required:** User decision on candidate tRNA selection prior to Phase 2 modeling.
+### SDR-07: Target Human Cytoplasmic tRNA Selection Criteria
+- **Status:** DEFERRED TO PHASE 2 `[PENDING VERIFICATION]`
+- **Context:** The prompt requires comparing a wild-type human cytoplasmic tRNA ASL against its CUA suppressor mutant, under the strict constraint that the native anticodon must convert to `CUA` by **exactly two nucleotide substitutions** ($\text{Hamming}(\text{Anticodon}_{\text{WT}}, \text{CUA}) = 2$).
+- **Audit Retraction:** 
+  - Previously suggested candidates (tRNA-Tyr, tRNA-Trp, tRNA-Leu) in the initial scaffold draft are **retracted** because:
+    1. tRNA-Tyr (`GUA` $\rightarrow$ `CUA`) requires only 1 mutation ($G34C$).
+    2. tRNA-Trp (`CCA` $\rightarrow$ `CUA`) requires only 1 mutation ($C35U$).
+    3. tRNA-Leu (`CAA` $\rightarrow$ `CUA`) requires only 1 mutation ($A35U$).
+    4. Previous informal PDB citations were misattributed non-human structures and have been completely removed.
+- **Phase 2 Selection Protocol:**
+  - No tRNA is selected in Phase 1.
+  - In Phase 2, candidate genes will be screened against verified public records in GtRNAdb for human cytoplasmic tRNAs.
+  - Screening filters:
+    1. Canonical 5-bp anticodon stem (residues 27–31 paired with 39–43).
+    2. Canonical 7-nt loop (residues 32–38) with invariant U33.
+    3. Wild-type anticodon triplet exhibiting $\text{Hamming}(\text{Anticodon}_{\text{WT}}, \text{CUA}) = 2$.
+    4. Availability of experimental structural templates or high-confidence homology models.
 
 ---
 
 ### SDR-08: Selection & Justification of Metric 6
-- **Status:** PENDING USER APPROVAL
-- **Context:** The take-home prompt requires one additional justified structural metric alongside RMSD, RMSF, H-bonds, U-turn geometry, and 3'-stacking.
-- **Proposed Candidates:**
-  - *Candidate A (Recommended):* **Anticodon Loop Radius of Gyration ($R_{g,\text{loop}}$)**
-    - *Scientific Justification:* Directly measures overall loop compactness vs. expansion. Destabilization of the canonical U-turn motif or loss of 3'-stacking invariably leads to loop swelling (increased $R_g$) or unphysical collapse (compacted $R_g$).
-  - *Candidate B:* **Anticodon Solvent-Accessible Surface Area (SASA)**
-    - *Scientific Justification:* Measures exposure of nucleobases 34, 35, and 36 to solvent, reflecting whether bases remain projected outward (as required for codon reading) or flip inward into the loop lumen.
-  - *Candidate C:* **Stem-Loop Interhelical Angle / Axis Tilt**
-    - *Scientific Justification:* Evaluates whether the anticodon loop maintains coaxial alignment with the stem helix or tilts abnormally upon mutation.
-- **Action Required:** User approval of Metric 6 selection prior to Phase 5 analysis.
+- **Status:** DEFERRED TO PHASE 2 `[PENDING VERIFICATION]`
+- **Context:** The take-home prompt requires one additional justified structural metric alongside RMSD, RMSF, H-bonds, U-turn diagnostic, and 3'-stacking.
+- **Decision:** No metric is prematurely locked in Phase 1. Formal selection and scientific justification will occur in Phase 2 from the following candidates:
+  - *Candidate A:* **Anticodon Loop Radius of Gyration ($R_{g,\text{loop}}$)** — Quantifies global loop expansion or compaction.
+  - *Candidate B:* **Anticodon Solvent-Accessible Surface Area (SASA)** — Quantifies nucleobase solvent exposure vs. lumen flipping.
+  - *Candidate C:* **Stem-Loop Interhelical Angle / Axis Tilt** — Quantifies coaxial bending relative to the stem helix.
 
 ---
 
 ### SDR-09: ASL Terminal Chemistry
-- **Status:** PENDING USER APPROVAL
-- **Context:** When simulating an isolated 17-nt RNA fragment excised from a full tRNA, the terminal residues (27 and 43) must be capped or terminated.
-- **Proposed Options:**
-  - *Option A (Recommended):* Neutral **5'-OH** and **3'-OH** termini.
-    - *Scientific Justification:* Avoids placing a full negative charge (5'-monophosphate) at residue 27 immediately adjacent to residue 43, preventing artificial electrostatic fraying of the closing base pair 27:43.
-  - *Option B:* Standard **5'-monophosphate** and **3'-OH**.
-    - *Scientific Justification:* Reflects RNA cleavage products, but adds $-2e$ charge to terminal nucleotide.
-- **Action Required:** User confirmation of terminal chemistry.
+- **Status:** PROPOSED BASELINE `[SCIENTIFIC ASSUMPTION]`
+- **Context:** Simulating an excised 17-nt hairpin requires defining terminal groups at residues 27 and 43.
+- **Decision:** Maintain neutral **5'-OH** and **3'-OH** termini as the proposed baseline.
+- **Rationale:** Prevents placing a repulsive $-2e$ charge on residue 27 directly opposite residue 43, minimizing artificial terminal base-pair fraying. Final confirmation will occur during Phase 2 coordinate assembly.
 
 ---
 
-### SDR-10: Statistical Autocorrelation & Replicate Pooling
-- **Status:** PENDING USER APPROVAL
-- **Context:** Molecular dynamics frames sampled every 10 ps exhibit significant temporal autocorrelation. Treating frames as independent artificially inflates degrees of freedom ($p$-hacking artifact).
-- **Proposed Methodology:**
-  1. Compute statistical inefficiency / autocorrelation time ($\tau_{\text{int}}$) for each metric using the automated windowing algorithm (Chodera et al.).
-  2. Subsample trajectories at intervals $\Delta t \ge 2\tau_{\text{int}}$ or apply block averaging to calculate effective independent samples ($N_{\text{eff}}$).
-  3. Treat each of the 3 replicates as the primary statistical unit (replicate-level means), computing standard error across replicates and testing hypothesis differences using non-parametric permutation tests or Mann-Whitney $U$ tests.
-- **Action Required:** User confirmation of statistical inference methodology.
+### SDR-10: Replicate-Aware Statistical Inference & Sample Size Constraints
+- **Status:** METHODOLOGY DEFINED `[SCIENTIFIC ASSUMPTION]`
+- **Context:** Trajectory frames sampled at 10 ps intervals exhibit high temporal autocorrelation. Furthermore, with $N=3$ independent replicates per construct, statistical power for traditional null-hypothesis testing is severely constrained.
+- **Mathematical Correction from Audit:**
+  - A two-sided Mann-Whitney $U$ test with $N_1 = 3, N_2 = 3$ has $\binom{6}{3} = 20$ possible rank arrangements. The minimum attainable two-sided $p$-value is $2/20 = 0.10$.
+  - Therefore, claiming that classical significance testing can achieve $p < 0.05$ with $N=3$ is mathematically impossible.
+- **Decision:**
+  1. **Primary Reporting:** Center reporting on replicate-level effect sizes (Hedges' $g$ / Cohen's $d$, difference in replicate means/medians) with 95% bootstrap confidence intervals ($10,000$ iterations).
+  2. **Explicit Disclosure:** Transparently state sample-size and power limitations in the final report.
+  3. **Pseudoreplication Guard:** Trajectory frames will not be treated as independent biological replicates. Autocorrelation times ($\tau_{\text{int}}$) and block averages will be computed to assess intra-trajectory stability, while inter-replicate comparisons remain the primary statistical unit.

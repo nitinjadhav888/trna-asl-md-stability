@@ -6,7 +6,7 @@ This document formalizes the mathematical definitions, geometric criteria, algor
 
 ## 1. Structural Observables & Mathematical Definitions
 
-### 1.1 Backbone RMSD (Stem vs. Loop Dissection)
+### 1.1 Backbone RMSD (Stem vs. Loop Dissection) `[PROMPT MANDATE]`
 Root-Mean-Square Deviation (RMSD) evaluates conformational departure from the reference starting structure:
 
 $$\operatorname{RMSD}(t) = \sqrt{\frac{1}{N_{\text{atoms}}} \sum_{i=1}^{N_{\text{atoms}}} \|\mathbf{r}_i(t) - \mathbf{r}_i^{\text{ref}}\|^2}$$
@@ -19,7 +19,7 @@ $$\operatorname{RMSD}(t) = \sqrt{\frac{1}{N_{\text{atoms}}} \sum_{i=1}^{N_{\text
 
 ---
 
-### 1.2 Per-Residue Root-Mean-Square Fluctuation (RMSF)
+### 1.2 Per-Residue Root-Mean-Square Fluctuation (RMSF) `[PROMPT MANDATE]`
 RMSF measures the positional variance of each nucleotide about its time-averaged coordinate:
 
 $$\operatorname{RMSF}_k = \sqrt{\frac{1}{T} \sum_{t=1}^T \|\mathbf{r}_k(t) - \langle\mathbf{r}_k\rangle\|^2}$$
@@ -30,7 +30,7 @@ $$\operatorname{RMSF}_k = \sqrt{\frac{1}{T} \sum_{t=1}^T \|\mathbf{r}_k(t) - \la
 
 ---
 
-### 1.3 Stem Base-Pair Hydrogen-Bond Occupancy
+### 1.3 Stem Base-Pair Hydrogen-Bond Occupancy `[PROMPT MANDATE]`
 Evaluates the stability and intactness of the 5 canonical base pairs in the anticodon stem (27:43, 28:42, 29:41, 30:40, 31:39).
 
 - **Geometric Criteria:**
@@ -45,7 +45,7 @@ Evaluates the stability and intactness of the 5 canonical base pairs in the anti
 
 ---
 
-### 1.4 Canonical U-Turn Diagnostic (U33 / Phosphate 36)
+### 1.4 Canonical U-Turn Diagnostic (U33 / Phosphate 36) `[PROMPT MANDATE]`
 The canonical U-turn motif (Quigley & Rich, 1976) is the defining tertiary interaction stabilizing the tRNA anticodon loop. It enables the sharp chain reversal that projects anticodon bases 34–36 outwards for ribosomal codon decoding.
 
 ```
@@ -69,7 +69,7 @@ The canonical U-turn motif (Quigley & Rich, 1976) is the defining tertiary inter
 
 ---
 
-### 1.5 3'-Stacking Geometry of Anticodon Bases
+### 1.5 3'-Stacking Geometry of Anticodon Bases `[PROMPT MANDATE]`
 In canonical ASL architecture, the anticodon nucleobases (34, 35, 36) form a continuous, right-handed stack with the 3'-purine at position 37.
 
 - **Stacking Pairs Evaluated:**
@@ -84,32 +84,42 @@ In canonical ASL architecture, the anticodon nucleobases (34, 35, 36) form a con
 
 ---
 
-### 1.6 Additional Justified Structural Metric (Metric 6)
-- **Candidate Selected for Justification:** **Anticodon Loop Radius of Gyration ($R_{g,\text{loop}}$)**
-- **Definition:**
-  $$R_{g,\text{loop}}(t) = \sqrt{\frac{1}{M_{\text{loop}}} \sum_{i \in \text{loop}} m_i \|\mathbf{r}_i(t) - \mathbf{r}_{\text{COM, loop}}(t)\|^2}$$
-- **Scientific Justification:** The radius of gyration measures global loop expansion or collapse. Destabilization of the U-turn or loss of 3'-stacking invariably alters the loop volume. If the suppressor anticodon disrupts loop structure, $R_{g,\text{loop}}$ will exhibit significant expansion (loop swelling/fraying) or aberrant compaction (hydrophobic collapse into loop lumen).
+### 1.6 Additional Justified Structural Metric (Metric 6) `[PROMPT MANDATE]`
+- **Status:** Proposed candidates under evaluation. Final selection and written justification will be completed in Phase 2. `[PENDING VERIFICATION]`
+- **Candidate Options:**
+  1. **Anticodon Loop Radius of Gyration ($R_{g,\text{loop}}$):**
+     $$R_{g,\text{loop}}(t) = \sqrt{\frac{1}{M_{\text{loop}}} \sum_{i \in \text{loop}} m_i \|\mathbf{r}_i(t) - \mathbf{r}_{\text{COM, loop}}(t)\|^2}$$
+     *Preliminary Justification:* Directly measures global loop expansion or compaction upon anticodon substitution.
+  2. **Anticodon Solvent-Accessible Surface Area (SASA):**
+     *Preliminary Justification:* Evaluates whether mutated nucleobases remain exposed for codon reading or collapse inward into the loop lumen.
+  3. **Stem-Loop Interhelical Tilt Angle:**
+     *Preliminary Justification:* Measures coaxial bending of the anticodon loop relative to the stem helical axis.
 
 ---
 
-## 2. Replicate-Aware Statistical Analysis Protocol
+## 2. Replicate-Aware Statistical Analysis Protocol `[PROMPT MANDATE]`
 
-Analyzing molecular dynamics time-series data requires rigorous handling of statistical dependencies to prevent erroneous inferences.
+Analyzing molecular dynamics time-series data requires rigorous handling of statistical dependencies to prevent pseudoreplication and unjustified significance claims.
 
-### 2.1 Autocorrelation Correction & Effective Sample Size
-Frames recorded every 10 ps are highly correlated. To determine the number of statistically independent observations:
+### 2.1 Autocorrelation Correction & Within-Trajectory Analysis
+Frames recorded every 10 ps are highly correlated. To characterize within-trajectory stability:
 1. Compute the normalized autocorrelation function $C(\tau)$ for each continuous observable $X(t)$:
    $$C(\tau) = \frac{\langle (X(t) - \mu)(X(t+\tau) - \mu) \rangle}{\sigma^2}$$
 2. Calculate the integrated autocorrelation time ($\tau_{\text{int}}$):
    $$\tau_{\text{int}} = 1 + 2 \sum_{\tau=1}^{\tau_{\text{max}}} C(\tau)$$
-3. Compute the effective sample size for each trajectory:
+3. Compute the effective sample size of independent observations within each trajectory:
    $$N_{\text{eff}} = \frac{N_{\text{total}}}{2\tau_{\text{int}}}$$
+4. Perform block averaging across stationary blocks larger than $2\tau_{\text{int}}$ to verify within-trajectory convergence.
 
-### 2.2 Replicate-Aware Inference
-- Replicates represent the true independent experimental units.
-- Within-replicate means ($\bar{X}_{r}$) are calculated over the production trajectory.
-- The grand construct mean ($\bar{X}$) and standard error of the mean (SEM) are computed across the $N=3$ replicates:
-  $$\text{SEM} = \frac{s_{\text{between-replicates}}}{\sqrt{3}}$$
-- **Hypothesis Testing:** Non-parametric two-tailed permutation test and Mann-Whitney $U$ test comparing the distributions of replicate means between Wild-Type and Suppressor constructs.
-- **Effect Size:** Compute Cohen's $d$ or Cliff's $\delta$ with $95\%$ bootstrap confidence intervals ($10,000$ resamples).
-- **Equilibration Transient Discard:** The initial $2.0\ \text{ns}$ of production are assessed for relaxation transients and discarded from steady-state statistics if drift is detected.
+### 2.2 Replicate-Aware Inference & Sample Size Limitations
+- **The Core Statistical Unit:** The 3 independent simulation replicates per construct ($N_{\text{WT}} = 3$, $N_{\text{suppressor}} = 3$) represent the true independent experimental units.
+- **Mathematical Sample Size Limitation:**
+  - With $N_1 = 3$ and $N_2 = 3$, standard two-sided rank-sum non-parametric tests (such as the Mann-Whitney $U$ test) have a minimum achievable two-sided $p$-value of:
+    $$p_{\text{min}} = 2 \times \frac{1}{\binom{6}{3}} = \frac{2}{20} = 0.10$$
+  - Consequently, **a two-sided test cannot achieve $p < 0.05$ with $N=3$**. Claiming conventional statistical significance from $N=3$ is mathematically impossible under this test.
+- **Adopted Primary Reporting Framework:**
+  1. **Replicate-Level Effect Sizes:** Calculate standardized effect sizes (Hedges' $g$, adjusted for small samples, or Cohen's $d$) and differences in replicate means/medians.
+  2. **Bootstrap Confidence Intervals:** Compute 95% confidence intervals on effect sizes and construct means via non-parametric bootstrapping ($10,000$ iterations).
+  3. **Hierarchical / Block Modeling:** Where appropriate, evaluate time-series trends using hierarchical mixed-effects models across decorrelated trajectory blocks with replicate assigned as a random effect, clearly distinguishing intra-trajectory variance from inter-replicate variance.
+  4. **Strict Prohibition of Pseudoreplication:** Individual trajectory frames must never be pooled across replicates as independent observations to manufacture artificially inflated sample sizes or deceptive $p$-values.
+  5. **Explicit Limitation Reporting:** The final report will transparently discuss the limited statistical power inherent to $N=3$ replicates and refrain from over-interpreting borderline differences.

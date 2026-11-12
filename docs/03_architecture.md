@@ -110,6 +110,7 @@ trna-asl-md-stability/
   - Robust handling of periodic boundary conditions (PBC unwrapping and centering).
 - **Scientific Computing & Statistical Modeling:** NumPy, SciPy, Pandas
   - Automated estimation of statistical inefficiency / autocorrelation times.
-  - Non-parametric hypothesis testing and bootstrap resampling.
+  - Replicate-level effect size estimation (Hedges' g / Cohen's d), bootstrapping, and hierarchical block modeling.
 - **Visualization:** Matplotlib, Seaborn
   - Publication-ready, high-DPI rendering following scientific figure styling guidelines.
+
