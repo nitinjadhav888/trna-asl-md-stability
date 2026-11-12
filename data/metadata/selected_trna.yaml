@@ -1,0 +1,92 @@
+# ==============================================================================
+# Verified tRNA Selection Metadata - tRNA ASL Structural Stability Study
+#
+# FROZEN IN PHASE 2. DO NOT MODIFY WITHOUT A RECORDED SCIENTIFIC DECISION.
+# ==============================================================================
+
+organism:
+  scientific_name: "Homo sapiens"
+  common_name: "Human"
+  taxonomy_id: 9606
+  genome_assembly: "GRCh38 / hg38"
+
+selection:
+  gtrnadb_id: "tRNA-Asp-GTC-2-1"
+  trnascan_id: "chr1.trna92"
+  chromosomal_location: "chr1:161440825-161440896 (-)"
+  isotype: "Aspartate"
+  amino_acid_code: "Asp"
+  amino_acid_single: "D"
+  cytoplasmic_status: "cytosolic"
+  confidence_set: "high confidence set"
+  trnascan_score: 66.5
+  introns: 0
+  genomic_copy_number: 11 # Identical mature sequence across 11 genomic loci (tRNA-Asp-GTC-2-1 to 2-11)
+
+anticodon_mutation_test:
+  target_suppressor_anticodon: "CUA"
+  native_wt_anticodon: "GUC"
+  native_wt_anticodon_dna: "GTC"
+  hamming_distance: 2
+  calculation:
+    position_34:
+      wt: "G"
+      suppressor: "C"
+      identical: false
+    position_35:
+      wt: "U"
+      suppressor: "U"
+      identical: true
+    position_36:
+      wt: "C"
+      suppressor: "A"
+      identical: false
+  substitutions:
+    - "G34C"
+    - "C36A"
+
+sequences:
+  mature_trna_72nt_5_to_3: "UCCUCGUUAGUAUAGUGGUGAGUAUCCCCGCCUGUCACGCGGGAGACCGGGGUUCGAUUCCCCGACGGGGAG"
+  asl_17nt:
+    wild_type_5_to_3: "CCCGCCUGUCACGCGGG"
+    suppressor_5_to_3: "CCCGCCUCUAACGCGGG"
+    sprinzl_numbering:
+      stem_5prime_27_to_31: "CCCGC"
+      loop_32_to_38:
+        wt: "CUGUCAC"
+        suppressor: "CUCUAAC"
+      stem_3prime_39_to_43: "GCGGG"
+    base_pairs_5bp_stem:
+      - pair: "27:43"
+        wt: "C:G"
+        suppressor: "C:G"
+        type: "Watson-Crick"
+      - pair: "28:42"
+        wt: "C:G"
+        suppressor: "C:G"
+        type: "Watson-Crick"
+      - pair: "29:41"
+        wt: "C:G"
+        suppressor: "C:G"
+        type: "Watson-Crick"
+      - pair: "30:40"
+        wt: "G:C"
+        suppressor: "G:C"
+        type: "Watson-Crick"
+      - pair: "31:39"
+        wt: "C:G"
+        suppressor: "C:G"
+        type: "Watson-Crick"
+    stem_gc_content: "5/5 (100% GC)"
+    loop_motifs:
+      u33_invariant: true
+      purine_37: "A"
+
+provenance:
+  database: "GtRNAdb (Genomic tRNA Database)"
+  institution: "University of California Santa Cruz (Lowe Lab)"
+  source_url: "http://gtrnadb.ucsc.edu/genomes/eukaryota/Hsapi38/"
+  raw_file: "data/raw/hg38-mature-tRNAs.fa"
+  confidence_file: "data/raw/hg38-tRNAs-confidence-set.out"
+  access_date: "2026-11-12"
+  script: "scripts/01_select_trna.py"

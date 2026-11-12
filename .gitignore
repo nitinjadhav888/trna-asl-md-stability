@@ -36,6 +36,7 @@ simulations/**/run_*/
 # AMBER / OpenMM / GROMACS output dumps and temp logs
 *.mdout
 *.out
+!data/raw/*.out
 md.log
 energies.csv
 openmm_state_*.xml

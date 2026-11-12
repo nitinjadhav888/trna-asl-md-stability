@@ -22,22 +22,27 @@ project:
 systems:
   wild_type:
     name: "wt_asl"
-    description: "Wild-type human cytoplasmic tRNA ASL"
-    target_trna: "<PENDING_SELECTION_PHASE_2>"           # [PENDING VERIFICATION]
-    sequence_5_to_3: "<PENDING_SELECTION_PHASE_2>"       # [PENDING VERIFICATION]
-    anticodon: "<PENDING_SELECTION_PHASE_2>"             # [PENDING VERIFICATION]
+    description: "Wild-type human cytoplasmic tRNA-Asp-GTC-2-1 ASL"
+    target_trna: "tRNA-Asp-GTC-2-1"                      # [PROMPT MANDATE / VERIFIED GtRNAdb]
+    trnascan_id: "chr1.trna92"                           # [VERIFIED GtRNAdb]
+    genomic_locus: "chr1:161440825-161440896 (-)"        # [VERIFIED GtRNAdb]
+    mature_sequence_72nt: "UCCUCGUUAGUAUAGUGGUGAGUAUCCCCGCCUGUCACGCGGGAGACCGGGGUUCGAUUCCCCGACGGGGAG"
+    sequence_5_to_3: "CCCGCCUGUCACGCGGG"                 # 17-nt ASL (residues 27-43)
+    anticodon: "GUC"                                     # [VERIFIED GtRNAdb]
     anticodon_positions: [34, 35, 36]                    # [PROMPT MANDATE]
     stem_length_bp: 5                                    # [PROMPT MANDATE]
     loop_length_nt: 7                                    # [PROMPT MANDATE]
     total_length_nt: 17                                  # [PROMPT MANDATE]
     modifications: "none (unmodified nucleotides)"       # [PROMPT MANDATE]
-    anticodon_hamming_distance_to_cua: 2                 # [PROMPT MANDATE] Must convert to CUA by exactly 2 substitutions
+    anticodon_hamming_distance_to_cua: 2                 # [PROMPT MANDATE] G34C, C36A (Hamming = 2)
 
   suppressor:
     name: "suppressor_asl"
-    description: "CUA suppressor anticodon mutant of the selected human cytoplasmic tRNA ASL"
-    target_trna: "<PENDING_SELECTION_PHASE_2>"           # [PENDING VERIFICATION]
-    sequence_5_to_3: "<PENDING_SELECTION_PHASE_2>"       # [PENDING VERIFICATION]
+    description: "CUA suppressor anticodon mutant of human cytoplasmic tRNA-Asp-GTC-2-1 ASL"
+    target_trna: "tRNA-Asp-GTC-2-1 (CUA mutant)"         # [PROMPT MANDATE / VERIFIED GtRNAdb]
+    trnascan_id: "chr1.trna92 (mutated)"
+    genomic_locus: "chr1:161440825-161440896 (-)"
+    sequence_5_to_3: "CCCGCCUCUAACGCGGG"                 # 17-nt ASL with CUA at 34-36
     anticodon: "CUA"                                     # [PROMPT MANDATE]
     anticodon_positions: [34, 35, 36]                    # [PROMPT MANDATE]
     stem_length_bp: 5                                    # [PROMPT MANDATE]

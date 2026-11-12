@@ -11,7 +11,7 @@ A reproducible scientific research engineering pipeline investigating the struct
 This study conducts a controlled, replicate-aware molecular dynamics comparison between:
 1. **Wild-Type Construct:** An isolated 17-nt human cytoplasmic tRNA ASL with its native anticodon.
    - **Crucial Requirement:** The native anticodon must convert to `CUA` by **exactly two nucleotide substitutions** ($\text{Hamming}(\text{Anticodon}_{\text{WT}}, \text{CUA}) = 2$).
-   - Target tRNA identity is **pending Phase 2 verification** against public GtRNAdb records.
+   - Target tRNA identity: **Verified human cytoplasmic tRNA-Asp-GTC-2-1** (GtRNAdb ID: `tRNA-Asp-GTC-2-1`, tRNAscan-SE ID: `chr1.trna92`), anticodon `GUC` $\rightarrow$ `CUA` (Hamming distance = 2). Complete provenance in `data/metadata/selected_trna.yaml` and `docs/11_trna_selection.md`.
 2. **Suppressor Construct:** The identical 17-nt ASL containing the `CUA` amber suppressor anticodon at positions 34–36.
 
 ---
@@ -91,10 +91,9 @@ trna-asl-md-stability/
 
 ## 6. Current Project Status
 
-- **Phase 1 (Complete - Corrected Scaffolding):**
-  - Requirements inspection and traceability matrix updated with strict audit corrections.
-  - Repository structure, `.gitignore`, license, and environment configurations initialized.
-  - Scientific protocols, architecture, risk register, learning checklist, and configuration placeholders established.
-- **Phase 2 (Pending User Approval):**
-  - Public GtRNAdb screening for human cytoplasmic tRNAs meeting the $\text{Hamming} = 2$ requirement.
-  - Structural modeling of 17-nt ASL (WT and CUA suppressor).
+- **Phase 1 (Complete):** Requirements, repository architecture, protocols, and audit corrections finalized.
+- **Phase 2 (Complete - Candidate Selected & Frozen):**
+  - Public GtRNAdb screening across all 432 human cytoplasmic tRNAs.
+  - Selected and verified **human cytoplasmic tRNA-Asp-GTC-2-1** ($\text{Hamming}(\text{GUC}, \text{CUA}) = 2$; 5/5 GC stem).
+  - Sequence and metadata frozen in `data/metadata/selected_trna.yaml` and documented in `docs/11_trna_selection.md`.
+- **Phase 3 (Pending Next Phase):** System solvation, ion placement, and AMBER OL3 parameterization.

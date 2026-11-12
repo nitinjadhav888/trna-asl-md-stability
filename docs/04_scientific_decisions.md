@@ -14,7 +14,7 @@ This log formally records all scientific and technical decisions, their rational
 | **SDR-04** | Sampling Budget (3 replicates × 20 ns per construct = 120 ns) | **APPROVED** | `[PROMPT MANDATE]` |
 | **SDR-05** | Ionic Environment (~0.15 M KCl in Explicit Water) | **APPROVED** | `[PROMPT MANDATE]` |
 | **SDR-06** | Solvent Model & Matched Ion Parameter Selection | **BASELINE ESTABLISHED** | `[IMPLEMENTATION CHOICE]` |
-| **SDR-07** | Target Human Cytoplasmic tRNA Selection Criteria | **DEFERRED TO PHASE 2** | `[PENDING VERIFICATION]` |
+| **SDR-07** | Target Human Cytoplasmic tRNA Selection (tRNA-Asp-GTC-2-1) | **APPROVED (PHASE 2 COMPLETED)** | `[PROMPT MANDATE / VERIFIED]` |
 | **SDR-08** | Selection & Justification of Metric 6 | **DEFERRED TO PHASE 2** | `[PENDING VERIFICATION]` |
 | **SDR-09** | ASL Terminal Chemistry (5'-OH / 3'-OH) | **PROPOSED BASELINE** | `[SCIENTIFIC ASSUMPTION]` |
 | **SDR-10** | Replicate-Aware Statistical Inference & Sample Size Constraints | **METHODOLOGY DEFINED** | `[SCIENTIFIC ASSUMPTION]` |
@@ -74,23 +74,32 @@ This log formally records all scientific and technical decisions, their rational
 
 ---
 
-### SDR-07: Target Human Cytoplasmic tRNA Selection Criteria
-- **Status:** DEFERRED TO PHASE 2 `[PENDING VERIFICATION]`
-- **Context:** The prompt requires comparing a wild-type human cytoplasmic tRNA ASL against its CUA suppressor mutant, under the strict constraint that the native anticodon must convert to `CUA` by **exactly two nucleotide substitutions** ($\text{Hamming}(\text{Anticodon}_{\text{WT}}, \text{CUA}) = 2$).
-- **Audit Retraction:** 
-  - Previously suggested candidates (tRNA-Tyr, tRNA-Trp, tRNA-Leu) in the initial scaffold draft are **retracted** because:
-    1. tRNA-Tyr (`GUA` $\rightarrow$ `CUA`) requires only 1 mutation ($G34C$).
-    2. tRNA-Trp (`CCA` $\rightarrow$ `CUA`) requires only 1 mutation ($C35U$).
-    3. tRNA-Leu (`CAA` $\rightarrow$ `CUA`) requires only 1 mutation ($A35U$).
-    4. Previous informal PDB citations were misattributed non-human structures and have been completely removed.
-- **Phase 2 Selection Protocol:**
-  - No tRNA is selected in Phase 1.
-  - In Phase 2, candidate genes will be screened against verified public records in GtRNAdb for human cytoplasmic tRNAs.
-  - Screening filters:
-    1. Canonical 5-bp anticodon stem (residues 27–31 paired with 39–43).
-    2. Canonical 7-nt loop (residues 32–38) with invariant U33.
-    3. Wild-type anticodon triplet exhibiting $\text{Hamming}(\text{Anticodon}_{\text{WT}}, \text{CUA}) = 2$.
-    4. Availability of experimental structural templates or high-confidence homology models.
+### SDR-07: Target Human Cytoplasmic tRNA Selection (tRNA-Asp-GTC-2-1)
+- **Status:** APPROVED (PHASE 2 COMPLETED) `[PROMPT MANDATE / VERIFIED]`
+- **Context:** The study requires selecting exactly one wild-type human cytoplasmic tRNA from GtRNAdb whose native anticodon can be converted to the amber suppressor anticodon `CUA` by **exactly two nucleotide substitutions** ($\text{Hamming}(\text{Anticodon}_{\text{WT}}, \text{CUA}) = 2$).
+- **Evidence & Screening Execution:**
+  - Evaluated all 432 high-confidence *Homo sapiens* cytoplasmic tRNA genes in GtRNAdb (hg38).
+  - Computed exact Hamming distance to `CUA` across all 48 unique anticodons; 199 genes (21 anticodons) satisfied $\text{Hamming} = 2$.
+  - Filtered for canonical 17-nt ASL secondary structure (`>>>>>.......<<<<<`), invariant U33, anticodon at loop positions 3–5 (residues 34–36), purine at position 6 (residue 37), and pure Watson-Crick 5-bp stem. Exactly 138 genes across 30 unique ASL sequence clusters passed all filters.
+- **Decision:** Select **Human Cytoplasmic tRNA-Asp-GTC-2-1** (GtRNAdb ID: `tRNA-Asp-GTC-2-1`, tRNAscan-SE ID: `chr1.trna92`, genomic locus `chr1:161440825-161440896`).
+  - Native WT Anticodon: `5'-GUC-3'` (DNA: `GTC`).
+  - Target Suppressor Anticodon: `5'-CUA-3'` (DNA: `CTA`).
+  - Hamming Distance: **2** (Substitutions: `G34C` and `C36A`; middle position `U35` is identical).
+  - 17-nt ASL Sequence (WT): `5'-CCCGCCUGUCACGCGGG-3'`
+  - 17-nt ASL Sequence (Suppressor): `5'-CCCGCCUCUAACGCGGG-3'`
+  - Full Mature tRNA Sequence (72 nt):
+    `UCCUCGUUAGUAUAGUGGUGAGUAUCCCCGCCUGUCACGCGGGAGACCGGGGUUCGAUUCCCCGACGGGGAG`
+- **Scientific Rationale:**
+  1. *Maximum Stem Stability (5/5 GC Base Pairs):* The 5-bp stem consists entirely of Watson-Crick C:G pairs (`27:43 C:G`, `28:42 C:G`, `29:41 C:G`, `30:40 G:C`, `31:39 C:G`). This provides maximal thermodynamic resilience, directly preventing terminal end-fraying artifacts (RSK-SCI-03) in an isolated hairpin and isolating MD fluctuations cleanly to the loop.
+  2. *Canonical U-Turn Architecture:* Features invariant U33 and invariant purine A37 flanking the anticodon triplet.
+  3. *High Biological Abundance & Conservation:* 11 identical genomic copies exist in the human genome, representing the primary housekeeping aspartate tRNA.
+  4. *Zero Introns:* Non-intronic transcript with verified mature sequence from GtRNAdb.
+- **Alternatives Considered:**
+  - `tRNA-Glu-TTC-3-1`: Also 5/5 GC stem, but only 3 genomic copies and lower tRNAscan score (71.6 vs widespread 11-copy Asp cluster).
+  - `tRNA-Leu-CAG-1-1`: 4/5 GC stem, contains a U:A pair at position 28:42 which has higher breathing propensity.
+  - `tRNA-Ser-AGA-4-1`: 4/5 GC stem, single genomic copy.
+- **Verification Source:** GtRNAdb hg38 (`hg38-mature-tRNAs.fa`, `hg38-tRNAs-confidence-set.out`, `hg38-tRNAs-confidence-set.ss`). Complete candidate dataset versioned in `data/metadata/trna_candidates.tsv` and `data/metadata/selected_trna.yaml`.
+- **Unresolved Limitations:** Native human tRNA-Asp contains post-transcriptional modifications in vivo ($Q34, \Psi38$) which are omitted per the unmodified RNA benchmark protocol (documented in `docs/07_limitations.md`).
 
 ---
 

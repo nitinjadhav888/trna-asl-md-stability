@@ -15,7 +15,7 @@ This study investigates whether introducing an amber suppressor mutation (`CUA` 
 The study is formulated as a controlled, comparative computational experiment between two molecular constructs:
 
 1. **Construct 1 (Wild-Type ASL):**
-   - The wild-type 17-nucleotide ASL sequence derived from a verified human cytoplasmic tRNA gene in GtRNAdb. `[PENDING VERIFICATION]`
+   - The wild-type 17-nucleotide ASL sequence derived from verified human cytoplasmic **tRNA-Asp-GTC-2-1** in GtRNAdb (`data/metadata/selected_trna.yaml`, `docs/11_trna_selection.md`). `[VERIFIED]`
    - **Anticodon Conversion Requirement:** `[PROMPT MANDATE]` The wild-type anticodon triplet (positions 34, 35, 36) must differ from `CUA` by **exactly two nucleotide substitutions** ($\text{Hamming}(\text{Anticodon}_{\text{WT}}, \text{CUA}) = 2$).
 2. **Construct 2 (Suppressor ASL):**
    - An identical 17-nucleotide sequence except for the replacement of the native anticodon triplet with the `CUA` suppressor anticodon at positions 34–36. `[PROMPT MANDATE]`
