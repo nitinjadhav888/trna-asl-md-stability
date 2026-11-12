@@ -1,0 +1,28 @@
+# ==============================================================================
+# requirements.txt - tRNA ASL Structural Stability Study
+# Note: For molecular dynamics engines (OpenMM, AmberTools), installation via
+# conda / mamba (using environment.yml) is strongly recommended.
+# ==============================================================================
+
+# Core scientific computing and data handling
+numpy>=1.26.0,<2.0.0
+scipy>=1.12.0
+pandas>=2.2.0
+pyyaml>=6.0
+
+# Trajectory analysis and molecular mechanics
+mdanalysis>=2.7.0
+mdtraj>=1.9.9
+
+# Visualization and plotting
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Testing and code quality
+pytest>=8.0.0
+black>=24.0.0
+ruff>=0.3.0
+
+# Interactive notebooks
+jupyterlab>=4.1.0
+ipywidgets>=8.1.0

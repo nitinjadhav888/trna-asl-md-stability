@@ -1,0 +1,79 @@
+# ==============================================================================
+# Analysis Configuration - tRNA ASL Structural Stability Study
+#
+# NOTE: Specifies metrics, cutoff thresholds, and statistical protocols required
+# for the comparative trajectory analysis between WT and CUA Suppressor ASLs.
+# ==============================================================================
+
+metrics:
+  rmsd:
+    description: "Backbone root-mean-square deviation relative to equilibrated reference"
+    atoms: "backbone"  # P, O5', C5', C4', C3', O3'
+    subsets:
+      stem:
+        description: "5-bp anticodon stem (residues 27-31 and 39-43)"
+        residue_indices_5bp: [1, 2, 3, 4, 5, 13, 14, 15, 16, 17] # canonical 27-31, 39-43
+      loop:
+        description: "7-nt anticodon loop (residues 32-38)"
+        residue_indices_7nt: [6, 7, 8, 9, 10, 11, 12]          # canonical 32-38
+      align_selection: "backbone and stem"  # Align on stem before measuring loop displacement
+
+  rmsf:
+    description: "Per-residue root-mean-square fluctuation across production trajectory"
+    atoms: "backbone"
+    reference: "average_structure_per_replicate"
+
+  stem_hydrogen_bonds:
+    description: "Stem base-pair hydrogen-bond occupancy over time"
+    pairs:
+      - pair_1: [1, 17]  # canonical 27-43
+      - pair_2: [2, 16]  # canonical 28-42
+      - pair_3: [3, 15]  # canonical 29-41
+      - pair_4: [4, 14]  # canonical 30-40
+      - pair_5: [5, 13]  # canonical 31-39
+    distance_cutoff_angstrom: 3.5
+    angle_cutoff_degrees: 120.0
+
+  u_turn_diagnostic:
+    description: "Structural integrity diagnostic of the canonical U-turn motif"
+    key_interactions:
+      - name: "u33_n3_to_p36_oxygen"
+        donor: "residue 33 N3 (H3)"
+        acceptor: "residue 36 phosphate non-bridging oxygens (OP1/OP2)"
+        distance_threshold_angstrom: 3.5
+      - name: "u33_o2prime_to_a36_n7"
+        donor: "residue 33 O2' (HO2')"
+        acceptor: "residue 36 purine/pyrimidine base acceptor"
+        distance_threshold_angstrom: 3.5
+    torsion_angles:
+      - name: "alpha_34"
+      - name: "zeta_33"
+
+  anticodon_stacking:
+    description: "3'-stacking geometry of the anticodon bases (positions 34, 35, 36) and adjacent base 37"
+    pairs_to_evaluate:
+      - [34, 35]
+      - [35, 36]
+      - [36, 37]
+    metrics:
+      - "center_of_mass_distance_angstrom"
+      - "inter_planar_angle_degrees"
+
+  additional_metric:
+    name: "<PENDING_JUSTIFIED_SELECTION_PHASE_2>"
+    candidates:
+      - "anticodon_loop_radius_of_gyration"
+      - "solvent_accessible_surface_area_anticodon"
+      - "stem_loop_interhelical_twist_angle"
+    justification_required: true
+
+statistics:
+  protocol: "replicate_aware"
+  equilibration_discard_ns: 2.0  # Discard initial transient if needed, subject to convergence analysis
+  autocorrelation_correction: true
+  bootstrap_iterations: 10000
+  confidence_interval_level: 0.95
+  hypothesis_test: "two_sided_permutation_or_mann_whitney"
+  replicates:
+    wt_count: 3
+    suppressor_count: 3

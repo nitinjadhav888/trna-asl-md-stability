@@ -1,0 +1,75 @@
+# ==============================================================================
+# Simulation Configuration - tRNA ASL Structural Stability Study
+#
+# NOTE: This configuration contains ONLY verified parameters explicitly required
+# by the project specification. Parameters pending selection in Phase 2 are marked
+# with explicit placeholders (<PENDING_SELECTION>).
+# ==============================================================================
+
+project:
+  name: "trna-asl-md-stability"
+  research_question: >
+    When the anticodon of a human cytoplasmic tRNA is mutated to a suppressor
+    anticodon, does the anticodon stem-loop (ASL) retain canonical loop architecture
+    or become destabilized?
+
+systems:
+  wild_type:
+    name: "wt_asl"
+    description: "Wild-type human cytoplasmic tRNA ASL"
+    target_trna: "<PENDING_T_RNA_SELECTION_PHASE_2>"
+    sequence_5_to_3: "<PENDING_T_RNA_SELECTION_PHASE_2>"
+    anticodon: "<PENDING_T_RNA_SELECTION_PHASE_2>"
+    anticodon_positions: [34, 35, 36]
+    stem_length_bp: 5
+    loop_length_nt: 7
+    total_length_nt: 17
+    modifications: "none (unmodified nucleotides as specified)"
+
+  suppressor:
+    name: "suppressor_asl"
+    description: "CUA suppressor anticodon mutant of the selected human cytoplasmic tRNA ASL"
+    target_trna: "<PENDING_T_RNA_SELECTION_PHASE_2>"
+    sequence_5_to_3: "<PENDING_T_RNA_SELECTION_PHASE_2>"
+    anticodon: "CUA"
+    anticodon_positions: [34, 35, 36]
+    stem_length_bp: 5
+    loop_length_nt: 7
+    total_length_nt: 17
+    modifications: "none (unmodified nucleotides as specified)"
+
+solvent_and_ions:
+  solvent_model: "explicit"
+  water_model: "<PENDING_SELECTION_PHASE_2>"  # Candidates: OPC, TIP3P, TIP4P-EW
+  salt_type: "KCl"
+  salt_concentration_molar: 0.15  # Approximately 0.15 M KCl
+  neutralization: true
+  ion_parameters: "<PENDING_SELECTION_PHASE_2>" # e.g., Joung-Cheatham or standard AMBER
+
+forcefield:
+  rna: "OL3"  # AMBER OL3 RNA force field (ff99bsc0chiOL3)
+  water_and_ions: "<PENDING_SELECTION_MATCHING_WATER_MODEL>"
+
+thermodynamic_conditions:
+  ensemble: "NPT"
+  temperature_kelvin: 310.0   # 310 K (physiological)
+  pressure_bar: 1.0           # 1 bar
+  friction_coeff_ps: 1.0      # Langevin thermostat collision frequency
+  barostat_frequency_steps: 25
+
+simulation_sampling:
+  replicates_per_construct: 3
+  production_time_ns_per_replicate: 20.0  # Minimum 20 ns
+  total_replicates: 6
+  total_production_time_ns: 120.0
+  timestep_fs: 2.0
+  trajectory_save_interval_ps: 10.0
+  energy_save_interval_ps: 10.0
+  random_seeds:
+    wt: [1001, 1002, 1003]
+    suppressor: [2001, 2002, 2003]
+
+box_geometry:
+  box_type: "<PENDING_SELECTION_PHASE_2>"  # Candidates: Truncated Octahedron or Cubic
+  padding_distance_angstrom: 10.0          # Minimum clearance from RNA to box edge
+  pme_cutoff_angstrom: 10.0

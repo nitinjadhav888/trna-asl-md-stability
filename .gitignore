@@ -1,0 +1,112 @@
+# ==============================================================================
+# .gitignore - tRNA ASL Structural Stability Study
+# ==============================================================================
+
+# Gitkeep persistence
+!.gitkeep
+
+# ------------------------------------------------------------------------------
+# Molecular Dynamics Trajectories, Checkpoints & Intermediate Binaries
+# (Trajectories must NOT be committed to git to maintain a lightweight repo)
+# ------------------------------------------------------------------------------
+*.dcd
+*.xtc
+*.trr
+*.nc
+*.netcdf
+*.h5
+*.lh5
+*.trj
+*.crd
+*.cpt
+*.chk
+*.rst
+*.rst7
+*.restart
+*.tpr
+*.edr
+
+# Simulation working directories and raw trajectory dumps
+simulations/**/raw/
+simulations/**/traj/
+simulations/**/checkpoints/
+simulations/**/output/
+simulations/**/run_*/
+
+# AMBER / OpenMM / GROMACS output dumps and temp logs
+*.mdout
+*.out
+md.log
+energies.csv
+openmm_state_*.xml
+openmm_checkpoint_*.chk
+
+# ------------------------------------------------------------------------------
+# Python & Environment Files
+# ------------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Linting
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter Notebooks Checkpoints & Large Data
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# ------------------------------------------------------------------------------
+# Data & Cache Exclusions (Large files)
+# ------------------------------------------------------------------------------
+data/raw/*.tar.gz
+data/raw/*.zip
+data/raw/*.tar
+data/processed/*.h5
+data/processed/*.parquet
+
+# ------------------------------------------------------------------------------
+# Operating System & IDE Files
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# Editors & IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+#*#
