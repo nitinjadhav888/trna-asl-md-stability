@@ -114,10 +114,11 @@ This log formally records all scientific and technical decisions, their rational
 ---
 
 ### SDR-09: ASL Terminal Chemistry
-- **Status:** PROPOSED BASELINE `[SCIENTIFIC ASSUMPTION]`
+- **Status:** APPROVED & IMPLEMENTED `[SCIENTIFIC DECISION]`
 - **Context:** Simulating an excised 17-nt hairpin requires defining terminal groups at residues 27 and 43.
-- **Decision:** Maintain neutral **5'-OH** and **3'-OH** termini as the proposed baseline.
-- **Rationale:** Prevents placing a repulsive $-2e$ charge on residue 27 directly opposite residue 43, minimizing artificial terminal base-pair fraying. Final confirmation will occur during Phase 2 coordinate assembly.
+- **Decision:** Maintain neutral **5'-OH** and **3'-OH** termini.
+- **Rationale:** Prevents placing a repulsive $-2e$ charge on residue 27 directly opposite residue 43, minimizing artificial terminal base-pair fraying (RSK-SCI-03).
+- **Implementation in Phase 3:** In `structures/wt/initial.pdb` and `structures/cua/initial.pdb`, residue 27 begins with $O5'$ (phosphate atoms $P, OP1, OP2$ omitted), matching OpenMM force field template `C5` (adds $HO5'$). Residue 43 terminates with $O3'$, matching template `G3` (adds $HO3'$).
 
 ---
 
@@ -131,3 +132,15 @@ This log formally records all scientific and technical decisions, their rational
   1. **Primary Reporting:** Center reporting on replicate-level effect sizes (Hedges' $g$ / Cohen's $d$, difference in replicate means/medians) with 95% bootstrap confidence intervals ($10,000$ iterations).
   2. **Explicit Disclosure:** Transparently state sample-size and power limitations in the final report.
   3. **Pseudoreplication Guard:** Trajectory frames will not be treated as independent biological replicates. Autocorrelation times ($\tau_{\text{int}}$) and block averages will be computed to assess intra-trajectory stability, while inter-replicate comparisons remain the primary statistical unit.
+
+---
+
+### SDR-11: 3D Structural Modeling Template and Glycosidic Base Grafting
+- **Status:** APPROVED & IMPLEMENTED `[SCIENTIFIC DECISION / IMPLEMENTATION CHOICE]`
+- **Context:** Phase 3 requires constructing valid 3D coordinates for WT and CUA suppressor 17-nt ASLs under strictly controlled comparative conditions.
+- **Decision:** Select experimental X-ray crystal structure of unmodified tRNA(Asp) (PDB: **6UGG**, Chain A, residues 27–43, 1.95 Å resolution) as the structural template, with deterministic rigid-body glycosidic base grafting for stem mutations ($U29C, A41G$) and suppressor mutations ($G34C, C36A$).
+- **Rationale:**
+  1. The 7-nt loop of 6UGG (`CUGUCAC`, residues 32–38) is 100% sequence-identical to human cytoplasmic `tRNA-Asp-GTC-2-1`, preserving authentic crystallographic U-turn geometry ($U33\ \text{N3} \cdots 36\ \text{OP2} = 3.52\ \text{Å}$) and canonical $\text{anti}$ glycosidic torsions ($\chi$).
+  2. The 5-bp stem of 6UGG has 4 of 5 pairs already identical; the single compensatory mutation ($U29C, A41G$) preserves standard A-form Watson-Crick hydrogen bonding ($2.74 - 2.82\ \text{Å}$).
+  3. Non-mutated residues between WT and CUA share strictly identical coordinates ($\text{RMSD} = 0.000\ \text{Å}$), eliminating structural confounding artifacts in downstream comparative MD.
+- **Documentation:** Full methodology and alternative approach evaluations recorded in [docs/12_structure_modeling_method.md](file:///d:/trna-asl-md-stability/docs/12_structure_modeling_method.md).

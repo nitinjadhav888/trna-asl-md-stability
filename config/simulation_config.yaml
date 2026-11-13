@@ -35,6 +35,7 @@ systems:
     total_length_nt: 17                                  # [PROMPT MANDATE]
     modifications: "none (unmodified nucleotides)"       # [PROMPT MANDATE]
     anticodon_hamming_distance_to_cua: 2                 # [PROMPT MANDATE] G34C, C36A (Hamming = 2)
+    initial_structure_pdb: "structures/wt/initial.pdb"   # [PHASE 3 ARTIFACT]
 
   suppressor:
     name: "suppressor_asl"
@@ -49,6 +50,7 @@ systems:
     loop_length_nt: 7                                    # [PROMPT MANDATE]
     total_length_nt: 17                                  # [PROMPT MANDATE]
     modifications: "none (unmodified nucleotides)"       # [PROMPT MANDATE]
+    initial_structure_pdb: "structures/cua/initial.pdb"  # [PHASE 3 ARTIFACT]
 
 solvent_and_ions:
   solvent_model: "explicit"                              # [PROMPT MANDATE]
