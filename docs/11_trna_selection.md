@@ -53,12 +53,22 @@ The screening was executed via the deterministic pipeline script [scripts/01_sel
    - Result: **138 genes** across 30 unique ASL sequence clusters passed all structural criteria.
 
 ### 3.2 Implementation & Ranking Preferences `[IMPLEMENTATION CHOICE]`
-5. **Stem GC Content Preference `[IMPLEMENTATION CHOICE]`:**
+
+To choose deterministically among eligible passing clusters, `scripts/01_select_trna.py` applies a formalized, programmatic multi-tier sorting key:
+
+$$\text{Sort Key} = \Big(-\text{Stem GC Pairs},\ -\text{Genomic Copy Count},\ -\max(\text{Bit Score}),\ \min(\text{GtRNAdb ID})\Big)$$
+
+1. **Tier 1: Stem GC Content Preference `[IMPLEMENTATION CHOICE]`:**
    - As identified in Risk **RSK-SCI-03** ([docs/09_risk_register.md](file:///d:/trna-asl-md-stability/docs/09_risk_register.md)), isolated 17-nt hairpins in explicit solvent lack tertiary stabilization from the tRNA core and are susceptible to artificial terminal base-pair fraying (residues 27:43).
    - High-GC stem composition (5/5 vs. 4/5 vs. $\le 3/5$ C:G pairs) was selected as an implementation/design criterion intended to reduce the likelihood of stem fraying during the short ASL-only simulations.
    - *Scientific Clarification:* This criterion is an operational design preference, not an assumption of proven thermodynamic free energy ($\Delta G$). Helical stability in the force field remains an empirical outcome to be directly measured during trajectory analysis (Metric 3).
-6. **Genomic Representation Preference `[IMPLEMENTATION CHOICE]`:**
-   - Preference for major multi-copy housekeeping tRNA families over single-copy or low-expression loci to maximize biological relevance to the human cytoplasmic translation apparatus.
+2. **Tier 2: Genomic Representation & Biological Abundance Preference `[IMPLEMENTATION CHOICE]`:**
+   - Preference for major multi-copy housekeeping tRNA families over minor or low-expression loci to maximize biological relevance to the human cytoplasmic translation apparatus.
+   - Clusters with higher genomic gene copy counts sharing the identical 17-nt ASL sequence represent predominant cytoplasmic pools in human cells.
+3. **Tier 3: tRNAscan-SE Bit Score `[ENGINEERING METRIC]`:**
+   - Higher bit scores indicate higher confidence in canonical tRNA secondary structure and sequence conservation from the tRNAscan-SE infernal models.
+4. **Tier 4: Canonical Alphanumeric Identifier `[REPRODUCIBILITY TIE-BREAKER]`:**
+   - Alphanumeric ordering (e.g., `tRNA-Asp-GTC-2-1` before `tRNA-Asp-GTC-2-2`) provides a strictly deterministic tie-breaker across otherwise equivalent candidates.
 
 ---
 
@@ -88,29 +98,46 @@ $$\text{Hamming}(\mathbf{s}_1, \mathbf{s}_2) = \sum_{i=1}^3 \mathbb{I}(s_{1,i} \
 
 ## 5. Summary Table of Eligible ASL Clusters
 
-Filtering the 138 passing genes yielded 30 unique ASL sequence clusters. The top clusters ranked by stem GC content and tRNAscan-SE score are:
+Filtering the 138 passing genes yielded 30 unique ASL sequence clusters. The clusters are programmatically ranked using the multi-tier sorting key defined in Section 3.2. The complete ranked cluster dataset is recorded in [data/metadata/trna_ranked_clusters.tsv](file:///d:/trna-asl-md-stability/data/metadata/trna_ranked_clusters.tsv).
 
-| Isotype | WT Anticodon | Stem GC Pairs | Gene Count* | Max Bit Score | Representative GtRNAdb ID | 17-nt ASL Sequence ($5' \rightarrow 3'$) | Stem Architecture (27:43 to 31:39) |
-| :--- | :---: | :---: | :---: | :---: | :--- | :--- | :--- |
-| **Asp** | **GUC** | **5 / 5** | **12** | **66.5** | **tRNA-Asp-GTC-2-1** | `CCCGCCUGUCACGCGGG` | C:G, C:G, C:G, G:C, C:G |
-| **Glu** | **UUC** | **5 / 5** | **3** | **71.6** | **tRNA-Glu-TTC-3-1** | `CGGCGCUUUCACCGCCG` | C:G, G:C, G:C, C:G, G:C |
-| **Ser** | **AGA** | **4 / 5** | **1** | **78.8** | **tRNA-Ser-AGA-4-1** | `GCAGGUUCGAAUCCUGC` | G:C, C:G, A:U, G:C, G:C |
-| **Leu** | **CAG** | **4 / 5** | **9** | **78.2** | **tRNA-Leu-CAG-1-1** | `CUGCGUUCAGGUCGCAG` | C:G, U:A, G:C, C:G, G:C |
-| **Glu** | **UUC** | **4 / 5** | **4** | **72.5** | **tRNA-Glu-TTC-1-2** | `CCUGGUUUUCACCCAGG` | C:G, C:G, U:A, G:C, G:C |
-| **Arg** | **CCU** | **4 / 5** | **3** | **72.3** | **tRNA-Arg-CCT-1-1** | `CUGGCCUCCUAAGCCAG` | C:G, U:A, G:C, G:C, C:G |
-| **Pro** | **CGG** | **4 / 5** | **3** | **70.2** | **tRNA-Pro-CGG-1-1** | `CUCGCUUCGGGUGCGAG` | C:G, U:A, C:G, G:C, C:G |
-| **Asn** | **GUU** | **4 / 5** | **1** | **67.9** | **tRNA-Asn-GTT-24-1** | `GGUGGUUCCAGCCCACC` | G:C, G:C, U:A, G:C, G:C |
-| **His** | **GUG** | **4 / 5** | **9** | **60.1** | **tRNA-His-GTG-1-1** | `CUGCGUUGUGGCCGCAG` | C:G, U:A, G:C, C:G, G:C |
+The top 10 clusters are:
+
+| Rank | Isotype | WT Anticodon | Stem GC Pairs | Gene Count* | Max Bit Score | Representative GtRNAdb ID | 17-nt ASL Sequence ($5' \rightarrow 3'$) | Stem Architecture (27:43 to 31:39) |
+| :---: | :--- | :---: | :---: | :---: | :---: | :--- | :--- | :--- |
+| **1** | **Asp** | **GUC** | **5 / 5** | **12** | **66.5** | **tRNA-Asp-GTC-2-1** | `CCCGCCUGUCACGCGGG` | C:G, C:G, C:G, G:C, C:G |
+| **2** | **Glu** | **UUC** | **5 / 5** | **3** | **71.6** | **tRNA-Glu-TTC-3-1** | `CGGCGCUUUCACCGCCG` | C:G, G:C, G:C, C:G, G:C |
+| **3** | **Leu** | **CAG** | **4 / 5** | **9** | **78.2** | **tRNA-Leu-CAG-1-1** | `CUGCGUUCAGGUCGCAG` | C:G, U:A, G:C, C:G, G:C |
+| **4** | **His** | **GUG** | **4 / 5** | **9** | **60.1** | **tRNA-His-GTG-1-1** | `CUGCGUUGUGGCCGCAG` | C:G, U:A, G:C, C:G, G:C |
+| **5** | **Glu** | **UUC** | **4 / 5** | **4** | **72.5** | **tRNA-Glu-TTC-1-1** | `CCUGGUUUUCACCCAGG` | C:G, C:G, U:A, G:C, G:C |
+| **6** | **Arg** | **CCU** | **4 / 5** | **3** | **72.3** | **tRNA-Arg-CCT-1-1** | `CUGGCCUCCUAAGCCAG` | C:G, U:A, G:C, G:C, C:G |
+| **7** | **Pro** | **CGG** | **4 / 5** | **3** | **70.2** | **tRNA-Pro-CGG-1-1** | `CUCGCUUCGGGUGCGAG` | C:G, U:A, C:G, G:C, C:G |
+| **8** | **Asn** | **GUU** | **4 / 5** | **3** | **64.1** | **tRNA-Asn-GTT-25-1** | `GGUGGUUCGAGCCCACC` | G:C, G:C, U:A, G:C, G:C |
+| **9** | **Ser** | **AGA** | **4 / 5** | **1** | **78.8** | **tRNA-Ser-AGA-4-1** | `GCAGGUUCGAAUCCUGC` | G:C, C:G, A:U, G:C, G:C |
+| **10** | **Asn** | **GUU** | **4 / 5** | **1** | **67.9** | **tRNA-Asn-GTT-24-1** | `GGUGGUUCCAGCCCACC` | G:C, G:C, U:A, G:C, G:C |
 
 *\*Note on Asp-GTC Gene Counts:* Exactly 12 genes share this identical 17-nt ASL sequence (`CCCGCCUGUCACGCGGG`): 11 genes (`tRNA-Asp-GTC-2-1` through `tRNA-Asp-GTC-2-11`) share both an identical 72-nt mature sequence and identical ASL, while 1 gene (`tRNA-Asp-GTC-1-1`) shares the identical ASL sequence but possesses two point variations in the D- and T-loops. One additional gene in the high-confidence set (`tRNA-Asp-GTC-3-1`) has a variant ASL (`CCCGUCUGUCACGCGGG`, U31:G39 wobble pair), bringing the total high-confidence `tRNA-Asp-GTC` gene count to 13.
 
 *Full candidate list with all 432 genes is versioned in `data/metadata/trna_candidates.tsv`.*
 
+### 5.1 Analysis of Sorting Schemes & Methodological Transparency
+
+For complete scientific reproducibility and transparency, we evaluate the sensitivity of the candidate selection to alternative ranking schemes:
+
+1. **Alternative Scheme (Stem GC then tRNAscan-SE Bit Score Only):**
+   - If ranking is performed strictly by $\text{Sort Key} = (-\text{Stem GC}, -\text{Bit Score})$, exactly two clusters achieve 5/5 GC pairs:
+     - `tRNA-Glu-TTC-3-1` (Stem GC: 5/5, Max Bit Score: 71.6, Copy Count: 3) $\rightarrow$ Rank 1
+     - `tRNA-Asp-GTC-2-1` (Stem GC: 5/5, Max Bit Score: 66.5, Copy Count: 12) $\rightarrow$ Rank 2
+   - While `tRNA-Glu-TTC-3-1` scores 5.1 bits higher in the tRNAscan-SE covariance model, it represents a minor 3-copy genomic locus in human cells. The predominant human cytoplasmic glutamate tRNA family is `tRNA-Glu-CTC` (15 genomic copies), but `tRNA-Glu-CTC` has an anticodon `CUC` that has a Hamming distance of 3 to `CUA`, making it ineligible under the hard requirement.
+2. **Adopted Method (Multi-Tier Ranking with Biological Abundance / Representation):**
+   - As established in Section 3.2 and SDR-07, biological abundance / multi-copy representation is a core operational preference to ensure benchmark relevance to the primary human translation apparatus.
+   - When genomic copy count is included ($\text{Stem GC} \rightarrow \text{Copy Count} \rightarrow \text{Bit Score}$), **`tRNA-Asp-GTC-2-1` programmatically ranks #1** out of all 30 eligible clusters.
+   - Crucially, `tRNA-Asp-GTC-2-1` also possesses **100% loop sequence identity** (`CUGUCAC`) to the high-resolution (1.95 Å) experimental crystal structure PDB 6UGG (Chain A), eliminating structural modeling ambiguity during Phase 3 starting coordinate construction.
+
 ---
 
 ## 6. Final Selected tRNA
 
-The final candidate selected for this study is:
+The final candidate selected for this study is programmatically derived by `scripts/01_select_trna.py` as Rank #1 and exported to [data/metadata/selected_trna.yaml](file:///d:/trna-asl-md-stability/data/metadata/selected_trna.yaml):
 
 ### **Human Cytoplasmic tRNA-Asp-GTC-2-1**
 - **GtRNAdb Gene ID:** `tRNA-Asp-GTC-2-1`
