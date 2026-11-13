@@ -9,8 +9,8 @@ This document identifies, assesses, and outlines mitigation strategies for scien
 | Severity \ Likelihood | Low | Medium | High |
 | :--- | :--- | :--- | :--- |
 | **Critical** | — | **RSK-SCI-02** (Timescale / Kinetic Trapping) | — |
-| **High** | **RSK-COMP-01** (Numerical / Platform Divergence) | **RSK-SCI-01** (Force Field / Solvent Coupling)<br>**RSK-INT-02** (Extrapolating to Cellular Suppression) | **RSK-INT-01** (Over-Interpreting Small Sample Shifts) |
-| **Medium** | **RSK-REPR-02** (Library Version Drift) | **RSK-COMP-02** (Simulation Interruptions)<br>**RSK-REPR-01** (Trajectory Storage Bloat) | **RSK-SCI-03** (Terminal Stem Fraying Artifact) |
+| **High** | **RSK-COMP-01** (Numerical / Platform Divergence) | **RSK-SCI-01** (Force Field / Solvent Coupling)<br>**RSK-SCI-04** (Template Bias & Lattice Contacts)<br>**RSK-INT-02** (Extrapolating to Cellular Suppression) | **RSK-INT-01** (Over-Interpreting Small Sample Shifts)<br>**RSK-SCI-06** (Static vs Dynamic Conflation) |
+| **Medium** | **RSK-REPR-02** (Library Version Drift)<br>**RSK-SCI-05** (Rigid-Body Grafting Strains) | **RSK-COMP-02** (Simulation Interruptions)<br>**RSK-REPR-01** (Trajectory Storage Bloat) | **RSK-SCI-03** (Terminal Stem Fraying Artifact) |
 | **Low** | — | — | — |
 
 ---
@@ -40,6 +40,27 @@ This document identifies, assesses, and outlines mitigation strategies for scien
 - **Mitigation:**
   - Employ neutral 5'-OH and 3'-OH termini (SDR-09 baseline) to avoid placing repulsive $-2e$ charges on residue 27.
   - Monitor H-bond occupancy for each individual base pair (27:43 through 31:39) separately rather than lumping stem stability into a single scalar average.
+
+#### RSK-SCI-04: Structural Template Bias & Crystalline Lattice Contact Artifacts
+- **Description:** Deriving the starting ASL coordinates from crystallographic template PDB 6UGG carries the risk that loop conformations observed in the crystal are stabilized by crystal lattice contacts rather than solution equilibrium thermodynamics. In 6UGG, Chain B adopted an open, non-canonical loop ($13.36\ \text{Å}$ U-turn distance) due to crystal packing, whereas Chain A retained the canonical closed U-turn ($3.52\ \text{Å}$). Selecting Chain A provides the canonical starting baseline, but MD relaxation at 310 K in solvent is required to determine whether this state remains stable without crystalline packing.
+- **Likelihood:** Medium | **Impact:** High
+- **Mitigation:**
+  - Initialize multiple independent replicates ($N=3$) with distinct random seeds to avoid single-trajectory trapping.
+  - Continuously track the $U33\ \text{N3} \cdots 36\ \text{OP2}$ distance time series throughout simulation trajectories.
+  - Explicitly document that starting from Chain A evaluates the *retention* or *loss* of the canonical fold, rather than assuming it is universally pre-determined.
+
+#### RSK-SCI-05: Rigid-Body Mutation Strains & Local Steric Relic Artifacts
+- **Description:** Mutating nucleobases via rigid-body frame grafting ($G34 \rightarrow C34$ and $C36 \rightarrow A36$) places idealized geometry without physical relaxation. While zero hard steric clashes are present ($>3.27\ \text{Å}$ to nearest neighbor), local van der Waals and electrostatic non-bonded interactions are not in their local potential energy minimum prior to Phase 4 minimization.
+- **Likelihood:** Low | **Impact:** Medium
+- **Mitigation:**
+  - Verified zero hard steric clashes ($>1.80\ \text{Å}$ threshold, actual minimum $>3.27\ \text{Å}$).
+  - Mandatory multi-stage steepest-descent / L-BFGS energy minimization with restrained solute in Phase 4 before MD production.
+
+#### RSK-SCI-06: Static Starting Geometry vs. Dynamic Stability Conflation
+- **Description:** Interpreting initial structure validation (Tier 1–4 checks) as evidence that the CUA suppressor ASL is "stable" or "functional".
+- **Likelihood:** High | **Impact:** High
+- **Mitigation:**
+  - Explicit separation of concepts across all documentation: static validation establishes initial starting sanity; dynamic stability is evaluated by Phase 5 MD; biological suppression efficacy cannot be determined by isolated ASL MD alone.
 
 ---
 

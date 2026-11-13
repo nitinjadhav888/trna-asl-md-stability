@@ -59,19 +59,38 @@ Peptide Bond Formation / Translation Readthrough
 
 ---
 
-## 3. Impact of Omitted Post-Transcriptional Modifications
+## 3. Structural Modeling & Template Limitations
 
-In living cells, human tRNAs undergo extensive enzymatic post-transcriptional modification. The benchmark protocol mandates simulating **unmodified** RNA. The biophysical consequences of omitting native modifications at positions 34, 37, and 38 must be explicitly accounted for:
+### 3.1 Crystallographic Template (PDB 6UGG) vs. Physiological Solution Dynamics
+- **Cryogenic Temperature Artifacts:** PDB 6UGG was solved by X-ray diffraction at cryogenic temperature (100 K). Cryocooling compresses conformational ensembles and can freeze local rotamers or backbone substates that are transient at physiological temperature (310 K).
+- **Crystal Lattice Packing vs. Free Solvent:**
+  - In the 6UGG asymmetric unit, Chain A adopts the canonical closed U-turn loop ($d(U33\ \text{N3} \cdots C36\ \text{OP2}) = 3.52\ \text{Å}$), whereas Chain B exhibits an extended, unstacked loop ($13.36\ \text{Å}$) stabilized by crystal lattice contacts with neighboring symmetry mates.
+  - While Chain A provides the canonical folded starting geometry for both WT and CUA constructs, isolated ASL simulations in solvent at 310 K lack lattice confinement and may reveal inherent thermodynamic bistability or propensity to unravel that is masked in the crystal.
+- **Rigid-Body Base Grafting Approximation:**
+  - Substitutions ($U29 \rightarrow C29$, $A41 \rightarrow G41$, $G34 \rightarrow C34$, $C36 \rightarrow A36$) were constructed via rigid-body frame grafting on invariant ribose-phosphate coordinates.
+  - While bond lengths ($1.470\ \text{Å}$), angles, and $\chi$ torsions are geometrically ideal with zero steric clashes ($>3.27\ \text{Å}$), starting coordinates represent an unrelaxed model that relies on subsequent Phase 4 energy minimization and equilibration to relax subtle electrostatics and van der Waals packing.
 
-| Position | Native Modifications (Human tRNAs) | Biophysical Function in Vivo | Expected Impact of Omission |
-| :--- | :--- | :--- | :--- |
-| **Residue 34** (Wobble base) | Inosine ($I$), $m^5C$, $ncm^5U$, $mcm^5s^2U$ | Enforces C3'-endo ribose pucker; optimizes base stacking; prevents misreading of near-cognate codons; stabilizes wobble pairing geometry. | Unmodified U34 or C34 exhibits increased conformational entropy, altered ribose pucker equilibria, and reduced base-stacking persistence. |
-| **Residue 37** (3' of anticodon) | $t^6A$, $ms^2t^6A$, $i^6A$, $m^1G$ | Bulky, hydrophobic, or hypermodified purines. Physically cross-links loop geometry, prevents non-canonical intra-loop Watson-Crick pairing, and maintains the open 3'-stacking architecture required for the U-turn. | Omission of $t^6A$ or $i^6A$ removes critical steric bulk, frequently permitting the anticodon loop to collapse into non-native intra-loop base pairs in classical force fields. |
-| **Residue 38** (Stem-loop junction) | Pseudouridine ($\Psi38$ or $\Psi39$) | Extra ring NH (N1-H) participates in an additional water-mediated hydrogen bond; stiffens the local phosphodiester backbone; stabilizes the closing base pair. | Omission leads to increased breathing and fraying at the loop-stem junction (closing base pair 31:39). |
+### 3.2 Absence of Whole-tRNA Tertiary Architecture
+- **Isolation of the 17-nt Hairpin:** In the mature, fully folded 76-nt tRNA, the ASL is physically connected to the D-stem and core junction.
+- **Missing Tertiary Constraints:**
+  - The ASL orientation is constrained by tertiary core interactions, including the Levitt base pair (G15:C48), inter-loop hydrogen bonding between the D- and T-loops (e.g., G19:C56), and coaxial stacking of the anticodon and D-stems.
+  - An isolated 17-nt hairpin has lower rotational inertia, greater solvent-accessible surface area, and altered counterion condensation compared to the intact L-shaped tRNA body.
 
 ---
 
-## 4. Required Experimental Measurement Pathway
+## 4. Impact of Omitted Post-Transcriptional Modifications
+
+In living cells, human tRNAs undergo extensive enzymatic post-transcriptional modification. The benchmark protocol mandates simulating **unmodified** RNA. For human cytoplasmic tRNA-Asp-GTC-2-1 specifically, the native modification profile includes critical determinants:
+
+| Position | Native Modification in Human tRNA-Asp | Biophysical Function in Vivo | Impact of Simulating Unmodified Nucleotides |
+| :--- | :--- | :--- | :--- |
+| **Residue 34** (Wobble base) | Queuosine ($Q34$) or Mannosyl-queuosine ($manQ34$) | 7-deazaguanosine derivative with cyclopentenediol / mannose moiety. Enforces strict C3'-endo ribose pucker, enhances base stacking with U35, and prevents frameshifting. | Unmodified G34 (WT) and C34 (Suppressor) possess greater conformational flexibility and lack the steric bulk that stabilizes codon-anticodon duplexes. |
+| **Residue 37** (3' of anticodon) | 1-Methyladenosine ($m^1A37$) or modified purine | Methylation / hypermodification disrupts Watson-Crick face, preventing illegitimate intra-loop base pairing with U33; promotes 3'-purine stacking. | Simulating unmodified A37 permits potential non-native intra-loop interactions with U33 or U35 if the loop distorts. |
+| **Residue 38** (Stem-loop junction) | Pseudouridine ($\Psi38$) | Contains an extra ring NH (N1-H) that coordinates an ordered water bridge to the backbone phosphate; rigidifies the closing base pair C31:G39. | Simulating standard U38 leads to increased breathing and potential premature fraying at the closing base pair. |
+
+---
+
+## 5. Required Experimental Measurement Pathway
 
 To validate or refute the computational hypotheses generated by this study, physical experimental measurements are indispensable:
 

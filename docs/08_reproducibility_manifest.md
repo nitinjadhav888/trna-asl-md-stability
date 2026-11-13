@@ -99,17 +99,17 @@ python scripts/03_visualize_asl_structures.py
 
 - **Date of Execution:** November 13, 2026
 - **Modeling Strategy:** Experimental crystallographic template-based homology modeling with rigid-body glycosidic base grafting (`docs/12_structure_modeling_method.md`).
-- **Parent Crystallographic Template:** PDB `6UGG` (Chain A, residues 27–43, 1.95 Å resolution unmodified *E. coli* tRNA-Asp, DOI: [10.1038/s41467-020-15365-2](https://doi.org/10.1038/s41467-020-15365-2)).
+- **Parent Crystallographic Template:** PDB `6UGG` (Chain A, residues 27–43, 1.95 Å resolution unmodified *E. coli* tRNA-Asp, Chan CW, Chetnani B, Mondragón A, *RNA* 2020, 26:278–291, DOI: [10.1261/rna.073478.119](https://doi.org/10.1261/rna.073478.119), PMID: 31848215). Chain A contains the canonical folded U-turn ($d(U33\ \text{N3} \cdots C36\ \text{OP2}) = 3.52\ \text{Å}$), whereas Chain B exhibits an extended non-canonical loop ($13.36\ \text{Å}$) stabilized by crystal lattice contacts.
 - **Software Dependencies:**
   - Python: 3.11+
   - BioPython: 1.86
   - NumPy: 2.2.6
   - Matplotlib: 3.10.0
-  - OpenMM: 8.6.1 (Force field template verification with `amber14/RNA.OL3.xml`)
-- **Deterministic Scripts:**
-  - Builder: [scripts/02_build_asl_structures.py](file:///d:/trna-asl-md-stability/scripts/02_build_asl_structures.py)
-  - Validator: [scripts/02_validate_asl_structure.py](file:///d:/trna-asl-md-stability/scripts/02_validate_asl_structure.py)
-  - Visualizer: [scripts/03_visualize_asl_structures.py](file:///d:/trna-asl-md-stability/scripts/03_visualize_asl_structures.py)
+  - OpenMM: 8.6.1 (Force field template verification with `amber14/RNA.OL3.xml` and `amber14/tip3p.xml`)
+- **Deterministic Scripts (Phase 3.1 Hardened):**
+  - Builder: [scripts/02_build_asl_structures.py](file:///d:/trna-asl-md-stability/scripts/02_build_asl_structures.py) (SHA-256: `a202761b4b6c01c3b229d94943f0d1fce31051a40132300c6dbcfc829ce05019`)
+  - Validator: [scripts/02_validate_asl_structure.py](file:///d:/trna-asl-md-stability/scripts/02_validate_asl_structure.py) (SHA-256: `6015a76c30f45bb55743a4b862c82a6620a48a75366b2f08d396a57791dd3507`)
+  - Visualizer: [scripts/03_visualize_asl_structures.py](file:///d:/trna-asl-md-stability/scripts/03_visualize_asl_structures.py) (SHA-256: `d28041e375e84e8986bdf087524a2fba339e4083c2d51bd2ff8cce373e50db43`)
 - **Artifact Manifest & SHA-256 Hashes:**
   - Raw Template: `data/raw/6UGG.pdb` (SHA-256: `2148a53b3b9e82ed1df163b1be789ab1fb4fcc3b3f461b38905232f4e98ac919`)
   - WT Structure: `structures/wt/initial.pdb` (SHA-256: `61c8363ca99475145ebb266166007e81e32f5bc07aba77ac04906a335b3f291c`)

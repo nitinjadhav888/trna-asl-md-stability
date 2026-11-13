@@ -53,7 +53,7 @@ To determine the most scientifically defensible, reproducible, and robust constr
 
 ### Approach D: Experimental Crystallographic Template-Based Homology Modeling (Selected)
 - **Description:** Derivation of starting coordinates from a high-resolution, experimentally determined X-ray crystal structure of an unmodified tRNA-Asp anticodon stem-loop, followed by deterministic glycosidic base grafting.
-- **Candidate Template:** **PDB 6UGG** (Chain A, residues 27–43), a 1.95 Å resolution crystal structure of unmodified tRNA(Asp) (*Escherichia coli*, DOI: [10.1038/s41467-020-15365-2](https://doi.org/10.1038/s41467-020-15365-2)).
+- **Candidate Template:** **PDB 6UGG** (Chain A, residues 27–43), a 1.95 Å resolution X-ray crystal structure of unmodified tRNA-Asp (*Escherichia coli*, Chan CW, Chetnani B, Mondragón A, *RNA* 2020, 26:278–291, DOI: [10.1261/rna.073478.119](https://doi.org/10.1261/rna.073478.119), PMID: 31848215). Chain A was specifically selected because it exhibits the authentic, canonical closed U-turn loop geometry ($d(U33\ \text{N3} \cdots C36\ \text{OP2}) = 3.52\ \text{Å}$), whereas Chain B in the asymmetric unit displays an unstacked, extended loop conformation ($13.36\ \text{Å}$) stabilized by crystal lattice contacts.
 - **Sequence Comparison:**
   - `6UGG` ASL Sequence (27–43): `5'- C C U G C   C U G U C A C   G C A G G -3'`
   - Target WT ASL Sequence: `5'- C C C G C   C U G U C A C   G C G G G -3'`
@@ -102,3 +102,4 @@ When substituting a nucleobase at position $i$ ($U29 \rightarrow C29$, $A41 \rig
    - Preserves standard covalent bond lengths ($d(C1'-N) = 1.470\ \text{Å}$, $d(N1-C2) = 1.400\ \text{Å}$, $d(N9-C4) = 1.374\ \text{Å}$).
    - Preserves ring planarity and canonical $\text{anti}$ glycosidic torsion angle ($\chi$).
    - Yields zero steric clashes (all non-bonded contacts $> 1.8\ \text{Å}$) and native Watson-Crick hydrogen bonding distances ($2.74 - 2.82\ \text{Å}$) for the mutated $C29:G41$ stem pair.
+
