@@ -1,0 +1,80 @@
+{
+  "construct": "wt",
+  "construct_id": "wt_asl",
+  "construct_name": "Wild-Type ASL",
+  "selected_trna_identifier": "tRNA-Asp-GTC-2-1",
+  "asl_sequence_5_to_3": "CCCGCCUGUCACGCGGG",
+  "input_files": {
+    "solvated_pdb": "D:\\trna-asl-md-stability\\simulations\\wt\\system\\solvated.pdb",
+    "solvated_pdb_sha256": "00b58110d71fcc25be065d744a7402ebff613df0f263663ef4490b0fef37ae1f",
+    "system_xml": "D:\\trna-asl-md-stability\\simulations\\wt\\system\\system.xml",
+    "system_xml_sha256": "d38963ab5ea2adac230bcc552ab1b1dda2260eecf67f41fcf61ceb5a0a8f0b09"
+  },
+  "output_files": {
+    "minimized_pdb": "D:\\trna-asl-md-stability\\simulations\\wt\\minimized.pdb",
+    "minimized_pdb_sha256": "471856b2293476ac5bfa24c5b91d43e9ad0476c7aaed8af0bbeacc0ca87efc80",
+    "minimization_log": "D:\\trna-asl-md-stability\\simulations\\wt\\minimization.log"
+  },
+  "openmm_environment": {
+    "openmm_version": "8.6.1",
+    "platform_used": "OpenCL",
+    "platform_hardware": {
+      "platform_name": "OpenCL",
+      "DeviceIndex": "0",
+      "DeviceName": "NVIDIA GeForce MX350",
+      "OpenCLPlatformIndex": "0",
+      "OpenCLPlatformName": "NVIDIA CUDA",
+      "Precision": "mixed",
+      "UseCpuPme": "false",
+      "DisablePmeStream": "false"
+    },
+    "precision_mode": "mixed",
+    "python_version": "3.14.3"
+  },
+  "minimization_protocol": {
+    "tolerance_kj_per_mol_nm": 10.0,
+    "tolerance_kcal_per_mol_a": 0.2390057,
+    "max_iterations_unrestrained": 5000,
+    "stage1_restrained": {
+      "enabled": true,
+      "restraint_k_kcal_per_mol_a2": 5.0,
+      "restraint_k_kj_per_mol_nm2": 2092.0,
+      "max_iterations": 2500,
+      "restrained_atom_count": 357
+    }
+  },
+  "energy_results": {
+    "initial_potential_energy_kj_per_mol": -114663.63375379238,
+    "stage1_unrestrained_energy_kj_per_mol": -282127.9075341007,
+    "final_potential_energy_kj_per_mol": -283441.8226015625,
+    "delta_energy_kj_per_mol": -168778.1888477701,
+    "energy_units": "kJ/mol",
+    "energy_decreased": true
+  },
+  "validation_checks": {
+    "total_atoms": 15693,
+    "nan_or_inf_detected": false,
+    "rna_residues": 17,
+    "rna_sequence": "CCCGCCUGUCACGCGGG",
+    "residue_id_range": "1-17",
+    "sprinzl_mapping": "Residues 1-17 map 1-to-1 to Sprinzl positions 27-43",
+    "terminal_chemistry_intact": true,
+    "water_molecules": 5035,
+    "k_ions": 30,
+    "cl_ions": 14,
+    "initial_potential_energy_kj_per_mol": -114663.63375379238,
+    "final_potential_energy_kj_per_mol": -283441.8226015625,
+    "energy_change_kj_per_mol": -168778.1888477701,
+    "rna_heavy_atom_rmsd_angstrom": 0.6346225129110673,
+    "minimum_rna_heavy_distance_angstrom": 1.2272905116556612,
+    "passed": true,
+    "errors": []
+  },
+  "timing": {
+    "start_time_utc": "2026-11-13T18:16:55.387218+00:00",
+    "end_time_utc": "2026-11-13T18:17:16.359141+00:00",
+    "walltime_seconds": 20.971923
+  },
+  "status": "PASS",
+  "disclaimer": "Energy minimization removes unfavorable local steric contacts and relaxes solvent-solute geometry, but does NOT establish conformational stability, native folding, or biological function."
+}

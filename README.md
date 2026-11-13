@@ -92,8 +92,19 @@ trna-asl-md-stability/
 ## 6. Current Project Status
 
 - **Phase 1 (Complete):** Requirements, repository architecture, protocols, and audit corrections finalized.
-- **Phase 2 (Complete - Candidate Selected & Frozen):**
+- **Phase 2 (Complete - Candidate Selected, Frozen & Reproducibility Audited):**
   - Public GtRNAdb screening across all 432 human cytoplasmic tRNAs.
   - Selected and verified **human cytoplasmic tRNA-Asp-GTC-2-1** ($\text{Hamming}(\text{GUC}, \text{CUA}) = 2$; 5/5 GC stem).
-  - Sequence and metadata frozen in `data/metadata/selected_trna.yaml` and documented in `docs/11_trna_selection.md`.
-- **Phase 3 (Pending Next Phase):** System solvation, ion placement, and AMBER OL3 parameterization.
+  - Multi-tier ranking formalized and frozen in `data/metadata/selected_trna.yaml` and `docs/11_trna_selection.md`.
+- **Phase 3 & 3.1 (Complete - Structural Modeling & Hardening):**
+  - 3D starting coordinates constructed from PDB 6UGG (Chain A, 1.95 Å) via rigid-body glycosidic base grafting.
+  - 14/14 automated structural validation checks verified across Tiers 1–4 (`structures/wt/initial.pdb`, `structures/cua/initial.pdb`).
+- **Phase 4A (Complete - Explicit-Solvent System Preparation):**
+  - Cubic periodic box ($55.00\ \text{Å}$) with $> 11.2\ \text{Å}$ solute clearance.
+  - Neutralized with $16\ \text{K}^+$ counterions; $150\ \text{mM}$ physiological KCl added ($14\ \text{K}^+/\text{Cl}^-$ pairs).
+  - OpenMM systems serialized in `simulations/wt/system/` and `simulations/cua/system/`.
+- **Phase 4B (Complete - Energy Minimization):**
+  - Two-stage energy minimization (Stage 1 restrained solute $k = 5.0\ \text{kcal/mol/Å}^2$; Stage 2 unrestrained full system).
+  - Large potential energy reduction ($\Delta E = -168,778\ \text{kJ/mol}$ WT, $-170,644\ \text{kJ/mol}$ CUA) with preserved RNA fold (RMSD $< 0.9\ \text{Å}$) and zero steric clashes.
+  - Minimized coordinates frozen in `simulations/wt/minimized.pdb` and `simulations/cua/minimized.pdb`.
+- **Phase 4C (Pending Next Phase):** NVT/NPT equilibration and restraint release.

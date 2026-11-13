@@ -1,0 +1,55 @@
+[2026-11-13 23:47:16] ================================================================================
+[2026-11-13 23:47:16] Phase 4B Energy Minimization: CUA Suppressor ASL (tRNA-Asp-GTC-2-1 (CUA mutant))
+[2026-11-13 23:47:16] ================================================================================
+[2026-11-13 23:47:16] Input System XML: D:\trna-asl-md-stability\simulations\cua\system\system.xml
+[2026-11-13 23:47:16] Input Solvated PDB: D:\trna-asl-md-stability\simulations\cua\system\solvated.pdb
+[2026-11-13 23:47:16] Output Minimized PDB: D:\trna-asl-md-stability\simulations\cua\minimized.pdb
+[2026-11-13 23:47:16] Protocol Parameters:
+[2026-11-13 23:47:16]   - Stage 1 (Restrained Solute): ENABLED
+[2026-11-13 23:47:16]     * Restraint constant (k): 5.0 kcal/(mol*A^2)
+[2026-11-13 23:47:16]     * Max iterations: 2500
+[2026-11-13 23:47:16]   - Stage 2 (Full System): ENABLED
+[2026-11-13 23:47:16]     * Convergence tolerance: 10.0 kJ/(mol*nm)
+[2026-11-13 23:47:16]     * Max iterations: 5000
+[2026-11-13 23:47:16] Deserializing Phase 4A OpenMM System XML (no reparameterization)...
+[2026-11-13 23:47:16] System loaded successfully: 15686 particles, 5 force groups.
+[2026-11-13 23:47:16] Loading Phase 4A Solvated PDB coordinates...
+[2026-11-13 23:47:17] PDB loaded successfully: 15686 coordinates.
+[2026-11-13 23:47:17] Selecting OpenMM computation platform (preference: auto)...
+[2026-11-13 23:47:17] Configured platform: OpenCL with properties {'Precision': 'mixed'}
+[2026-11-13 23:47:17] Hardware compute device: NVIDIA GeForce MX350
+[2026-11-13 23:47:17] Identified 356 RNA heavy atoms for harmonic position restraints.
+[2026-11-13 23:47:21] Initial Phase 4A Solvated Potential Energy (unrestrained):    -113083.589 kJ/mol
+[2026-11-13 23:47:21] Executing Stage 1: Restrained Solute Minimization (solvent/ion relaxation)...
+[2026-11-13 23:47:21]   Applying RNA heavy-atom harmonic restraints: k = 2092.00 kJ/(mol*nm^2)
+[2026-11-13 23:48:07] Stage 1 completed in 46.75s:
+[2026-11-13 23:48:07]   Post-Stage 1 Potential Energy (unrestrained):    -281979.139 kJ/mol
+[2026-11-13 23:48:07]   Stage 1 Energy Drop (delta_E):                   -168895.549 kJ/mol
+[2026-11-13 23:48:07] Executing Stage 2: Full System Minimization (unrestrained)...
+[2026-11-13 23:48:30] Stage 2 completed in 22.60s:
+[2026-11-13 23:48:30]   Final System Potential Energy:                    -283727.738 kJ/mol
+[2026-11-13 23:48:30]   Stage 2 Additional Drop:                           -1748.600 kJ/mol
+[2026-11-13 23:48:30]   TOTAL MINIMIZATION ENERGY DROP (delta_E):         -170644.149 kJ/mol
+[2026-11-13 23:48:30] Writing minimized coordinates to: D:\trna-asl-md-stability\simulations\cua\minimized.pdb...
+[2026-11-13 23:48:30] Minimized PDB written successfully (SHA-256: 695a1c3beb02b70b84f953b8892f365874dee2756c3df988f5dfa48b752eaf94)
+[2026-11-13 23:48:30] Running post-minimization automated validation...
+[2026-11-13 23:48:31]   * total_atoms: 15686
+[2026-11-13 23:48:31]   * nan_or_inf_detected: False
+[2026-11-13 23:48:31]   * rna_residues: 17
+[2026-11-13 23:48:31]   * rna_sequence: CCCGCCUCUAACGCGGG
+[2026-11-13 23:48:31]   * residue_id_range: 1-17
+[2026-11-13 23:48:31]   * sprinzl_mapping: Residues 1-17 map 1-to-1 to Sprinzl positions 27-43
+[2026-11-13 23:48:31]   * terminal_chemistry_intact: True
+[2026-11-13 23:48:31]   * water_molecules: 5033
+[2026-11-13 23:48:31]   * k_ions: 30
+[2026-11-13 23:48:31]   * cl_ions: 14
+[2026-11-13 23:48:31]   * initial_potential_energy_kj_per_mol: -113083.58920527925
+[2026-11-13 23:48:31]   * final_potential_energy_kj_per_mol: -283727.73846506607
+[2026-11-13 23:48:31]   * energy_change_kj_per_mol: -170644.14925978682
+[2026-11-13 23:48:31]   * rna_heavy_atom_rmsd_angstrom: 0.8920994065257506
+[2026-11-13 23:48:31]   * minimum_rna_heavy_distance_angstrom: 1.2262728081467043
+[2026-11-13 23:48:31] [PASS] All post-minimization structural, chemical, and energetic checks verified!
+[2026-11-13 23:48:31] Metadata exported to: D:\trna-asl-md-stability\simulations\cua\minimization_metadata.yaml
+[2026-11-13 23:48:31] Metadata exported to: D:\trna-asl-md-stability\simulations\cua\minimization_metadata.json
+[2026-11-13 23:48:31] Phase 4B Minimization finished successfully for CUA Suppressor ASL (Verdict: PASS).
+

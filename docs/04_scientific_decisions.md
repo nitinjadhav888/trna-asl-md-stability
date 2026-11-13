@@ -158,3 +158,17 @@ Taxonomy:
   3. *Tier 3 (Comparative Control `[SCIENTIFIC DECISION]`):* Mutations strictly confined to 34 and 36; all 15 non-mutated residues have $\text{RMSD} = 0.000000\ \text{Å}$.
   4. *Tier 4 (Force Field Parameterization `[ENGINEERING CHECK]`):* OpenMM Modeller hydrogen resolution (544 WT / 543 CUA atoms) and AMBER OL3 parameterization (`createSystem()`) verifying exact net charge of $-16.0000\ e$.
 - **Explicit Boundary:** Pre-MD validation proves initial coordinate validity only; it does NOT prove dynamic stability or predict suppression efficiency.
+
+---
+
+### SDR-13: Two-Stage Solvated Energy Minimization Protocol
+- **Status:** APPROVED & IMPLEMENTED (PHASE 4B) `[IMPLEMENTATION CHOICE]`
+- **Context:** Solvating rigid starting structures introduces high-energy steric overlaps and unrelaxed electrostatic contacts between solvent molecules, ions, and the RNA solute. Sudden unrestrained minimization of an isolated RNA hairpin in explicit solvent risks premature deformation of the native A-form stem or crystallographic U-turn loop before the solvent sheath relaxes.
+- **Decision:** Implement a two-stage minimization protocol in `scripts/05_minimize.py`:
+  1. *Stage 1 (Restrained Solute Minimization):* Apply harmonic position restraints ($k = 5.0\ \text{kcal}\cdot\text{mol}^{-1}\cdot\text{Å}^{-2} \approx 2092.00\ \text{kJ}\cdot\text{mol}^{-1}\cdot\text{nm}^{-2}$) to all RNA heavy atoms while allowing TIP3P water molecules and $\text{K}^+/\text{Cl}^-$ ions to minimize (max 2,500 iterations, tolerance $10.0\ \text{kJ}\cdot\text{mol}^{-1}\cdot\text{nm}^{-1}$).
+  2. *Stage 2 (Full System Minimization):* Release position restraints ($k = 0.0$) and minimize the entire solvated system (max 5,000 iterations, tolerance $10.0\ \text{kJ}\cdot\text{mol}^{-1}\cdot\text{nm}^{-1}$).
+- **Rationale & Empirical Validation:**
+  - Stage 1 accounts for $>99\%$ of the total potential energy drop ($\approx -167,500\ \text{kJ/mol}$ out of $\approx -169,000\ \text{kJ/mol}$), relaxing solvent packing without distorting the solute.
+  - Stage 2 relieves remaining local steric strain within the mutated nucleobases ($C34$ and $A36$) in the context of relaxed solvent.
+  - RNA heavy-atom RMSD relative to starting coordinates is preserved under $1.0\ \text{Å}$ ($0.6346\ \text{Å}$ WT, $0.8921\ \text{Å}$ CUA), with zero steric clashes ($> 1.22\ \text{Å}$).
+- **Explicit Boundary:** Energy minimization removes unfavorable local geometries but does not establish conformational stability, folding, or biological function. Full dynamic evaluation is deferred to production MD.
