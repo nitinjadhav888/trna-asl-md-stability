@@ -31,10 +31,11 @@ In accordance with strict scientific integrity rules:
 
 ## 3. Candidate Screening Methodology & Funnel
 
-The screening was executed via the deterministic pipeline script [scripts/01_select_trna.py](file:///d:/trna-asl-md-stability/scripts/01_select_trna.py). The screening funnel proceeded through four consecutive gates:
+The screening was executed via the deterministic pipeline script [scripts/01_select_trna.py](file:///d:/trna-asl-md-stability/scripts/01_select_trna.py). To ensure methodological transparency, screening criteria are partitioned into **Hard Eligibility Requirements** (dictated by the research brief and canonical biology) and **Implementation Choices** (operational ranking preferences).
 
-1. **Initial Dataset (432 Genes):** All high-confidence *Homo sapiens* nuclear-encoded cytoplasmic tRNA genes from GtRNAdb.
-2. **Gate 1: Exact Hamming Distance Filter ($\text{Hamming} = 2$):**
+### 3.1 Hard Eligibility Requirements
+1. **Initial Dataset (432 Genes):** All high-confidence *Homo sapiens* nuclear-encoded cytoplasmic tRNA genes from GtRNAdb (hg38).
+2. **Gate 1: Exact Anticodon Hamming Distance ($\text{Hamming} = 2$):**
    - The target suppressor anticodon is `CUA` (targeting mRNA stop codon `5'-UAG-3'`).
    - Every candidate's wild-type anticodon triplet was compared position-by-position against `CUA`.
    - Only anticodons differing at **exactly two** nucleotide positions were retained.
@@ -50,9 +51,14 @@ The screening was executed via the deterministic pipeline script [scripts/01_sel
    - Canonical purine (A or G) at position 6 of the loop (Sprinzl position 37).
    - Stem must consist exclusively of standard Watson-Crick base pairs (A:U, U:A, G:C, C:G) with zero non-canonical pairs or bulges.
    - Result: **138 genes** across 30 unique ASL sequence clusters passed all structural criteria.
-5. **Gate 4: Objective Biophysical Ranking:**
-   - As established in Risk **RSK-SCI-03** ([docs/09_risk_register.md](file:///d:/trna-asl-md-stability/docs/09_risk_register.md)), isolated 17-nt hairpins in explicit solvent are vulnerable to artificial terminal base-pair fraying (residues 27:43).
-   - Therefore, stem thermodynamic stability—measured by **GC base-pair content** (5/5 vs. 4/5 vs. $\le 3/5$)—serves as the primary objective biophysical criterion to ensure the stem remains locked during 20 ns MD simulations.
+
+### 3.2 Implementation & Ranking Preferences `[IMPLEMENTATION CHOICE]`
+5. **Stem GC Content Preference `[IMPLEMENTATION CHOICE]`:**
+   - As identified in Risk **RSK-SCI-03** ([docs/09_risk_register.md](file:///d:/trna-asl-md-stability/docs/09_risk_register.md)), isolated 17-nt hairpins in explicit solvent lack tertiary stabilization from the tRNA core and are susceptible to artificial terminal base-pair fraying (residues 27:43).
+   - High-GC stem composition (5/5 vs. 4/5 vs. $\le 3/5$ C:G pairs) was selected as an implementation/design criterion intended to reduce the likelihood of stem fraying during the short ASL-only simulations.
+   - *Scientific Clarification:* This criterion is an operational design preference, not an assumption of proven thermodynamic free energy ($\Delta G$). Helical stability in the force field remains an empirical outcome to be directly measured during trajectory analysis (Metric 3).
+6. **Genomic Representation Preference `[IMPLEMENTATION CHOICE]`:**
+   - Preference for major multi-copy housekeeping tRNA families over single-copy or low-expression loci to maximize biological relevance to the human cytoplasmic translation apparatus.
 
 ---
 
@@ -84,7 +90,7 @@ $$\text{Hamming}(\mathbf{s}_1, \mathbf{s}_2) = \sum_{i=1}^3 \mathbb{I}(s_{1,i} \
 
 Filtering the 138 passing genes yielded 30 unique ASL sequence clusters. The top clusters ranked by stem GC content and tRNAscan-SE score are:
 
-| Isotype | WT Anticodon | Stem GC Pairs | Gene Count | Max Bit Score | Representative GtRNAdb ID | 17-nt ASL Sequence ($5' \rightarrow 3'$) | Stem Architecture (27:43 to 31:39) |
+| Isotype | WT Anticodon | Stem GC Pairs | Gene Count* | Max Bit Score | Representative GtRNAdb ID | 17-nt ASL Sequence ($5' \rightarrow 3'$) | Stem Architecture (27:43 to 31:39) |
 | :--- | :---: | :---: | :---: | :---: | :--- | :--- | :--- |
 | **Asp** | **GUC** | **5 / 5** | **12** | **66.5** | **tRNA-Asp-GTC-2-1** | `CCCGCCUGUCACGCGGG` | C:G, C:G, C:G, G:C, C:G |
 | **Glu** | **UUC** | **5 / 5** | **3** | **71.6** | **tRNA-Glu-TTC-3-1** | `CGGCGCUUUCACCGCCG` | C:G, G:C, G:C, C:G, G:C |
@@ -95,6 +101,8 @@ Filtering the 138 passing genes yielded 30 unique ASL sequence clusters. The top
 | **Pro** | **CGG** | **4 / 5** | **3** | **70.2** | **tRNA-Pro-CGG-1-1** | `CUCGCUUCGGGUGCGAG` | C:G, U:A, C:G, G:C, C:G |
 | **Asn** | **GUU** | **4 / 5** | **1** | **67.9** | **tRNA-Asn-GTT-24-1** | `GGUGGUUCCAGCCCACC` | G:C, G:C, U:A, G:C, G:C |
 | **His** | **GUG** | **4 / 5** | **9** | **60.1** | **tRNA-His-GTG-1-1** | `CUGCGUUGUGGCCGCAG` | C:G, U:A, G:C, C:G, G:C |
+
+*\*Note on Asp-GTC Gene Counts:* Exactly 12 genes share this identical 17-nt ASL sequence (`CCCGCCUGUCACGCGGG`): 11 genes (`tRNA-Asp-GTC-2-1` through `tRNA-Asp-GTC-2-11`) share both an identical 72-nt mature sequence and identical ASL, while 1 gene (`tRNA-Asp-GTC-1-1`) shares the identical ASL sequence but possesses two point variations in the D- and T-loops. One additional gene in the high-confidence set (`tRNA-Asp-GTC-3-1`) has a variant ASL (`CCCGUCUGUCACGCGGG`, U31:G39 wobble pair), bringing the total high-confidence `tRNA-Asp-GTC` gene count to 13.
 
 *Full candidate list with all 432 genes is versioned in `data/metadata/trna_candidates.tsv`.*
 
@@ -110,7 +118,12 @@ The final candidate selected for this study is:
 - **Genomic Locus:** `chr1:161440825-161440896 (-)`
 - **Amino Acid Class:** Aspartate (Asp / D)
 - **Isotype Subgroup:** GTC (reading aspartate codons GAC and GAU)
-- **Genomic Representation:** 11 identical genomic copies (`tRNA-Asp-GTC-2-1` through `tRNA-Asp-GTC-2-11`) distributed across chromosomes 1, 6, 7, 12, and 17, representing the major human aspartate tRNA isoacceptor.
+- **Authoritative Genomic Copy Count & Representation Breakdown:**
+  - **Total Asp-GTC genes in high-confidence set:** **13 genes**
+  - **Identical mature sequence cluster (Cluster 2):** **11 genes** (`tRNA-Asp-GTC-2-1` through `tRNA-Asp-GTC-2-11`) distributed across chromosomes 1 (5 loci: trna80, 83, 86, 89, 92), 6 (2 loci: trna47, 50), 12 (3 loci: trna4, 10, 12), and 17 (1 locus: trna36).
+  - **Identical 17-nt ASL sequence (`CCCGCCUGUCACGCGGG`):** **12 genes** (the 11 Cluster 2 genes plus `tRNA-Asp-GTC-1-1` on chr12:98503503-98503574).
+  - **Variant ASL gene:** **1 gene** (`tRNA-Asp-GTC-3-1` on chr6:27583528-27583457, with ASL `CCCGUCUGUCACGCGGG` containing a U31:G39 wobble pair).
+  - **Biological Significance:** `tRNA-Asp-GTC-2-1` is the canonical reference locus of the predominant aspartate tRNA multi-gene family in the human genome.
 
 ---
 
@@ -196,18 +209,19 @@ Base Pairing:  |  |  |  |  |                         |  |  |  |  |
 
 ---
 
-## 10. Biophysical Justification for the Simulation Experiment
+## 10. Biophysical Rationale for the Simulation Experiment
 
-The selection of **tRNA-Asp-GTC-2-1** provides three compelling biophysical advantages:
+The selection of **tRNA-Asp-GTC-2-1** provides three key scientific advantages:
 
-1. **Maximum Stem Thermodynamic Stability (5/5 GC Pairs):**
-   - The closing stem consists entirely of Watson-Crick C:G pairs.
-   - **Mitigation of RSK-SCI-03:** In an excised 17-nt hairpin without the supporting D-stem, stems with A:U pairs frequently fray at the termini over 20 ns. The all-GC stem guarantees that the helical base pairs remain intact, isolating conformational dynamics strictly to the anticodon loop.
-2. **Canonical Loop Architecture:**
-   - Contains invariant residue U33 for the canonical U-turn motif.
-   - Contains adenine at position 37 (A37), which provides purine stacking immediately adjacent to the anticodon.
-3. **Biological Abundance & Conservation:**
-   - 11 identical copies in the human genome demonstrate that this sequence is under intense evolutionary constraint as a primary housekeeping tRNA.
+1. **High-GC Stem Architecture (5/5 C:G Base Pairs) `[IMPLEMENTATION CHOICE]`:**
+   - The 5-bp anticodon stem consists entirely of Watson-Crick C:G pairs (`27:43 C:G`, `28:42 C:G`, `29:41 C:G`, `30:40 G:C`, `31:39 C:G`).
+   - **Rationale for RSK-SCI-03:** High-GC stem composition was selected as an implementation/design criterion intended to reduce the likelihood of stem fraying during the short ASL-only simulations.
+   - *Scientific Note:* High GC content is an implementation choice, not a claim of proven "maximum thermodynamic stability" or a measured $\Delta G$. No empirical or alchemical free energy calculation has been performed at this stage. Rather, 5/5 C:G pairing provides strong Watson-Crick base-stacking and three hydrogen bonds per pair within standard empirical force fields, reducing the probability of terminal fraying in an isolated 17-nt hairpin lacking tertiary context. Whether the stem remains stable is an **empirical simulation outcome** to be directly measured via base-pair hydrogen-bond occupancy (Metric 3) in Phase 5 trajectory analysis.
+2. **Canonical Loop Architecture `[PROMPT MANDATE / BIOLOGICAL PROPERTY]`:**
+   - Features invariant residue U33 for the canonical U-turn motif (verified distance and dihedral diagnostic).
+   - Features adenine at position 37 (A37), providing canonical purine base stacking immediately adjacent to the anticodon.
+3. **High Biological Abundance & Multi-Copy Redundancy `[IMPLEMENTATION CHOICE]`:**
+   - With 11 identical mature genomic copies (`tRNA-Asp-GTC-2-1` to `2-11`) and 12 identical 17-nt ASL loci in the high-confidence set (out of 13 total Asp-GTC genes), this construct represents the predominant cytoplasmic aspartate tRNA pool in human cells, maximizing the biological relevance of the simulation benchmark.
 
 ---
 
@@ -217,3 +231,4 @@ The selection of **tRNA-Asp-GTC-2-1** provides three compelling biophysical adva
    - Native human tRNA-Asp is modified in vivo at position 34 (queuosine, $Q34$, or mannosyl-queuosine) and position 38 ($\Psi38$). Per project requirements, this study models the **unmodified** RNA state. The absence of $Q34$ and $\Psi38$ is documented in [docs/07_limitations.md](file:///d:/trna-asl-md-stability/docs/07_limitations.md).
 2. **Isolated Hairpin Model:**
    - The excised 17-nt ASL lacks the tertiary interactions with the D-arm and variable loop. This constraint is documented as an inherent model limitation.
+

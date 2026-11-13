@@ -279,9 +279,27 @@ def main():
     
     sorted_clusters = sorted(clusters.items(), key=lambda x: (-x[0][3], -max(g['score'] for g in x[1])))
     for (aa, ac, asl_seq, gc), cluster_genes in sorted_clusters:
-        max_sc = max(g['score'] for g in cluster_genes)
-        rep = [g for g in cluster_genes if g['score'] == max_sc][0]
-        print(f"{aa:<5} {ac:<5} {gc:<6} {len(cluster_genes):<6} {max_sc:<10.1f} {rep['gtRNAdb_id']:<26} {asl_seq}")
+        # Sort within cluster by score descending, then GtRNAdb ID ascending for canonical representation
+        sorted_genes = sorted(cluster_genes, key=lambda g: (-g['score'], g['gtRNAdb_id']))
+        rep = sorted_genes[0]
+        print(f"{aa:<5} {ac:<5} {gc:<6} {len(cluster_genes):<6} {rep['score']:<10.1f} {rep['gtRNAdb_id']:<26} {asl_seq}")
+
+    print("\n" + "=" * 80)
+    print("Selected Benchmark Candidate: tRNA-Asp-GTC-2-1")
+    print("  - WT Anticodon: GUC (DNA: GTC) -> Suppressor Anticodon: CUA (DNA: CTA)")
+    print("  - Hamming Distance: 2 (G34C, C36A; U35 unchanged)")
+    print("  - 17-nt ASL (WT):         CCCGCCUGUCACGCGGG")
+    print("  - 17-nt ASL (Suppressor): CCCGCCUCUAACGCGGG")
+    print("  - Stem Architecture: 5/5 C:G Watson-Crick base pairs [IMPLEMENTATION CHOICE]")
+    print("    * Rationale: Intended to reduce likelihood of terminal end-fraying during short 20 ns MD")
+    print("    * Note: Stem stability is an empirical outcome to be directly measured in MD")
+    print("  - Genomic Copy Breakdown (GtRNAdb hg38 high-confidence set):")
+    print("    * Total Asp-GTC genes: 13")
+    print("    * Identical mature transcripts (cluster 2: 2-1 to 2-11): 11 genes")
+    print("    * Identical 17-nt ASL sequence (CCCGCCUGUCACGCGGG): 12 genes (2-1 to 2-11 + 1-1)")
+    print("    * Variant ASL genes: 1 gene (3-1, CCCGUCUGUCACGCGGG, U31:G39 wobble)")
+    print("=" * 80)
 
 if __name__ == '__main__':
     main()
+

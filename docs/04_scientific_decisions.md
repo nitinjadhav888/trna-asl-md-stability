@@ -90,9 +90,9 @@ This log formally records all scientific and technical decisions, their rational
   - Full Mature tRNA Sequence (72 nt):
     `UCCUCGUUAGUAUAGUGGUGAGUAUCCCCGCCUGUCACGCGGGAGACCGGGGUUCGAUUCCCCGACGGGGAG`
 - **Scientific Rationale:**
-  1. *Maximum Stem Stability (5/5 GC Base Pairs):* The 5-bp stem consists entirely of Watson-Crick C:G pairs (`27:43 C:G`, `28:42 C:G`, `29:41 C:G`, `30:40 G:C`, `31:39 C:G`). This provides maximal thermodynamic resilience, directly preventing terminal end-fraying artifacts (RSK-SCI-03) in an isolated hairpin and isolating MD fluctuations cleanly to the loop.
+  1. *High-GC Stem Composition `[IMPLEMENTATION CHOICE]` (5/5 C:G Base Pairs):* The 5-bp stem consists entirely of Watson-Crick C:G pairs (`27:43 C:G`, `28:42 C:G`, `29:41 C:G`, `30:40 G:C`, `31:39 C:G`). High-GC stem composition was selected as an implementation/design criterion intended to reduce the likelihood of stem fraying during the short ASL-only simulations (RSK-SCI-03). This is not claimed as a proven $\Delta G$ or guarantee of helical preservation; actual stem stability remains an empirical outcome to be directly measured via base-pair hydrogen-bond occupancy (Metric 3) in Phase 5 trajectory analysis.
   2. *Canonical U-Turn Architecture:* Features invariant U33 and invariant purine A37 flanking the anticodon triplet.
-  3. *High Biological Abundance & Conservation:* 11 identical genomic copies exist in the human genome, representing the primary housekeeping aspartate tRNA.
+  3. *High Biological Representation & Genomic Copy Count:* 13 total `tRNA-Asp-GTC` genes exist in the high-confidence cytosolic set. Of these, 11 share the identical 72-nt mature sequence of `tRNA-Asp-GTC-2-1` (`2-1` through `2-11`), and 12 share the identical 17-nt ASL sequence (`CCCGCCUGUCACGCGGG`), confirming it as the predominant human aspartate tRNA multi-gene family.
   4. *Zero Introns:* Non-intronic transcript with verified mature sequence from GtRNAdb.
 - **Alternatives Considered:**
   - `tRNA-Glu-TTC-3-1`: Also 5/5 GC stem, but only 3 genomic copies and lower tRNAscan score (71.6 vs widespread 11-copy Asp cluster).

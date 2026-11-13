@@ -21,7 +21,11 @@ selection:
   confidence_set: "high confidence set"
   trnascan_score: 66.5
   introns: 0
-  genomic_copy_number: 11 # Identical mature sequence across 11 genomic loci (tRNA-Asp-GTC-2-1 to 2-11)
+  genomic_copy_counts:
+    total_high_confidence_isotype_genes: 13 # Total Asp-GTC genes in high-confidence cytosolic set
+    identical_mature_sequence_genes: 11     # tRNA-Asp-GTC-2-1 to 2-11 share identical 72-nt mature sequence
+    identical_17nt_asl_sequence_genes: 12   # 12 genes (2-1 to 2-11 plus 1-1) share identical CCCGCCUGUCACGCGGG ASL
+    variant_asl_genes: 1                    # tRNA-Asp-GTC-3-1 has a variant ASL (U31:G39 wobble pair)
 
 anticodon_mutation_test:
   target_suppressor_anticodon: "CUA"
@@ -78,6 +82,7 @@ sequences:
         suppressor: "C:G"
         type: "Watson-Crick"
     stem_gc_content: "5/5 (100% GC)"
+    stem_design_rationale: "[IMPLEMENTATION CHOICE] Selected to reduce likelihood of terminal end-fraying during short 20 ns ASL-only simulations (RSK-SCI-03); empirical stability will be measured directly via H-bond occupancy in MD."
     loop_motifs:
       u33_invariant: true
       purine_37: "A"
@@ -86,7 +91,16 @@ provenance:
   database: "GtRNAdb (Genomic tRNA Database)"
   institution: "University of California Santa Cruz (Lowe Lab)"
   source_url: "http://gtrnadb.ucsc.edu/genomes/eukaryota/Hsapi38/"
-  raw_file: "data/raw/hg38-mature-tRNAs.fa"
-  confidence_file: "data/raw/hg38-tRNAs-confidence-set.out"
+  genome_assembly: "GRCh38 / hg38"
   access_date: "2026-11-12"
-  script: "scripts/01_select_trna.py"
+  raw_files:
+    - file: "data/raw/hg38-mature-tRNAs.fa"
+      sha256: "1b4a5f3be176ca11debbc045ebeb0da12619005669877df428ab8fd533688adc"
+    - file: "data/raw/hg38-tRNAs-confidence-set.out"
+      sha256: "924f6aa710f7255857bfeaf0b11fc72aa530351038ec659e717c4192561a03f3"
+    - file: "data/raw/hg38-tRNAs-confidence-set.ss"
+      sha256: "004ac915ba7f582000baba5f7272d0e9d6498448f708f91d6245329031485df8"
+    - file: "data/raw/hg38-tRNAs_name_map.txt"
+      sha256: "d1b4220657eee486cb510e61d03c34dbf216ddc6c5023e28f4bb2348a1e618d8"
+  screening_script: "scripts/01_select_trna.py"
+
