@@ -1,0 +1,70 @@
+================================================================================
+PHASE 4A: SYSTEM PREPARATION & SOLVATION - Wild-Type ASL
+Input PDB: D:\trna-asl-md-stability\structures\wt\initial.pdb
+Output Directory: D:\trna-asl-md-stability\simulations\wt\system
+================================================================================
+[CONFIG] Pseudo-random seed set to 42 for deterministic ion placement.
+[INPUT] Input PDB SHA-256: 61c8363ca99475145ebb266166007e81e32f5bc07aba77ac04906a335b3f291c
+[STEP 1] Loading force fields: amber14/RNA.OL3.xml and amber14/tip3p.xml...
+[PASS] Force field XML definitions loaded successfully.
+[STEP 2] Parsing solute coordinates and adding hydrogens via Modeller...
+[PASS] Solute topology initialized with 544 atoms.
+[PASS] Solute RNA sequence confirmed: 5'-CCCGCCUGUCACGCGGG-3' (17 nt).
+[PASS] Terminal chemistry confirmed: Neutral 5'-OH (res 27) and neutral 3'-OH (res 43).
+[CHARGE] Unsolvated RNA net charge: -16.0000 e (Expected exactly -16.0000 e).
+[PASS] Unsolvated RNA charge strictly verified as -16.0 e.
+[STEP 3] Solvating in cubic periodic box (L = 5.500 nm / 55.0 A)...
+[PASS] Solvation and ion placement complete.
+
+----------------------------------------
+SYSTEM INVENTORY & ION BREAKDOWN
+----------------------------------------
+  Total Atoms:            15693
+  Total Residues:         5096
+  RNA Atoms:              544 (17 residues)
+  TIP3P Water Molecules:  5035 (15105 atoms)
+  Neutralizing Counterions: 16 K+ (neutralizes -16.0 e RNA)
+  Added Salt Ions (KCl):    14 K+ and 14 Cl- (14 pairs)
+  Total K+ Ions:          30
+  Total Cl- Ions:         14
+[PASS] Ion symmetry verified: Added salt consists of exact neutral ion pairs.
+
+----------------------------------------
+BOX GEOMETRY & SOLUTE PADDING AUDIT
+----------------------------------------
+  Box Geometry:           Cubic (orthogonal)
+  Box Dimensions:         5.5000 x 5.5000 x 5.5000 nm
+  Box Volume:             166.3750 nm^3 (166375.0 A^3)
+  Solute Geometric Center: [16.080, -1.462, 1.223] nm
+  Solute Extents (x,y,z):  [2.101, 3.258, 2.109] nm
+  Minimum Solute Padding: 1.1209 nm (11.21 A)
+[PASS] Minimum solvent padding strictly >= 1.0 nm (10.0 A) verified across all solute atoms.
+
+----------------------------------------
+SALT CONCENTRATION ANALYSIS (TARGET = 0.150 M)
+----------------------------------------
+  Target Concentration:   0.150 M (150.0 mM)
+  Box-Volume Concentration:    0.1397 M (139.7 mM) [Deviation: -6.85%]
+  Solvent-Volume Concentration: 0.1540 M (154.0 mM) [Deviation: +2.69%]
+[PASS] Salt concentration is within optimal physical bounds for 150 mM physiological target.
+
+----------------------------------------
+SYSTEM CREATION & PARAMETERIZATION AUDIT
+----------------------------------------
+  OpenMM System Particles: 15693
+  OpenMM System Forces:    5
+  Final System Net Charge: 0.000000 e
+[PASS] Electrical neutrality strictly verified: Net charge = 0.0000 e.
+[PASS] Coordinate integrity verified: Zero NaN or Inf values.
+
+----------------------------------------
+SERIALIZATION & ARTIFACT PERSISTENCE
+----------------------------------------
+  Saved Solvated PDB:   D:\trna-asl-md-stability\simulations\wt\system\solvated.pdb (SHA-256: 00b58110d71fcc25be065d744a7402ebff613df0f263663ef4490b0fef37ae1f)
+  Saved System XML:     D:\trna-asl-md-stability\simulations\wt\system\system.xml (SHA-256: d38963ab5ea2adac230bcc552ab1b1dda2260eecf67f41fcf61ceb5a0a8f0b09)
+  Saved Metadata JSON:  D:\trna-asl-md-stability\simulations\wt\system\system_metadata.json
+
+================================================================================
+PHASE 4A SYSTEM PREPARATION FOR Wild-Type ASL: COMPLETE (PASS)
+================================================================================
+

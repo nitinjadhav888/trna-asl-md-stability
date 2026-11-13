@@ -84,6 +84,7 @@ simulation_sampling:
     suppressor: [2001, 2002, 2003]                       # [IMPLEMENTATION CHOICE] Deterministic seeds for initial velocity distribution
 
 box_geometry:
-  box_type: "<PENDING_SELECTION_PHASE_2>"                # [PENDING VERIFICATION] Candidates: Truncated Octahedron or Cubic
-  padding_distance_angstrom: 10.0                        # [IMPLEMENTATION CHOICE] Minimum clearance from solute to box boundary
-  pme_cutoff_angstrom: 10.0                              # [IMPLEMENTATION CHOICE] Direct space electrostatics cutoff
+  box_type: "cubic"                                      # [IMPLEMENTATION CHOICE] Orthogonal cubic periodic boundary (selected in Phase 4A)
+  box_length_angstrom: 55.0                              # [IMPLEMENTATION CHOICE] 5.500 nm box length guaranteeing >11.2 A clearance
+  padding_distance_angstrom: 10.0                        # [IMPLEMENTATION CHOICE] Minimum clearance from solute to box boundary (actual >= 11.20 A)
+  pme_cutoff_angstrom: 10.0                              # [IMPLEMENTATION CHOICE] Direct space electrostatics cutoff (1.0 nm)

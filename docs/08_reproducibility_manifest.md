@@ -117,3 +117,26 @@ python scripts/03_visualize_asl_structures.py
   - WT Figure: `figures/wt_asl_initial.png` (SHA-256: `8fe2ae10c27a92f3d993a16b145ab51c1f27b37c45e5e9d9c3cbcb1c975a2dfb`)
   - CUA Figure: `figures/cua_asl_initial.png` (SHA-256: `8c9ac1755e5ece3723f0733ce3684f4f87aff2e0a6514929dd71bb219fa8d91b`)
   - Comparison Figure: `figures/asl_structural_comparison.png` (SHA-256: `74810c56691d88b163189c11d24a52c336b9466b24c3eb1936b00656a1dbc75c`)
+
+---
+
+## 7. Phase 4A Solvation & System Preparation Provenance & Checksums
+
+- **Date of Execution:** November 13, 2026
+- **System Preparation Strategy:** Explicit TIP3P solvation in an orthogonal cubic periodic boundary ($L = 5.500\ \text{nm} = 55.00\ \text{Å}$) with $16\ \text{K}^+$ neutralizing counterions and $\approx 0.15\ \text{M}$ added physiological KCl ($14\ \text{K}^+ / 14\ \text{Cl}^-$ pairs).
+- **Force Fields:**
+  - RNA: `amber14/RNA.OL3.xml` (AMBER OL3 / `ff99bsc0chiOL3`)
+  - Solvent: `amber14/tip3p.xml` (TIP3P)
+  - Ions: `amber14/tip3p.xml` (Joung & Cheatham 2008 parameters for TIP3P, `ionsjc_tip3p`)
+- **Software Dependencies:**
+  - OpenMM: 8.6.1
+  - NumPy: 2.2.6
+  - PyYAML: 6.0.2
+- **Deterministic Scripts:**
+  - System Preparation: [scripts/04_prepare_system.py](file:///d:/trna-asl-md-stability/scripts/04_prepare_system.py) (SHA-256: `bf5668c4bf5e91699e6b18e33d4779cbc42c150038c28cf9d843f84da04cdede`)
+  - Scientific Audit: [scripts/audit_phase4a.py](file:///d:/trna-asl-md-stability/scripts/audit_phase4a.py) (SHA-256: `9dcb5ace9de68e932294e53bbdec8119ee325e5e264066cc9ffa0b50e0e8a231`)
+- **Artifact Manifest & SHA-256 Hashes:**
+  - WT Solvated PDB: `simulations/wt/system/solvated.pdb` (SHA-256: `00b58110d71fcc25be065d744a7402ebff613df0f263663ef4490b0fef37ae1f`)
+  - WT System XML: `simulations/wt/system/system.xml` (SHA-256: `d38963ab5ea2adac230bcc552ab1b1dda2260eecf67f41fcf61ceb5a0a8f0b09`)
+  - CUA Solvated PDB: `simulations/cua/system/solvated.pdb` (SHA-256: `a3e9c94a497a71245898a0d5c06473c237dbbf63222b7006b31c82d3167813cf`)
+  - CUA System XML: `simulations/cua/system/system.xml` (SHA-256: `5e1012f71bde05631b6612f6837c062f7133caf205f3522f3f303fdce7685220`)
