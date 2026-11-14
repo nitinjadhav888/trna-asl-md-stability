@@ -118,4 +118,11 @@ trna-asl-md-stability/
   - Replicates simulated to 20.0 ns each ($120.0\ \text{ns}$ aggregate sampling = $60,000,000$ integration steps = $12,000$ trajectory frames).
   - 100% run-level QC passed across all 6 replicates (atom counts conserved, strictly finite energies, stable physiological temperatures $310.3\text{--}310.4\ \text{K}$, densities $1.018\text{--}1.019\ \text{g/cm}^3$, and readable DCD trajectories).
   - Comprehensive documentation in `docs/17_phase5_production.md`.
-- **Phase 6 (Pending Next Phase):** Structural and thermodynamic trajectory analysis (RMSD, per-residue RMSF, stem H-bond occupancies, canonical U-turn geometry, 3'-base stacking, and replicate-aware statistics).
+- **Phase 6 (Complete - Trajectory Analysis and Structural Comparison):**
+  - Trajectory-based structural and thermodynamic analysis executed across all six production replicates ($120.0\ \text{ns}$ aggregate sampling; $N=3$ WT vs $N=3$ CUA).
+  - Evaluated Backbone RMSD (Full ASL, 5-bp stem, loop global, loop internal), per-residue RMSF (positions 27–43), stem base-pair hydrogen-bond occupancy (5/5 canonical G-C pairs), canonical loop U-turn diagnostic interaction (U33(N3) $\cdots$ P36 phosphate), 3'-anticodon base stacking geometry, and nucleotide 34 ribose sugar pucker (pseudorotation phase $P$ and North/East/South states).
+  - Replicate-level statistics ($N=3$ vs $N=3$, no frame pseudoreplication) calculated with Welch's $t$-test, Cohen's $d$ effect sizes, and Benjamini-Hochberg FDR $q$-values.
+  - Sampling sufficiency evaluated across four contiguous 5-ns time blocks, rigorously distinguishing numerical stability, local helical stability, sampling convergence, and global conformational equilibrium.
+  - Six publication-quality figures (`figures/figure1_rmsd.png` through `figures/figure6_sugar_pucker.png`) and machine-readable tables in `analysis/tables/`.
+  - Comprehensive documentation in `docs/18_phase6_trajectory_analysis.md`.
+- **Phase 7 (Pending Next Phase):** Final synthesis, mechanistic interpretation, and submission-ready $\le 4$-page publication report.

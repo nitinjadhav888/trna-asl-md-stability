@@ -1,0 +1,80 @@
+{
+  "wt_rep1": {
+    "construct": "wt",
+    "replicate": 1,
+    "source_dcd": "simulations\\wt_rep1\\trajectory\\trajectory.dcd",
+    "source_pdb": "simulations\\wt_rep1\\final_state\\final_structure.pdb",
+    "solute_dcd": "simulations\\wt_rep1\\trajectory\\solute_imaged.dcd",
+    "solute_pdb": "simulations\\wt_rep1\\trajectory\\solute_ref.pdb",
+    "frames": 2000,
+    "solute_atoms": 544,
+    "pbc_treatment": "mdtraj.image_molecules()",
+    "stride_ps": 10.0,
+    "duration_ns": 20.0
+  },
+  "wt_rep2": {
+    "construct": "wt",
+    "replicate": 2,
+    "source_dcd": "simulations\\wt_rep2\\trajectory\\trajectory.dcd",
+    "source_pdb": "simulations\\wt_rep2\\final_state\\final_structure.pdb",
+    "solute_dcd": "simulations\\wt_rep2\\trajectory\\solute_imaged.dcd",
+    "solute_pdb": "simulations\\wt_rep2\\trajectory\\solute_ref.pdb",
+    "frames": 2000,
+    "solute_atoms": 544,
+    "pbc_treatment": "mdtraj.image_molecules()",
+    "stride_ps": 10.0,
+    "duration_ns": 20.0
+  },
+  "wt_rep3": {
+    "construct": "wt",
+    "replicate": 3,
+    "source_dcd": "simulations\\wt_rep3\\trajectory\\trajectory.dcd",
+    "source_pdb": "simulations\\wt_rep3\\final_state\\final_structure.pdb",
+    "solute_dcd": "simulations\\wt_rep3\\trajectory\\solute_imaged.dcd",
+    "solute_pdb": "simulations\\wt_rep3\\trajectory\\solute_ref.pdb",
+    "frames": 2000,
+    "solute_atoms": 544,
+    "pbc_treatment": "mdtraj.image_molecules()",
+    "stride_ps": 10.0,
+    "duration_ns": 20.0
+  },
+  "cua_rep1": {
+    "construct": "cua",
+    "replicate": 1,
+    "source_dcd": "simulations\\cua_rep1\\trajectory\\trajectory.dcd",
+    "source_pdb": "simulations\\cua_rep1\\final_state\\final_structure.pdb",
+    "solute_dcd": "simulations\\cua_rep1\\trajectory\\solute_imaged.dcd",
+    "solute_pdb": "simulations\\cua_rep1\\trajectory\\solute_ref.pdb",
+    "frames": 2000,
+    "solute_atoms": 543,
+    "pbc_treatment": "mdtraj.image_molecules()",
+    "stride_ps": 10.0,
+    "duration_ns": 20.0
+  },
+  "cua_rep2": {
+    "construct": "cua",
+    "replicate": 2,
+    "source_dcd": "simulations\\cua_rep2\\trajectory\\trajectory.dcd",
+    "source_pdb": "simulations\\cua_rep2\\final_state\\final_structure.pdb",
+    "solute_dcd": "simulations\\cua_rep2\\trajectory\\solute_imaged.dcd",
+    "solute_pdb": "simulations\\cua_rep2\\trajectory\\solute_ref.pdb",
+    "frames": 2000,
+    "solute_atoms": 543,
+    "pbc_treatment": "mdtraj.image_molecules()",
+    "stride_ps": 10.0,
+    "duration_ns": 20.0
+  },
+  "cua_rep3": {
+    "construct": "cua",
+    "replicate": 3,
+    "source_dcd": "simulations\\cua_rep3\\trajectory\\trajectory.dcd",
+    "source_pdb": "simulations\\cua_rep3\\final_state\\final_structure.pdb",
+    "solute_dcd": "simulations\\cua_rep3\\trajectory\\solute_imaged.dcd",
+    "solute_pdb": "simulations\\cua_rep3\\trajectory\\solute_ref.pdb",
+    "frames": 2000,
+    "solute_atoms": 543,
+    "pbc_treatment": "mdtraj.image_molecules()",
+    "stride_ps": 10.0,
+    "duration_ns": 20.0
+  }
+}

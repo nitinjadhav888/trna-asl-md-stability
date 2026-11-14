@@ -185,4 +185,30 @@ python scripts/03_visualize_asl_structures.py
 - **Quality Control Verdict:** 6/6 Replicates PASSED all run-level QC gates (see [docs/17_phase5_production.md](file:///d:/trna-asl-md-stability/docs/17_phase5_production.md)).
 - **Repository Hygiene:** Raw trajectory binaries (`*.dcd`) and checkpoints (`checkpoint/`) are excluded via `.gitignore`. Processed thermodynamic logs (`production_thermo.csv`), run logs (`production.log`), final structures (`final_state/`), and metadata are tracked.
 
+---
+
+## 11. Phase 6 Trajectory Analysis & Structural Comparison Provenance
+
+- **Date of Execution:** November 14, 2026
+- **Analysis Pipeline & Automation:**
+  - Audit: [scripts/08_audit_production_data.py](file:///d:/trna-asl-md-stability/scripts/08_audit_production_data.py)
+  - PBC Imaging: [scripts/09_extract_trajectory.py](file:///d:/trna-asl-md-stability/scripts/09_extract_trajectory.py)
+  - Backbone RMSD: [scripts/10_rmsd.py](file:///d:/trna-asl-md-stability/scripts/10_rmsd.py)
+  - Per-Residue RMSF: [scripts/11_rmsf.py](file:///d:/trna-asl-md-stability/scripts/11_rmsf.py)
+  - Stem H-Bond Occupancy: [scripts/12_hbond_analysis.py](file:///d:/trna-asl-md-stability/scripts/12_hbond_analysis.py)
+  - Loop U-Turn Diagnostic: [scripts/13_uturn_analysis.py](file:///d:/trna-asl-md-stability/scripts/13_uturn_analysis.py)
+  - 3'-Anticodon Base Stacking: [scripts/14_stacking_analysis.py](file:///d:/trna-asl-md-stability/scripts/14_stacking_analysis.py)
+  - Sugar Pucker at Nucleotide 34: [scripts/15_additional_metric.py](file:///d:/trna-asl-md-stability/scripts/15_additional_metric.py)
+  - Replicate Statistics & Sampling Sufficiency: [scripts/16_statistics.py](file:///d:/trna-asl-md-stability/scripts/16_statistics.py)
+  - Publication Figures: [scripts/17_generate_figures.py](file:///d:/trna-asl-md-stability/scripts/17_generate_figures.py)
+- **Primary Data Artifacts Generated:**
+  - Machine-readable summary and time-series tables in [analysis/tables/](file:///d:/trna-asl-md-stability/analysis/tables)
+  - Publication figures in [figures/](file:///d:/trna-asl-md-stability/figures) (`figure1_rmsd.png` through `figure6_sugar_pucker.png`)
+  - Full scientific analysis document: [docs/18_phase6_trajectory_analysis.md](file:///d:/trna-asl-md-stability/docs/18_phase6_trajectory_analysis.md)
+- **Phase Boundary Verification:**
+  - All comparisons evaluated using $N=3$ WT and $N=3$ CUA independent simulation replicates (Welch's $t$-test, Cohen's $d$, Benjamini-Hochberg FDR).
+  - Trajectory frames were not pooled to inflate degrees of freedom.
+  - Phase 6 is restricted to structural observables only; no cellular suppression efficiency or biological claims were made.
+
+
 
