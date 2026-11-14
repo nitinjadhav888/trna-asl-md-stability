@@ -1,0 +1,113 @@
+[2026-11-14 01:08:12] ================================================================================
+[2026-11-14 01:08:12] Phase 4C Restrained Equilibration: CUA Suppressor ASL (tRNA-Asp-GTC-2-1 (CUA mutant))
+[2026-11-14 01:08:12] ================================================================================
+[2026-11-14 01:08:12] Input System XML:       D:\trna-asl-md-stability\simulations\cua\system\system.xml
+[2026-11-14 01:08:12] Input Minimized PDB:    D:\trna-asl-md-stability\simulations\cua\minimized.pdb
+[2026-11-14 01:08:12] Equilibration Output:   D:\trna-asl-md-stability\simulations\cua\equilibration
+[2026-11-14 01:08:12] Deterministic Seed:     4201
+[2026-11-14 01:08:12] Scale Factor:           1.0000
+[2026-11-14 01:08:12] NVT Heating Duration:   200.0 ps (100000 steps)
+[2026-11-14 01:08:12] NPT Density Duration:   1000.0 ps (500000 steps)
+[2026-11-14 01:08:12] Thermostat / Barostat:  LangevinMiddle (gamma=1.0/ps) / MonteCarloBarostat (1.0 bar, freq=25)
+[2026-11-14 01:08:12] Deserializing Phase 4A OpenMM System XML...
+[2026-11-14 01:08:14] Loaded system (15686 particles) and coordinates (15686 atoms).
+[2026-11-14 01:08:14] Adding harmonic position restraints on 356 RNA heavy atoms...
+[2026-11-14 01:08:14] Selecting computation platform (preference: auto)...
+[2026-11-14 01:08:15] Platform selected: OpenCL with properties {'Precision': 'mixed'}
+[2026-11-14 01:08:15] Compute device: NVIDIA GeForce MX350
+[2026-11-14 01:08:15] --------------------------------------------------------------------------------
+[2026-11-14 01:08:15] PART I: NVT Restrained Heating (10 K -> 310 K)
+[2026-11-14 01:08:15] --------------------------------------------------------------------------------
+[2026-11-14 01:08:16] Assigning initial velocities from Maxwell-Boltzmann distribution at 10.0 K...
+[2026-11-14 01:08:17] NVT Schedule: Ramp over 75000 steps (150.0 ps), then plateau for 25000 steps (50.0 ps).
+[2026-11-14 01:08:40]   NVT Step  10000/100000 ( 20.0 ps) | Target T:  48.0 K | Inst T:  47.2 K | PE:   -281684.7 kJ/mol
+[2026-11-14 01:09:05]   NVT Step  20000/100000 ( 40.0 ps) | Target T:  88.0 K | Inst T:  86.9 K | PE:   -278287.4 kJ/mol
+[2026-11-14 01:09:33]   NVT Step  30000/100000 ( 60.0 ps) | Target T: 128.0 K | Inst T: 127.9 K | PE:   -274256.0 kJ/mol
+[2026-11-14 01:10:01]   NVT Step  40000/100000 ( 80.0 ps) | Target T: 168.0 K | Inst T: 166.8 K | PE:   -268886.3 kJ/mol
+[2026-11-14 01:10:28]   NVT Step  50000/100000 (100.0 ps) | Target T: 208.0 K | Inst T: 206.2 K | PE:   -261184.2 kJ/mol
+[2026-11-14 05:06:34]   NVT Step  60000/100000 (120.0 ps) | Target T: 248.0 K | Inst T: 245.6 K | PE:   -248240.4 kJ/mol
+[2026-11-14 05:08:35]   NVT Step  70000/100000 (140.0 ps) | Target T: 288.0 K | Inst T: 290.9 K | PE:   -236231.8 kJ/mol
+[2026-11-14 05:09:59]   NVT Step  80000/100000 (160.0 ps) | Target T: 310.0 K | Inst T: 312.6 K | PE:   -229346.4 kJ/mol
+[2026-11-14 05:11:41]   NVT Step  90000/100000 (180.0 ps) | Target T: 310.0 K | Inst T: 311.9 K | PE:   -229545.5 kJ/mol
+[2026-11-14 05:14:43]   NVT Step 100000/100000 (200.0 ps) | Target T: 310.0 K | Inst T: 308.6 K | PE:   -230146.0 kJ/mol
+[2026-11-14 05:14:43] NVT heating stage completed in 14785.36s.
+[2026-11-14 05:14:54] NVT checkpoint saved to D:\trna-asl-md-stability\simulations\cua\equilibration\nvt\nvt_equilibrated.pdb and D:\trna-asl-md-stability\simulations\cua\equilibration\nvt\nvt_state.xml.
+[2026-11-14 05:14:55] --------------------------------------------------------------------------------
+[2026-11-14 05:14:55] PART II: NPT Density Equilibration & Restraint Release
+[2026-11-14 05:14:55] --------------------------------------------------------------------------------
+[2026-11-14 05:14:59] Beginning NPT STAGE1 (1/4):
+[2026-11-14 05:14:59]   Duration: 250.0 ps (125000 steps) | Restraint k: 2.00 kcal/(mol*A^2) (836.80 kJ/(mol*nm^2))
+[2026-11-14 05:17:41]   [STAGE1] Step  12500/125000 (t=225.0 ps) | T: 312.0 K | Vol: 161.928 nm^3 | Density: 1.0019 g/cm^3 | PE:   -231136.9 kJ/mol
+[2026-11-14 05:20:09]   [STAGE1] Step  25000/125000 (t=250.0 ps) | T: 311.0 K | Vol: 161.403 nm^3 | Density: 1.0052 g/cm^3 | PE:   -231009.9 kJ/mol
+[2026-11-14 05:22:42]   [STAGE1] Step  37500/125000 (t=275.0 ps) | T: 310.1 K | Vol: 159.544 nm^3 | Density: 1.0169 g/cm^3 | PE:   -230782.8 kJ/mol
+[2026-11-14 05:24:39]   [STAGE1] Step  50000/125000 (t=300.0 ps) | T: 309.9 K | Vol: 159.750 nm^3 | Density: 1.0156 g/cm^3 | PE:   -231429.2 kJ/mol
+[2026-11-14 05:25:59]   [STAGE1] Step  62500/125000 (t=325.0 ps) | T: 315.6 K | Vol: 158.794 nm^3 | Density: 1.0217 g/cm^3 | PE:   -231914.4 kJ/mol
+[2026-11-14 05:27:38]   [STAGE1] Step  75000/125000 (t=350.0 ps) | T: 311.0 K | Vol: 159.368 nm^3 | Density: 1.0180 g/cm^3 | PE:   -231922.1 kJ/mol
+[2026-11-14 05:29:16]   [STAGE1] Step  87500/125000 (t=375.0 ps) | T: 311.2 K | Vol: 159.320 nm^3 | Density: 1.0183 g/cm^3 | PE:   -232369.6 kJ/mol
+[2026-11-14 05:30:36]   [STAGE1] Step 100000/125000 (t=400.0 ps) | T: 315.3 K | Vol: 159.480 nm^3 | Density: 1.0173 g/cm^3 | PE:   -232116.3 kJ/mol
+[2026-11-14 05:31:56]   [STAGE1] Step 112500/125000 (t=425.0 ps) | T: 314.0 K | Vol: 159.369 nm^3 | Density: 1.0180 g/cm^3 | PE:   -231777.7 kJ/mol
+[2026-11-14 05:33:14]   [STAGE1] Step 125000/125000 (t=450.0 ps) | T: 305.6 K | Vol: 159.728 nm^3 | Density: 1.0157 g/cm^3 | PE:   -232269.3 kJ/mol
+[2026-11-14 05:33:18] Checkpoint for stage1 written to D:\trna-asl-md-stability\simulations\cua\equilibration\npt\npt_stage1.pdb.
+[2026-11-14 05:33:18] Beginning NPT STAGE2 (2/4):
+[2026-11-14 05:33:18]   Duration: 250.0 ps (125000 steps) | Restraint k: 1.00 kcal/(mol*A^2) (418.40 kJ/(mol*nm^2))
+[2026-11-14 05:34:33]   [STAGE2] Step  12500/125000 (t=475.0 ps) | T: 313.5 K | Vol: 159.357 nm^3 | Density: 1.0181 g/cm^3 | PE:   -231882.6 kJ/mol
+[2026-11-14 05:35:48]   [STAGE2] Step  25000/125000 (t=500.0 ps) | T: 309.0 K | Vol: 160.031 nm^3 | Density: 1.0138 g/cm^3 | PE:   -232110.1 kJ/mol
+[2026-11-14 05:37:04]   [STAGE2] Step  37500/125000 (t=525.0 ps) | T: 311.1 K | Vol: 159.660 nm^3 | Density: 1.0161 g/cm^3 | PE:   -231270.6 kJ/mol
+[2026-11-14 05:38:24]   [STAGE2] Step  50000/125000 (t=550.0 ps) | T: 309.0 K | Vol: 158.658 nm^3 | Density: 1.0225 g/cm^3 | PE:   -231879.1 kJ/mol
+[2026-11-14 05:39:46]   [STAGE2] Step  62500/125000 (t=575.0 ps) | T: 304.3 K | Vol: 159.634 nm^3 | Density: 1.0163 g/cm^3 | PE:   -231018.2 kJ/mol
+[2026-11-14 05:41:00]   [STAGE2] Step  75000/125000 (t=600.0 ps) | T: 313.9 K | Vol: 159.569 nm^3 | Density: 1.0167 g/cm^3 | PE:   -231423.8 kJ/mol
+[2026-11-14 05:42:12]   [STAGE2] Step  87500/125000 (t=625.0 ps) | T: 309.1 K | Vol: 158.760 nm^3 | Density: 1.0219 g/cm^3 | PE:   -231816.6 kJ/mol
+[2026-11-14 05:43:28]   [STAGE2] Step 100000/125000 (t=650.0 ps) | T: 313.8 K | Vol: 159.026 nm^3 | Density: 1.0202 g/cm^3 | PE:   -232178.8 kJ/mol
+[2026-11-14 05:44:47]   [STAGE2] Step 112500/125000 (t=675.0 ps) | T: 309.2 K | Vol: 158.882 nm^3 | Density: 1.0211 g/cm^3 | PE:   -232147.9 kJ/mol
+[2026-11-14 05:46:03]   [STAGE2] Step 125000/125000 (t=700.0 ps) | T: 315.2 K | Vol: 158.684 nm^3 | Density: 1.0224 g/cm^3 | PE:   -232274.8 kJ/mol
+[2026-11-14 05:46:08] Checkpoint for stage2 written to D:\trna-asl-md-stability\simulations\cua\equilibration\npt\npt_stage2.pdb.
+[2026-11-14 05:46:08] Beginning NPT STAGE3 (3/4):
+[2026-11-14 05:46:08]   Duration: 250.0 ps (125000 steps) | Restraint k: 0.20 kcal/(mol*A^2) (83.68 kJ/(mol*nm^2))
+[2026-11-14 05:47:25]   [STAGE3] Step  12500/125000 (t=725.0 ps) | T: 312.7 K | Vol: 159.317 nm^3 | Density: 1.0183 g/cm^3 | PE:   -231879.9 kJ/mol
+[2026-11-14 05:49:21]   [STAGE3] Step  25000/125000 (t=750.0 ps) | T: 310.5 K | Vol: 159.548 nm^3 | Density: 1.0168 g/cm^3 | PE:   -232013.3 kJ/mol
+[2026-11-14 05:51:01]   [STAGE3] Step  37500/125000 (t=775.0 ps) | T: 306.6 K | Vol: 158.579 nm^3 | Density: 1.0231 g/cm^3 | PE:   -232730.9 kJ/mol
+[2026-11-14 05:52:23]   [STAGE3] Step  50000/125000 (t=800.0 ps) | T: 311.9 K | Vol: 158.481 nm^3 | Density: 1.0237 g/cm^3 | PE:   -232144.4 kJ/mol
+[2026-11-14 05:53:47]   [STAGE3] Step  62500/125000 (t=825.0 ps) | T: 308.2 K | Vol: 159.539 nm^3 | Density: 1.0169 g/cm^3 | PE:   -232746.4 kJ/mol
+[2026-11-14 05:55:13]   [STAGE3] Step  75000/125000 (t=850.0 ps) | T: 310.7 K | Vol: 159.256 nm^3 | Density: 1.0187 g/cm^3 | PE:   -231378.0 kJ/mol
+[2026-11-14 05:56:28]   [STAGE3] Step  87500/125000 (t=875.0 ps) | T: 310.9 K | Vol: 160.181 nm^3 | Density: 1.0128 g/cm^3 | PE:   -231679.6 kJ/mol
+[2026-11-14 05:57:25]   [STAGE3] Step 100000/125000 (t=900.0 ps) | T: 315.8 K | Vol: 159.387 nm^3 | Density: 1.0179 g/cm^3 | PE:   -231698.1 kJ/mol
+[2026-11-14 05:58:09]   [STAGE3] Step 112500/125000 (t=925.0 ps) | T: 309.3 K | Vol: 158.519 nm^3 | Density: 1.0234 g/cm^3 | PE:   -232215.4 kJ/mol
+[2026-11-14 05:58:53]   [STAGE3] Step 125000/125000 (t=950.0 ps) | T: 309.6 K | Vol: 158.533 nm^3 | Density: 1.0234 g/cm^3 | PE:   -232026.5 kJ/mol
+[2026-11-14 05:58:53] Checkpoint for stage3 written to D:\trna-asl-md-stability\simulations\cua\equilibration\npt\npt_stage3.pdb.
+[2026-11-14 05:58:53] Beginning NPT STAGE4 (4/4):
+[2026-11-14 05:58:53]   Duration: 250.0 ps (125000 steps) | Restraint k: 0.00 kcal/(mol*A^2) (0.00 kJ/(mol*nm^2))
+[2026-11-14 05:59:40]   [STAGE4] Step  12500/125000 (t=975.0 ps) | T: 308.3 K | Vol: 157.739 nm^3 | Density: 1.0285 g/cm^3 | PE:   -232378.0 kJ/mol
+[2026-11-14 06:00:20]   [STAGE4] Step  25000/125000 (t=1000.0 ps) | T: 311.2 K | Vol: 159.195 nm^3 | Density: 1.0191 g/cm^3 | PE:   -231929.3 kJ/mol
+[2026-11-14 06:01:00]   [STAGE4] Step  37500/125000 (t=1025.0 ps) | T: 312.4 K | Vol: 158.641 nm^3 | Density: 1.0227 g/cm^3 | PE:   -232645.1 kJ/mol
+[2026-11-14 06:01:39]   [STAGE4] Step  50000/125000 (t=1050.0 ps) | T: 310.7 K | Vol: 158.675 nm^3 | Density: 1.0224 g/cm^3 | PE:   -231971.7 kJ/mol
+[2026-11-14 06:02:20]   [STAGE4] Step  62500/125000 (t=1075.0 ps) | T: 309.1 K | Vol: 158.751 nm^3 | Density: 1.0219 g/cm^3 | PE:   -232138.1 kJ/mol
+[2026-11-14 06:03:00]   [STAGE4] Step  75000/125000 (t=1100.0 ps) | T: 310.5 K | Vol: 160.124 nm^3 | Density: 1.0132 g/cm^3 | PE:   -231744.5 kJ/mol
+[2026-11-14 06:03:39]   [STAGE4] Step  87500/125000 (t=1125.0 ps) | T: 308.9 K | Vol: 158.836 nm^3 | Density: 1.0214 g/cm^3 | PE:   -231605.4 kJ/mol
+[2026-11-14 06:04:19]   [STAGE4] Step 100000/125000 (t=1150.0 ps) | T: 309.2 K | Vol: 159.536 nm^3 | Density: 1.0169 g/cm^3 | PE:   -232043.0 kJ/mol
+[2026-11-14 06:04:59]   [STAGE4] Step 112500/125000 (t=1175.0 ps) | T: 312.3 K | Vol: 159.542 nm^3 | Density: 1.0169 g/cm^3 | PE:   -232521.8 kJ/mol
+[2026-11-14 06:05:38]   [STAGE4] Step 125000/125000 (t=1200.0 ps) | T: 312.4 K | Vol: 159.380 nm^3 | Density: 1.0179 g/cm^3 | PE:   -231513.2 kJ/mol
+[2026-11-14 06:05:38] Checkpoint for stage4 written to D:\trna-asl-md-stability\simulations\cua\equilibration\npt\npt_stage4.pdb.
+[2026-11-14 06:05:38] NPT density equilibration completed in 3039.45s.
+[2026-11-14 06:05:39] Final equilibrated coordinates written to: D:\trna-asl-md-stability\simulations\cua\equilibration\final_equilibrated.pdb (SHA-256: e17dd30100bdde7974cac01ef46224283ef65eaab1b683b2adad59766043c65b)
+[2026-11-14 06:05:39] Final state serialized to: D:\trna-asl-md-stability\simulations\cua\equilibration\final_state.xml
+[2026-11-14 06:05:39] Executing post-equilibration automated scientific validation...
+[2026-11-14 06:05:40]   * total_atoms: 15686
+[2026-11-14 06:05:40]   * nan_or_inf_detected: False
+[2026-11-14 06:05:40]   * rna_residues: 17
+[2026-11-14 06:05:40]   * rna_sequence: CCCGCCUCUAACGCGGG
+[2026-11-14 06:05:40]   * terminal_chemistry_intact: True
+[2026-11-14 06:05:40]   * water_molecules: 5033
+[2026-11-14 06:05:40]   * k_ions: 30
+[2026-11-14 06:05:40]   * cl_ions: 14
+[2026-11-14 06:05:40]   * raw_displacement_rmsd_angstrom: 4.478993610627832
+[2026-11-14 06:05:40]   * rna_heavy_atom_rmsd_angstrom: 1.9205944582415548
+[2026-11-14 06:05:40]   * minimum_rna_distance_angstrom: 11.880189392430003
+[2026-11-14 06:05:40]   * npt_late_mean_temperature_k: 310.39059999999995
+[2026-11-14 06:05:40]   * npt_late_temperature_std_k: 2.4712998280257286
+[2026-11-14 06:05:40]   * npt_late_mean_density_g_cm3: 1.018239
+[2026-11-14 06:05:40]   * npt_late_density_std_g_cm3: 0.003809422397162071
+[2026-11-14 06:05:40]   * npt_late_mean_volume_nm3: 159.3324298
+[2026-11-14 06:05:40] [PASS] All post-equilibration physical, structural, and thermodynamic checks verified!
+[2026-11-14 06:05:40] Equilibration metadata exported to D:\trna-asl-md-stability\simulations\cua\equilibration\equilibration_metadata.yaml
+[2026-11-14 06:05:40] Phase 4C Equilibration finished successfully for CUA Suppressor ASL (Verdict: PASS).
+

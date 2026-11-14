@@ -140,3 +140,34 @@ python scripts/03_visualize_asl_structures.py
   - WT System XML: `simulations/wt/system/system.xml` (SHA-256: `d38963ab5ea2adac230bcc552ab1b1dda2260eecf67f41fcf61ceb5a0a8f0b09`)
   - CUA Solvated PDB: `simulations/cua/system/solvated.pdb` (SHA-256: `a3e9c94a497a71245898a0d5c06473c237dbbf63222b7006b31c82d3167813cf`)
   - CUA System XML: `simulations/cua/system/system.xml` (SHA-256: `5e1012f71bde05631b6612f6837c062f7133caf205f3522f3f303fdce7685220`)
+
+---
+
+## 8. Phase 4B Energy Minimization Provenance & Checksums
+
+- **Date of Execution:** November 13, 2026
+- **Minimization Strategy:** Two-stage L-BFGS minimization (Stage 1: solute heavy atoms restrained with $k = 5.0\ \text{kcal}\cdot\text{mol}^{-1}\cdot\text{Å}^{-2}$; Stage 2: full system unrestrained, tolerance $10.0\ \text{kJ}\cdot\text{mol}^{-1}\cdot\text{nm}^{-1}$).
+- **Deterministic Script:** [scripts/05_minimize.py](file:///d:/trna-asl-md-stability/scripts/05_minimize.py) (SHA-256: `a4950196820bf93b96083336b2127b9abdd36ca5ab513f95a99a3c4f86880107`)
+- **Artifact Manifest & SHA-256 Hashes:**
+  - WT Minimized PDB: `simulations/wt/minimized.pdb` (SHA-256: `471856b2293476ac5bfa24c5b91d43e9ad0476c7aaed8af0bbeacc0ca87efc80`)
+  - CUA Minimized PDB: `simulations/cua/minimized.pdb` (SHA-256: `695a1c3beb02b70b84f953b8892f365874dee2756c3df988f5dfa48b752eaf94`)
+
+---
+
+## 9. Phase 4C Restrained NVT/NPT Equilibration Provenance & Checksums
+
+- **Date of Execution:** November 14, 2026
+- **Equilibration Strategy:** Staged NVT restrained heating (10 to 310 K, 200 ps, $k = 5.0\ \text{kcal/mol/Å}^2$) followed by 4-stage NPT density equilibration (310 K, 1.0 bar, 1000 ps total, $k = 2.0 \rightarrow 1.0 \rightarrow 0.2 \rightarrow 0.0\ \text{kcal/mol/Å}^2$, 250 ps per stage).
+- **OpenMM Platform:** OpenCL (`mixed` precision) on `NVIDIA GeForce MX350`.
+- **Deterministic Seeds:**
+  - Wild-Type (`wt`): `seed = 4101`
+  - Suppressor (`cua`): `seed = 4201`
+- **Deterministic Driver Script:** [scripts/06_equilibrate.py](file:///d:/trna-asl-md-stability/scripts/06_equilibrate.py) (SHA-256: `b3248984f04279cdb8084a11825b5d7b4c7714e19c606a16d2b67606cdcd6ddf`)
+- **Artifact Manifest & SHA-256 Hashes:**
+  - WT Final Equilibrated PDB: `simulations/wt/equilibration/final_equilibrated.pdb` (SHA-256: `84a6f2f690ba7bf013572f7d4a9a91463bec984a5a6703e2ff8f30875cb03409`)
+  - WT Final State XML: `simulations/wt/equilibration/final_state.xml` (SHA-256: `0fd3e8b81874636d3683d35f39605ca09c88b846e288ee9c0e8472949622000c`)
+  - WT NPT Thermo CSV: `simulations/wt/equilibration/npt/npt_thermo.csv` (SHA-256: `b863aa98651a0b3c66f50c0587d4677764fc8b6dd74c8b201a4e21a24329241b`)
+  - CUA Final Equilibrated PDB: `simulations/cua/equilibration/final_equilibrated.pdb` (SHA-256: `e17dd30100bdde7974cac01ef46224283ef65eaab1b683b2adad59766043c65b`)
+  - CUA Final State XML: `simulations/cua/equilibration/final_state.xml` (SHA-256: `41b6cfe8ce3cb916aae7242342651df20f9c6ebae768dc9c13ec6d32f7ccb904`)
+  - CUA NPT Thermo CSV: `simulations/cua/equilibration/npt/npt_thermo.csv` (SHA-256: `65da5a0f296336a5b6dca74251cb12c9b4e05b5f25a075e7a9b0c034ff66ea9d`)
+

@@ -96,3 +96,39 @@ minimization:
     enabled: true                                        # [IMPLEMENTATION CHOICE] Two-stage protocol (docs/05_simulation_protocol.md)
     restraint_k_kcal_per_mol_a2: 5.0                     # [IMPLEMENTATION CHOICE] 5.0 kcal/mol/A^2 (~2092 kJ/mol/nm^2) on RNA heavy atoms
     max_iterations_restrained: 2500                      # [IMPLEMENTATION CHOICE] Max iterations for solvent/ion relaxation
+
+equilibration:
+  thermostat: "LangevinMiddle"                           # [IMPLEMENTATION CHOICE] Langevin dynamics with BAOAB/Middle scheme
+  friction_coeff_ps: 1.0                                 # [IMPLEMENTATION CHOICE] 1.0 ps^-1 collision frequency
+  timestep_fs: 2.0                                       # [IMPLEMENTATION CHOICE] 2.0 fs with constrained H-bonds
+  nvt:
+    duration_ps: 200.0                                   # [IMPLEMENTATION CHOICE] 200 ps NVT heating
+    temperature_start_kelvin: 10.0                       # [IMPLEMENTATION CHOICE] Initial velocity temperature
+    temperature_target_kelvin: 310.0                     # [PROMPT MANDATE] Target temperature 310 K
+    ramp_duration_ps: 150.0                              # [IMPLEMENTATION CHOICE] Linear heating ramp 10 -> 310 K over 150 ps
+    plateau_duration_ps: 50.0                            # [IMPLEMENTATION CHOICE] Thermal plateau at 310 K for 50 ps
+    restraint_k_kcal_per_mol_a2: 5.0                     # [IMPLEMENTATION CHOICE] 5.0 kcal/mol/A^2 (~2092 kJ/mol/nm^2) on RNA heavy atoms
+    report_interval_ps: 1.0                              # [IMPLEMENTATION CHOICE] Logging frequency
+  npt:
+    duration_ps: 1000.0                                  # [IMPLEMENTATION CHOICE] 1.0 ns NPT density equilibration & restraint release
+    temperature_kelvin: 310.0                            # [PROMPT MANDATE] 310 K
+    pressure_bar: 1.0                                    # [PROMPT MANDATE] 1.0 bar
+    barostat_type: "MonteCarloBarostat"                  # [IMPLEMENTATION CHOICE] Isotropic Monte Carlo barostat
+    barostat_frequency_steps: 25                         # [IMPLEMENTATION CHOICE] Volume adjustment attempts every 25 steps (50 fs)
+    report_interval_ps: 1.0                              # [IMPLEMENTATION CHOICE] Logging frequency
+    stages:
+      - name: "stage1"
+        duration_ps: 250.0
+        restraint_k_kcal_per_mol_a2: 2.0
+      - name: "stage2"
+        duration_ps: 250.0
+        restraint_k_kcal_per_mol_a2: 1.0
+      - name: "stage3"
+        duration_ps: 250.0
+        restraint_k_kcal_per_mol_a2: 0.2
+      - name: "stage4"
+        duration_ps: 250.0
+        restraint_k_kcal_per_mol_a2: 0.0                 # Unrestrained relaxation
+  random_seeds:
+    wt: 4101                                             # [IMPLEMENTATION CHOICE] Deterministic distinct seed for WT equilibration
+    cua: 4201                                            # [IMPLEMENTATION CHOICE] Deterministic distinct seed for CUA equilibration

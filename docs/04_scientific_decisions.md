@@ -27,6 +27,8 @@ Taxonomy:
 | **SDR-10** | Replicate-Aware Statistical Inference & Sample Size Constraints | **METHODOLOGY DEFINED** | `[SCIENTIFIC DECISION]` |
 | **SDR-11** | 3D Structural Modeling Template (PDB 6UGG) & Base Grafting | **APPROVED & IMPLEMENTED** | `[SCIENTIFIC DECISION]` / `[IMPLEMENTATION CHOICE]` |
 | **SDR-12** | Pre-MD Structural & Force Field Validation Standards | **APPROVED & IMPLEMENTED** | `[ENGINEERING CHECK]` |
+| **SDR-13** | Two-Stage Solvated Energy Minimization Protocol | **APPROVED & IMPLEMENTED** | `[IMPLEMENTATION CHOICE]` |
+| **SDR-14** | Staged NVT/NPT Restrained Equilibration Protocol | **APPROVED & IMPLEMENTED** | `[IMPLEMENTATION CHOICE]` |
 
 ---
 
@@ -172,3 +174,21 @@ Taxonomy:
   - Stage 2 relieves remaining local steric strain within the mutated nucleobases ($C34$ and $A36$) in the context of relaxed solvent.
   - RNA heavy-atom RMSD relative to starting coordinates is preserved under $1.0\ \text{Å}$ ($0.6346\ \text{Å}$ WT, $0.8921\ \text{Å}$ CUA), with zero steric clashes ($> 1.22\ \text{Å}$).
 - **Explicit Boundary:** Energy minimization removes unfavorable local geometries but does not establish conformational stability, folding, or biological function. Full dynamic evaluation is deferred to production MD.
+
+---
+
+### SDR-14: Staged NVT/NPT Restrained Equilibration Protocol
+- **Status:** APPROVED & IMPLEMENTED (PHASE 4C) `[IMPLEMENTATION CHOICE]`
+- **Context:** Following energy minimization, the system is at 0 K with frozen solvent packing. Sudden unconstrained dynamics at 310 K and 1 bar would introduce thermal shock, solvent cavitation, and potentially unphysical distortion of the RNA hairpin before solvent density and box volume relax to equilibrium values.
+- **Decision:** Implement a multi-stage restrained equilibration pipeline in `scripts/06_equilibrate.py`:
+  1. *Part I: NVT Restrained Heating (10 K -> 310 K, 200 ps):* Apply harmonic restraints ($k = 5.0\ \text{kcal}\cdot\text{mol}^{-1}\cdot\text{Å}^{-2}$) to all 357/356 RNA heavy atoms. Initialize velocities from Maxwell-Boltzmann distribution at 10.0 K (deterministic seeds: WT = 4101, CUA = 4201). Heat linearly to 310.0 K over 150 ps (75,000 steps at $\Delta t = 2.0\ \text{fs}$) and plateau at 310.0 K for 50 ps using `LangevinMiddleIntegrator` ($\gamma = 1.0\ \text{ps}^{-1}$).
+  2. *Part II: NPT Density Relaxation & Progressive Restraint Release (310 K, 1.0 bar, 1000 ps):* Couple to OpenMM `MonteCarloBarostat` (attempted every 25 steps) across 4 sequential stages (250 ps each):
+     - Stage 1: $k = 2.0\ \text{kcal}\cdot\text{mol}^{-1}\cdot\text{Å}^{-2}$ (rapid box condensation from initial $166.4\ \text{nm}^3$ to $\sim 159.4\ \text{nm}^3$).
+     - Stage 2: $k = 1.0\ \text{kcal}\cdot\text{mol}^{-1}\cdot\text{Å}^{-2}$ (solvent density relaxation).
+     - Stage 3: $k = 0.2\ \text{kcal}\cdot\text{mol}^{-1}\cdot\text{Å}^{-2}$ (mild guiding restraints allowing backbone relaxation).
+     - Stage 4: $k = 0.0\ \text{kcal}\cdot\text{mol}^{-1}\cdot\text{Å}^{-2}$ (**genuinely unrestrained pre-production relaxation**).
+- **Rationale & Empirical Validation:**
+  - Total equilibration time is 1.2 ns (600,000 integration steps per construct).
+  - Bulk solvent density converges cleanly to $1.0182\text{--}1.0193\ \text{g/cm}^3$ (physiologically correct density of 150 mM KCl water at 310 K).
+  - RNA heavy-atom Kabsch RMSD relative to minimized starting structures is preserved: WT = 1.66 Å (stem: 0.88 Å), CUA = 1.92 Å (stem: 0.93 Å), demonstrating that the A-form helical stem and loop architecture remain intact with zero steric clashes.
+- **Explicit Boundary:** Equilibration relaxes solvent density and heats the system to target thermodynamic conditions, but does NOT establish conformational stability, native folding, or biological function. Full dynamic stability and comparative statistical testing are deferred to Phase 5 production MD.

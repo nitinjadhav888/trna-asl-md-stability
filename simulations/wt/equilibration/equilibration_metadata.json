@@ -1,0 +1,134 @@
+{
+  "construct": "wt",
+  "construct_id": "wt_asl",
+  "construct_name": "Wild-Type ASL",
+  "selected_trna_identifier": "tRNA-Asp-GTC-2-1",
+  "asl_sequence_5_to_3": "CCCGCCUGUCACGCGGG",
+  "input_files": {
+    "system_xml": "d:\\trna-asl-md-stability\\simulations\\wt\\system\\system.xml",
+    "system_xml_sha256": "d38963ab5ea2adac230bcc552ab1b1dda2260eecf67f41fcf61ceb5a0a8f0b09",
+    "minimized_pdb": "d:\\trna-asl-md-stability\\simulations\\wt\\minimized.pdb",
+    "minimized_pdb_sha256": "471856b2293476ac5bfa24c5b91d43e9ad0476c7aaed8af0bbeacc0ca87efc80"
+  },
+  "output_files": {
+    "final_equilibrated_pdb": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\final_equilibrated.pdb",
+    "final_equilibrated_pdb_sha256": "84a6f2f690ba7bf013572f7d4a9a91463bec984a5a6703e2ff8f30875cb03409",
+    "final_state_xml": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\final_state.xml",
+    "nvt_pdb": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\nvt\\nvt_equilibrated.pdb",
+    "nvt_csv": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\nvt\\nvt_thermo.csv",
+    "npt_csv": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\npt\\npt_thermo.csv",
+    "equilibration_log": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\equilibration.log"
+  },
+  "stage_checkpoints": [
+    {
+      "stage": "stage1",
+      "restraint_k_kcal_a2": 2.0,
+      "duration_ps": 250.0,
+      "checkpoint_pdb": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\npt\\npt_stage1.pdb",
+      "checkpoint_xml": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\npt\\npt_stage1_state.xml"
+    },
+    {
+      "stage": "stage2",
+      "restraint_k_kcal_a2": 1.0,
+      "duration_ps": 250.0,
+      "checkpoint_pdb": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\npt\\npt_stage2.pdb",
+      "checkpoint_xml": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\npt\\npt_stage2_state.xml"
+    },
+    {
+      "stage": "stage3",
+      "restraint_k_kcal_a2": 0.2,
+      "duration_ps": 250.0,
+      "checkpoint_pdb": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\npt\\npt_stage3.pdb",
+      "checkpoint_xml": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\npt\\npt_stage3_state.xml"
+    },
+    {
+      "stage": "stage4",
+      "restraint_k_kcal_a2": 0.0,
+      "duration_ps": 250.0,
+      "checkpoint_pdb": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\npt\\npt_stage4.pdb",
+      "checkpoint_xml": "d:\\trna-asl-md-stability\\simulations\\wt\\equilibration\\npt\\npt_stage4_state.xml"
+    }
+  ],
+  "openmm_environment": {
+    "openmm_version": "8.6.1",
+    "platform_used": "OpenCL",
+    "platform_hardware": {
+      "platform_name": "OpenCL",
+      "DeviceName": "NVIDIA GeForce MX350",
+      "Precision": "mixed"
+    },
+    "precision_mode": "mixed",
+    "python_version": "3.14.3"
+  },
+  "equilibration_protocol": {
+    "scale_factor": 1.0,
+    "timestep_fs": 2.0,
+    "friction_coeff_ps": 1.0,
+    "random_seed": 4101,
+    "nvt": {
+      "duration_ps": 200.0,
+      "temp_start_k": 10.0,
+      "temp_target_k": 310.0,
+      "ramp_duration_ps": 150.0,
+      "plateau_duration_ps": 50.0,
+      "restraint_k_kcal_a2": 5.0,
+      "restrained_heavy_atoms": 357
+    },
+    "npt": {
+      "duration_ps": 1000.0,
+      "target_temp_k": 310.0,
+      "target_pressure_bar": 1.0,
+      "barostat_frequency_steps": 25,
+      "stages": [
+        {
+          "name": "stage1",
+          "duration_ps": 250.0,
+          "restraint_k_kcal_per_mol_a2": 2.0
+        },
+        {
+          "name": "stage2",
+          "duration_ps": 250.0,
+          "restraint_k_kcal_per_mol_a2": 1.0
+        },
+        {
+          "name": "stage3",
+          "duration_ps": 250.0,
+          "restraint_k_kcal_per_mol_a2": 0.2
+        },
+        {
+          "name": "stage4",
+          "duration_ps": 250.0,
+          "restraint_k_kcal_per_mol_a2": 0.0
+        }
+      ]
+    },
+    "final_restraint_state": "UNRESTRAINED (k = 0.0 kcal/(mol*A^2))"
+  },
+  "validation_results": {
+    "total_atoms": 15693,
+    "nan_or_inf_detected": false,
+    "rna_residues": 17,
+    "rna_sequence": "CCCGCCUGUCACGCGGG",
+    "terminal_chemistry_intact": true,
+    "water_molecules": 5035,
+    "k_ions": 30,
+    "cl_ions": 14,
+    "raw_displacement_rmsd_angstrom": 5.572184944025116,
+    "rna_heavy_atom_rmsd_angstrom": 1.6619044558864238,
+    "minimum_rna_distance_angstrom": 11.930951345135894,
+    "npt_late_mean_temperature_k": 310.65276,
+    "npt_late_temperature_std_k": 2.3727005673704378,
+    "npt_late_mean_density_g_cm3": 1.0181938,
+    "npt_late_density_std_g_cm3": 0.0045465131210632136,
+    "npt_late_mean_volume_nm3": 159.4248236,
+    "passed": true,
+    "errors": []
+  },
+  "timing": {
+    "start_time_utc": "2026-11-13T18:33:58Z",
+    "end_time_utc": "2026-11-13T19:20:00Z",
+    "walltime_seconds": 2762.0
+  },
+  "status": "PASS",
+  "disclaimer": "Equilibration relaxes solvent density and heats the system to target thermodynamic conditions, but does NOT establish conformational stability, native folding, or biological function."
+}

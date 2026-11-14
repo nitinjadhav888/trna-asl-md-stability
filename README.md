@@ -107,4 +107,10 @@ trna-asl-md-stability/
   - Two-stage energy minimization (Stage 1 restrained solute $k = 5.0\ \text{kcal/mol/Å}^2$; Stage 2 unrestrained full system).
   - Large potential energy reduction ($\Delta E = -168,778\ \text{kJ/mol}$ WT, $-170,644\ \text{kJ/mol}$ CUA) with preserved RNA fold (RMSD $< 0.9\ \text{Å}$) and zero steric clashes.
   - Minimized coordinates frozen in `simulations/wt/minimized.pdb` and `simulations/cua/minimized.pdb`.
-- **Phase 4C (Pending Next Phase):** NVT/NPT equilibration and restraint release.
+- **Phase 4C (Complete - Restrained NVT/NPT Equilibration & Restraint Release):**
+  - Staged 1.2 ns equilibration protocol executed for both WT and CUA (200 ps NVT heating 10 to 310 K, followed by 1000 ps NPT density relaxation across 4 restraint release stages: $k = 2.0 \rightarrow 1.0 \rightarrow 0.2 \rightarrow 0.0\ \text{kcal/mol/Å}^2$).
+  - Systems relaxed to stationary target density ($1.0187\ \text{g/cm}^3$ WT, $1.0193\ \text{g/cm}^3$ CUA) and physiological temperature ($310.69\ \text{K}$ WT, $310.35\ \text{K}$ CUA).
+  - Native stem fold preserved ($< 0.93\ \text{Å}$ stem RMSD) and zero atomic clashes ($> 2.65\ \text{Å}$ non-adjacent contacts).
+  - Final unrestrained coordinates and OpenMM states frozen in `simulations/wt/equilibration/` and `simulations/cua/equilibration/`.
+  - Comprehensive report in `docs/16_phase4c_equilibration.md`.
+- **Phase 5 (Pending Next Phase):** Production molecular dynamics (3 × 20 ns per construct = 120 ns aggregate sampling in $NPT$).
