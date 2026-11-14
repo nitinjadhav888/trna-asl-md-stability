@@ -80,8 +80,8 @@ simulation_sampling:
   trajectory_save_interval_ps: 10.0                      # [IMPLEMENTATION CHOICE] Frame archiving frequency
   energy_save_interval_ps: 10.0                          # [IMPLEMENTATION CHOICE] State energy frequency
   random_seeds:
-    wt: [1001, 1002, 1003]                               # [IMPLEMENTATION CHOICE] Deterministic seeds for initial velocity distribution
-    suppressor: [2001, 2002, 2003]                       # [IMPLEMENTATION CHOICE] Deterministic seeds for initial velocity distribution
+    wt: [5101, 5102, 5103]                               # [IMPLEMENTATION CHOICE] Approved Phase 5 production seeds
+    suppressor: [5201, 5202, 5203]                       # [IMPLEMENTATION CHOICE] Approved Phase 5 production seeds
 
 box_geometry:
   box_type: "cubic"                                      # [IMPLEMENTATION CHOICE] Orthogonal cubic periodic boundary (selected in Phase 4A)
@@ -132,3 +132,26 @@ equilibration:
   random_seeds:
     wt: 4101                                             # [IMPLEMENTATION CHOICE] Deterministic distinct seed for WT equilibration
     cua: 4201                                            # [IMPLEMENTATION CHOICE] Deterministic distinct seed for CUA equilibration
+
+production:
+  duration_ns_per_replicate: 20.0                        # [PROMPT MANDATE] Minimum 20.0 ns (10,000,000 steps)
+  timestep_fs: 2.0                                       # [IMPLEMENTATION CHOICE] 2.0 fs with constrained H-bonds
+  temperature_kelvin: 310.0                              # [PROMPT MANDATE] 310 K
+  pressure_bar: 1.0                                      # [PROMPT MANDATE] 1.0 bar
+  thermostat: "LangevinMiddle"                           # [IMPLEMENTATION CHOICE] Langevin dynamics with BAOAB/Middle scheme
+  friction_coeff_ps: 1.0                                 # [IMPLEMENTATION CHOICE] 1.0 ps^-1 collision frequency
+  barostat: "MonteCarloBarostat"                         # [IMPLEMENTATION CHOICE] Isotropic Monte Carlo barostat
+  barostat_frequency_steps: 25                           # [IMPLEMENTATION CHOICE] Volume adjustment attempts every 25 steps (50 fs)
+  trajectory_format: "dcd"                               # [IMPLEMENTATION CHOICE] Binary DCD trajectory
+  trajectory_save_interval_ps: 10.0                      # [IMPLEMENTATION CHOICE] Every 5,000 steps (2,000 frames total per 20 ns run)
+  energy_save_interval_ps: 10.0                          # [IMPLEMENTATION CHOICE] Every 5,000 steps (2,000 records total per 20 ns run)
+  checkpoint_interval_ns: 1.0                            # [IMPLEMENTATION CHOICE] Every 500,000 steps (20 checkpoints per 20 ns run)
+  replicates:
+    wt:
+      rep1: { seed: 5101, starting_pdb: "simulations/wt/equilibration/final_equilibrated.pdb", system_xml: "simulations/wt/system/system.xml" }
+      rep2: { seed: 5102, starting_pdb: "simulations/wt/equilibration/final_equilibrated.pdb", system_xml: "simulations/wt/system/system.xml" }
+      rep3: { seed: 5103, starting_pdb: "simulations/wt/equilibration/final_equilibrated.pdb", system_xml: "simulations/wt/system/system.xml" }
+    cua:
+      rep1: { seed: 5201, starting_pdb: "simulations/cua/equilibration/final_equilibrated.pdb", system_xml: "simulations/cua/system/system.xml" }
+      rep2: { seed: 5202, starting_pdb: "simulations/cua/equilibration/final_equilibrated.pdb", system_xml: "simulations/cua/system/system.xml" }
+      rep3: { seed: 5203, starting_pdb: "simulations/cua/equilibration/final_equilibrated.pdb", system_xml: "simulations/cua/system/system.xml" }

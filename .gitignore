@@ -29,6 +29,8 @@
 # Simulation working directories and raw trajectory dumps
 simulations/**/raw/
 simulations/**/traj/
+simulations/**/trajectory/
+simulations/**/checkpoint/
 simulations/**/checkpoints/
 simulations/**/output/
 simulations/**/run_*/
