@@ -113,4 +113,9 @@ trna-asl-md-stability/
   - Native stem fold preserved ($< 0.93\ \text{Å}$ stem RMSD) and zero atomic clashes ($> 2.65\ \text{Å}$ non-adjacent contacts).
   - Final unrestrained coordinates and OpenMM states frozen in `simulations/wt/equilibration/` and `simulations/cua/equilibration/`.
   - Comprehensive report in `docs/16_phase4c_equilibration.md`.
-- **Phase 5 (Pending Next Phase):** Production molecular dynamics (3 × 20 ns per construct = 120 ns aggregate sampling in $NPT$).
+- **Phase 5 (Complete - Production Molecular Dynamics & Run-Level QC):**
+  - Six independent production MD simulations executed (3 × WT, 3 × CUA) at $310.0\ \text{K}$ and $1.0\ \text{bar}$ in explicit solvent.
+  - Replicates simulated to 20.0 ns each ($120.0\ \text{ns}$ aggregate sampling = $60,000,000$ integration steps = $12,000$ trajectory frames).
+  - 100% run-level QC passed across all 6 replicates (atom counts conserved, strictly finite energies, stable physiological temperatures $310.3\text{--}310.4\ \text{K}$, densities $1.018\text{--}1.019\ \text{g/cm}^3$, and readable DCD trajectories).
+  - Comprehensive documentation in `docs/17_phase5_production.md`.
+- **Phase 6 (Pending Next Phase):** Structural and thermodynamic trajectory analysis (RMSD, per-residue RMSF, stem H-bond occupancies, canonical U-turn geometry, 3'-base stacking, and replicate-aware statistics).

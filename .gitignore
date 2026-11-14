@@ -43,6 +43,7 @@ md.log
 energies.csv
 openmm_state_*.xml
 openmm_checkpoint_*.chk
+*_pre_reconciliation*
 
 # ------------------------------------------------------------------------------
 # Python & Environment Files

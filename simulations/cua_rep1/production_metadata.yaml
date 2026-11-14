@@ -1,0 +1,54 @@
+construct: cua
+construct_name: CUA Suppressor ASL
+replicate: 1
+replicate_tag: cua_rep1
+seed: 5201
+duration_ns: 20.0
+total_steps: 10000000
+timestep_fs: 2.0
+trajectory_interval_ps: 10.0
+checkpoint_interval_ns: 1.0
+input_files:
+  starting_pdb: /content/trna-asl-md-stability/simulations/cua/equilibration/final_equilibrated.pdb
+  starting_pdb_sha256: a4a1eb98311411aeff2418fc3f13870f77647a744ec6174e2aff1999ede6f3ab
+  starting_state_xml: /content/trna-asl-md-stability/simulations/cua/equilibration/final_state.xml
+  starting_state_xml_sha256: e6b5e156dfb41a931ecdda097b0b2923e7c027c506a99ea76fbaccd82c7d5960
+  system_xml: /content/trna-asl-md-stability/simulations/cua/system/system.xml
+  system_xml_sha256: f50a532ccbc37a63d4c83ab41f21193d85a3476999528c41e2f190eb300f3180
+output_files:
+  trajectory_dcd: /content/trna-asl-md-stability/simulations/cua_rep1/trajectory/trajectory.dcd
+  final_structure_pdb: /content/trna-asl-md-stability/simulations/cua_rep1/final_state/final_structure.pdb
+  final_structure_pdb_sha256: 9248647dffab193b199cd0e28f70613474f7fbb9e8aefb3d8e8d0627fba3b87c
+  final_state_xml: /content/trna-asl-md-stability/simulations/cua_rep1/final_state/final_state.xml
+  final_state_xml_sha256: cedc6285f498d5493e415b687a218f9434b430d4ec9e888c95fe6a40d3a042dd
+  thermo_csv: /content/trna-asl-md-stability/simulations/cua_rep1/production_thermo.csv
+  production_log: /content/trna-asl-md-stability/simulations/cua_rep1/production.log
+openmm_environment:
+  openmm_version: 8.6.1
+  platform_used: OpenCL
+  platform_properties:
+    Precision: mixed
+  platform_hardware:
+    platform_name: OpenCL
+    DeviceIndex: '0'
+    DeviceName: Tesla T4
+    OpenCLPlatformIndex: '0'
+    OpenCLPlatformName: NVIDIA CUDA
+    Precision: mixed
+    UseCpuPme: 'false'
+    DisablePmeStream: 'false'
+qc_validation:
+  passed: true
+  errors: []
+  atom_count: 15686
+  nan_or_inf_detected: false
+  rna_sequence: CCCGCCUCUAACGCGGG
+  trajectory_frames: 2000
+  expected_frames: 2000
+  thermo_records: 2000
+  final_simulated_time_ns: 20.0
+  mean_temperature_k: 310.30243
+  std_temperature_k: 2.457929391805224
+  mean_density_g_cm3: 1.01839795
+  std_density_g_cm3: 0.003923826040677646
+status: PASS

@@ -1,0 +1,246 @@
+[2026-11-14 14:49:05] ================================================================================
+[2026-11-14 14:49:05] Phase 5 Production MD: Wild-Type ASL - Replicate 3
+[2026-11-14 14:49:05] ================================================================================
+[2026-11-14 14:49:05] Target tRNA:           tRNA-Asp-GTC-2-1
+[2026-11-14 14:49:05] Sequence (5'->3'):     CCCGCCUGUCACGCGGG
+[2026-11-14 14:49:05] Output Directory:      /content/trna-asl-md-stability/simulations/wt_rep3
+[2026-11-14 14:49:05] Starting PDB:          /content/trna-asl-md-stability/simulations/wt/equilibration/final_equilibrated.pdb
+[2026-11-14 14:49:05] Starting State XML:    /content/trna-asl-md-stability/simulations/wt/equilibration/final_state.xml
+[2026-11-14 14:49:05] System XML:            /content/trna-asl-md-stability/simulations/wt/system/system.xml
+[2026-11-14 14:49:05] Production Seed:       5103
+[2026-11-14 14:49:05] Production Duration:   20.000 ns (10000000 steps at 2.0 fs)
+[2026-11-14 14:49:05] Trajectory Interval:   10.0 ps (5000 steps)
+[2026-11-14 14:49:05] Thermo Log Interval:   10.0 ps (5000 steps)
+[2026-11-14 14:49:05] Checkpoint Interval:   1.0 ns (500000 steps)
+[2026-11-14 14:49:05] Deserializing Phase 4A System XML...
+[2026-11-14 14:49:05] Adding MonteCarloBarostat (P = 1.0 bar, T = 310.0 K, freq = 25 steps)...
+[2026-11-14 14:49:05] Configuring LangevinMiddleIntegrator (T = 310.0 K, gamma = 1.0/ps, dt = 2.0 fs)...
+[2026-11-14 14:49:07] Platform selected: OpenCL with properties {'Precision': 'mixed'}
+[2026-11-14 14:49:09] Hardware device: Tesla T4
+[2026-11-14 14:49:13] Initializing coordinates from Phase 4C final equilibrated PDB...
+[2026-11-14 14:49:14] Assigning independent initial velocities from Maxwell-Boltzmann at 310.0 K (seed = 5103)...
+[2026-11-14 14:49:15] Configuring DCD trajectory reporter...
+[2026-11-14 14:49:15] Starting production execution: 10000000 steps to simulate...
+[2026-11-14 14:49:50]   [Step    50000/10000000] (  0.5%) | t =  0.100 ns | T: 306.0 K | Vol: 158.84 nm^3 | Density: 1.0219 g/cm^3 | PE:  -232070.1 kJ/mol | Pace: 248.2 ns/day
+[2026-11-14 14:50:25]   [Step   100000/10000000] (  1.0%) | t =  0.200 ns | T: 311.3 K | Vol: 159.52 nm^3 | Density: 1.0176 g/cm^3 | PE:  -232334.5 kJ/mol | Pace: 244.2 ns/day
+[2026-11-14 14:51:03]   [Step   150000/10000000] (  1.5%) | t =  0.300 ns | T: 309.7 K | Vol: 159.58 nm^3 | Density: 1.0172 g/cm^3 | PE:  -231843.6 kJ/mol | Pace: 239.8 ns/day
+[2026-11-14 14:51:40]   [Step   200000/10000000] (  2.0%) | t =  0.400 ns | T: 312.0 K | Vol: 159.18 nm^3 | Density: 1.0197 g/cm^3 | PE:  -231729.7 kJ/mol | Pace: 238.6 ns/day
+[2026-11-14 14:52:17]   [Step   250000/10000000] (  2.5%) | t =  0.500 ns | T: 311.2 K | Vol: 159.94 nm^3 | Density: 1.0149 g/cm^3 | PE:  -231600.7 kJ/mol | Pace: 237.7 ns/day
+[2026-11-14 14:52:54]   [Step   300000/10000000] (  3.0%) | t =  0.600 ns | T: 307.2 K | Vol: 159.44 nm^3 | Density: 1.0181 g/cm^3 | PE:  -231551.0 kJ/mol | Pace: 237.0 ns/day
+[2026-11-14 14:53:30]   [Step   350000/10000000] (  3.5%) | t =  0.700 ns | T: 313.9 K | Vol: 159.09 nm^3 | Density: 1.0203 g/cm^3 | PE:  -232047.0 kJ/mol | Pace: 236.6 ns/day
+[2026-11-14 14:54:07]   [Step   400000/10000000] (  4.0%) | t =  0.800 ns | T: 308.7 K | Vol: 159.97 nm^3 | Density: 1.0147 g/cm^3 | PE:  -232106.1 kJ/mol | Pace: 236.4 ns/day
+[2026-11-14 14:54:44]   [Step   450000/10000000] (  4.5%) | t =  0.900 ns | T: 311.8 K | Vol: 159.16 nm^3 | Density: 1.0199 g/cm^3 | PE:  -232143.2 kJ/mol | Pace: 236.2 ns/day
+[2026-11-14 14:55:21]   [Step   500000/10000000] (  5.0%) | t =  1.000 ns | T: 313.9 K | Vol: 160.61 nm^3 | Density: 1.0107 g/cm^3 | PE:  -231941.1 kJ/mol | Pace: 236.0 ns/day
+[2026-11-14 14:55:22] Checkpoint saved at step 500000 (t = 1.000 ns).
+[2026-11-14 14:55:59]   [Step   550000/10000000] (  5.5%) | t =  1.100 ns | T: 309.7 K | Vol: 159.39 nm^3 | Density: 1.0184 g/cm^3 | PE:  -231787.6 kJ/mol | Pace: 235.4 ns/day
+[2026-11-14 14:56:35]   [Step   600000/10000000] (  6.0%) | t =  1.200 ns | T: 313.0 K | Vol: 160.05 nm^3 | Density: 1.0142 g/cm^3 | PE:  -232368.0 kJ/mol | Pace: 235.3 ns/day
+[2026-11-14 14:57:12]   [Step   650000/10000000] (  6.5%) | t =  1.300 ns | T: 308.2 K | Vol: 158.83 nm^3 | Density: 1.0220 g/cm^3 | PE:  -231978.7 kJ/mol | Pace: 235.2 ns/day
+[2026-11-14 14:57:49]   [Step   700000/10000000] (  7.0%) | t =  1.400 ns | T: 310.1 K | Vol: 159.48 nm^3 | Density: 1.0178 g/cm^3 | PE:  -231791.5 kJ/mol | Pace: 235.2 ns/day
+[2026-11-14 14:58:26]   [Step   750000/10000000] (  7.5%) | t =  1.500 ns | T: 313.0 K | Vol: 160.07 nm^3 | Density: 1.0141 g/cm^3 | PE:  -231969.5 kJ/mol | Pace: 235.2 ns/day
+[2026-11-14 14:59:03]   [Step   800000/10000000] (  8.0%) | t =  1.600 ns | T: 312.8 K | Vol: 159.10 nm^3 | Density: 1.0202 g/cm^3 | PE:  -232181.0 kJ/mol | Pace: 235.1 ns/day
+[2026-11-14 14:59:40]   [Step   850000/10000000] (  8.5%) | t =  1.700 ns | T: 311.4 K | Vol: 160.04 nm^3 | Density: 1.0143 g/cm^3 | PE:  -231887.7 kJ/mol | Pace: 235.0 ns/day
+[2026-11-14 15:00:17]   [Step   900000/10000000] (  9.0%) | t =  1.800 ns | T: 315.6 K | Vol: 159.33 nm^3 | Density: 1.0188 g/cm^3 | PE:  -232906.4 kJ/mol | Pace: 235.0 ns/day
+[2026-11-14 15:00:54]   [Step   950000/10000000] (  9.5%) | t =  1.900 ns | T: 311.0 K | Vol: 159.64 nm^3 | Density: 1.0168 g/cm^3 | PE:  -231818.2 kJ/mol | Pace: 234.9 ns/day
+[2026-11-14 15:01:31]   [Step  1000000/10000000] ( 10.0%) | t =  2.000 ns | T: 303.1 K | Vol: 159.60 nm^3 | Density: 1.0171 g/cm^3 | PE:  -232498.0 kJ/mol | Pace: 234.8 ns/day
+[2026-11-14 15:01:31] Checkpoint saved at step 1000000 (t = 2.000 ns).
+[2026-11-14 15:02:08]   [Step  1050000/10000000] ( 10.5%) | t =  2.100 ns | T: 307.6 K | Vol: 159.24 nm^3 | Density: 1.0193 g/cm^3 | PE:  -232286.6 kJ/mol | Pace: 234.6 ns/day
+[2026-11-14 15:02:45]   [Step  1100000/10000000] ( 11.0%) | t =  2.200 ns | T: 316.1 K | Vol: 159.87 nm^3 | Density: 1.0153 g/cm^3 | PE:  -231955.5 kJ/mol | Pace: 234.7 ns/day
+[2026-11-14 15:03:22]   [Step  1150000/10000000] ( 11.5%) | t =  2.300 ns | T: 311.5 K | Vol: 159.08 nm^3 | Density: 1.0204 g/cm^3 | PE:  -232319.0 kJ/mol | Pace: 234.7 ns/day
+[2026-11-14 15:03:58]   [Step  1200000/10000000] ( 12.0%) | t =  2.400 ns | T: 308.6 K | Vol: 159.01 nm^3 | Density: 1.0208 g/cm^3 | PE:  -231784.7 kJ/mol | Pace: 234.7 ns/day
+[2026-11-14 15:04:35]   [Step  1250000/10000000] ( 12.5%) | t =  2.500 ns | T: 309.5 K | Vol: 158.59 nm^3 | Density: 1.0235 g/cm^3 | PE:  -232335.5 kJ/mol | Pace: 234.7 ns/day
+[2026-11-14 15:05:12]   [Step  1300000/10000000] ( 13.0%) | t =  2.600 ns | T: 312.1 K | Vol: 158.76 nm^3 | Density: 1.0224 g/cm^3 | PE:  -232491.9 kJ/mol | Pace: 234.7 ns/day
+[2026-11-14 15:05:49]   [Step  1350000/10000000] ( 13.5%) | t =  2.700 ns | T: 309.6 K | Vol: 158.29 nm^3 | Density: 1.0255 g/cm^3 | PE:  -232759.1 kJ/mol | Pace: 234.7 ns/day
+[2026-11-14 15:06:26]   [Step  1400000/10000000] ( 14.0%) | t =  2.800 ns | T: 311.1 K | Vol: 159.81 nm^3 | Density: 1.0157 g/cm^3 | PE:  -231708.7 kJ/mol | Pace: 234.7 ns/day
+[2026-11-14 15:07:02]   [Step  1450000/10000000] ( 14.5%) | t =  2.900 ns | T: 308.5 K | Vol: 158.83 nm^3 | Density: 1.0220 g/cm^3 | PE:  -232363.7 kJ/mol | Pace: 234.7 ns/day
+[2026-11-14 15:07:39]   [Step  1500000/10000000] ( 15.0%) | t =  3.000 ns | T: 309.7 K | Vol: 158.56 nm^3 | Density: 1.0238 g/cm^3 | PE:  -232017.7 kJ/mol | Pace: 234.7 ns/day
+[2026-11-14 15:07:40] Checkpoint saved at step 1500000 (t = 3.000 ns).
+[2026-11-14 15:08:17]   [Step  1550000/10000000] ( 15.5%) | t =  3.100 ns | T: 309.3 K | Vol: 160.82 nm^3 | Density: 1.0094 g/cm^3 | PE:  -231775.5 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:08:54]   [Step  1600000/10000000] ( 16.0%) | t =  3.200 ns | T: 307.7 K | Vol: 159.68 nm^3 | Density: 1.0165 g/cm^3 | PE:  -232546.7 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:09:31]   [Step  1650000/10000000] ( 16.5%) | t =  3.300 ns | T: 306.6 K | Vol: 158.79 nm^3 | Density: 1.0222 g/cm^3 | PE:  -232830.3 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:10:08]   [Step  1700000/10000000] ( 17.0%) | t =  3.400 ns | T: 312.8 K | Vol: 159.26 nm^3 | Density: 1.0192 g/cm^3 | PE:  -231995.4 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:10:45]   [Step  1750000/10000000] ( 17.5%) | t =  3.500 ns | T: 312.3 K | Vol: 158.86 nm^3 | Density: 1.0218 g/cm^3 | PE:  -232896.4 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:11:21]   [Step  1800000/10000000] ( 18.0%) | t =  3.600 ns | T: 315.0 K | Vol: 160.29 nm^3 | Density: 1.0127 g/cm^3 | PE:  -232468.5 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:11:58]   [Step  1850000/10000000] ( 18.5%) | t =  3.700 ns | T: 305.3 K | Vol: 159.99 nm^3 | Density: 1.0146 g/cm^3 | PE:  -231659.5 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:12:35]   [Step  1900000/10000000] ( 19.0%) | t =  3.800 ns | T: 313.9 K | Vol: 158.57 nm^3 | Density: 1.0237 g/cm^3 | PE:  -233052.9 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:13:12]   [Step  1950000/10000000] ( 19.5%) | t =  3.900 ns | T: 309.4 K | Vol: 159.33 nm^3 | Density: 1.0188 g/cm^3 | PE:  -232318.4 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:13:49]   [Step  2000000/10000000] ( 20.0%) | t =  4.000 ns | T: 306.3 K | Vol: 157.77 nm^3 | Density: 1.0289 g/cm^3 | PE:  -232570.1 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:13:49] Checkpoint saved at step 2000000 (t = 4.000 ns).
+[2026-11-14 15:14:26]   [Step  2050000/10000000] ( 20.5%) | t =  4.100 ns | T: 308.6 K | Vol: 159.71 nm^3 | Density: 1.0163 g/cm^3 | PE:  -231842.3 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:15:03]   [Step  2100000/10000000] ( 21.0%) | t =  4.200 ns | T: 313.2 K | Vol: 159.40 nm^3 | Density: 1.0183 g/cm^3 | PE:  -232584.1 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:15:40]   [Step  2150000/10000000] ( 21.5%) | t =  4.300 ns | T: 310.9 K | Vol: 159.58 nm^3 | Density: 1.0172 g/cm^3 | PE:  -231926.1 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:16:16]   [Step  2200000/10000000] ( 22.0%) | t =  4.400 ns | T: 313.1 K | Vol: 159.58 nm^3 | Density: 1.0172 g/cm^3 | PE:  -231496.4 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:16:53]   [Step  2250000/10000000] ( 22.5%) | t =  4.500 ns | T: 309.8 K | Vol: 159.74 nm^3 | Density: 1.0162 g/cm^3 | PE:  -232269.8 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:17:30]   [Step  2300000/10000000] ( 23.0%) | t =  4.600 ns | T: 311.1 K | Vol: 159.85 nm^3 | Density: 1.0154 g/cm^3 | PE:  -232067.4 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:18:07]   [Step  2350000/10000000] ( 23.5%) | t =  4.700 ns | T: 311.5 K | Vol: 160.05 nm^3 | Density: 1.0142 g/cm^3 | PE:  -231959.8 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:18:44]   [Step  2400000/10000000] ( 24.0%) | t =  4.800 ns | T: 310.4 K | Vol: 159.54 nm^3 | Density: 1.0174 g/cm^3 | PE:  -231824.1 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:19:20]   [Step  2450000/10000000] ( 24.5%) | t =  4.900 ns | T: 311.3 K | Vol: 158.77 nm^3 | Density: 1.0224 g/cm^3 | PE:  -231980.8 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:19:57]   [Step  2500000/10000000] ( 25.0%) | t =  5.000 ns | T: 309.9 K | Vol: 159.21 nm^3 | Density: 1.0196 g/cm^3 | PE:  -232164.2 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:19:58] Checkpoint saved at step 2500000 (t = 5.000 ns).
+[2026-11-14 15:20:34]   [Step  2550000/10000000] ( 25.5%) | t =  5.100 ns | T: 313.3 K | Vol: 160.29 nm^3 | Density: 1.0127 g/cm^3 | PE:  -231951.5 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:21:11]   [Step  2600000/10000000] ( 26.0%) | t =  5.200 ns | T: 312.7 K | Vol: 160.39 nm^3 | Density: 1.0121 g/cm^3 | PE:  -232025.8 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:21:48]   [Step  2650000/10000000] ( 26.5%) | t =  5.300 ns | T: 308.1 K | Vol: 159.27 nm^3 | Density: 1.0192 g/cm^3 | PE:  -232641.7 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:22:25]   [Step  2700000/10000000] ( 27.0%) | t =  5.400 ns | T: 309.9 K | Vol: 159.23 nm^3 | Density: 1.0194 g/cm^3 | PE:  -231902.5 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:23:01]   [Step  2750000/10000000] ( 27.5%) | t =  5.500 ns | T: 312.3 K | Vol: 160.34 nm^3 | Density: 1.0124 g/cm^3 | PE:  -231410.9 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:23:38]   [Step  2800000/10000000] ( 28.0%) | t =  5.600 ns | T: 309.1 K | Vol: 158.62 nm^3 | Density: 1.0234 g/cm^3 | PE:  -232088.0 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:24:15]   [Step  2850000/10000000] ( 28.5%) | t =  5.700 ns | T: 309.5 K | Vol: 158.87 nm^3 | Density: 1.0217 g/cm^3 | PE:  -232565.6 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:24:52]   [Step  2900000/10000000] ( 29.0%) | t =  5.800 ns | T: 310.0 K | Vol: 159.83 nm^3 | Density: 1.0156 g/cm^3 | PE:  -231992.4 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:25:29]   [Step  2950000/10000000] ( 29.5%) | t =  5.900 ns | T: 305.8 K | Vol: 158.89 nm^3 | Density: 1.0216 g/cm^3 | PE:  -233009.8 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:26:06]   [Step  3000000/10000000] ( 30.0%) | t =  6.000 ns | T: 311.5 K | Vol: 160.30 nm^3 | Density: 1.0126 g/cm^3 | PE:  -232680.8 kJ/mol | Pace: 234.5 ns/day
+[2026-11-14 15:26:06] Checkpoint saved at step 3000000 (t = 6.000 ns).
+[2026-11-14 15:26:43]   [Step  3050000/10000000] ( 30.5%) | t =  6.100 ns | T: 310.2 K | Vol: 159.22 nm^3 | Density: 1.0195 g/cm^3 | PE:  -231911.4 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:27:20]   [Step  3100000/10000000] ( 31.0%) | t =  6.200 ns | T: 307.7 K | Vol: 158.77 nm^3 | Density: 1.0224 g/cm^3 | PE:  -231402.9 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:27:57]   [Step  3150000/10000000] ( 31.5%) | t =  6.300 ns | T: 307.1 K | Vol: 159.60 nm^3 | Density: 1.0171 g/cm^3 | PE:  -231763.4 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:28:34]   [Step  3200000/10000000] ( 32.0%) | t =  6.400 ns | T: 313.7 K | Vol: 159.93 nm^3 | Density: 1.0149 g/cm^3 | PE:  -232069.3 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:29:10]   [Step  3250000/10000000] ( 32.5%) | t =  6.500 ns | T: 306.6 K | Vol: 158.98 nm^3 | Density: 1.0210 g/cm^3 | PE:  -231945.5 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:29:47]   [Step  3300000/10000000] ( 33.0%) | t =  6.600 ns | T: 319.3 K | Vol: 159.55 nm^3 | Density: 1.0174 g/cm^3 | PE:  -232643.4 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:30:24]   [Step  3350000/10000000] ( 33.5%) | t =  6.700 ns | T: 308.6 K | Vol: 159.35 nm^3 | Density: 1.0186 g/cm^3 | PE:  -231656.3 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:31:01]   [Step  3400000/10000000] ( 34.0%) | t =  6.800 ns | T: 309.3 K | Vol: 160.20 nm^3 | Density: 1.0132 g/cm^3 | PE:  -232247.2 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:31:38]   [Step  3450000/10000000] ( 34.5%) | t =  6.900 ns | T: 312.2 K | Vol: 159.07 nm^3 | Density: 1.0204 g/cm^3 | PE:  -231924.4 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:32:15]   [Step  3500000/10000000] ( 35.0%) | t =  7.000 ns | T: 306.8 K | Vol: 160.17 nm^3 | Density: 1.0134 g/cm^3 | PE:  -232139.7 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:32:15] Checkpoint saved at step 3500000 (t = 7.000 ns).
+[2026-11-14 15:32:52]   [Step  3550000/10000000] ( 35.5%) | t =  7.100 ns | T: 313.2 K | Vol: 159.14 nm^3 | Density: 1.0200 g/cm^3 | PE:  -231994.9 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:33:29]   [Step  3600000/10000000] ( 36.0%) | t =  7.200 ns | T: 312.3 K | Vol: 158.65 nm^3 | Density: 1.0231 g/cm^3 | PE:  -231591.4 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:34:06]   [Step  3650000/10000000] ( 36.5%) | t =  7.300 ns | T: 310.0 K | Vol: 158.57 nm^3 | Density: 1.0236 g/cm^3 | PE:  -232471.4 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:34:42]   [Step  3700000/10000000] ( 37.0%) | t =  7.400 ns | T: 311.9 K | Vol: 159.71 nm^3 | Density: 1.0163 g/cm^3 | PE:  -231842.3 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:35:19]   [Step  3750000/10000000] ( 37.5%) | t =  7.500 ns | T: 305.2 K | Vol: 160.62 nm^3 | Density: 1.0106 g/cm^3 | PE:  -231626.4 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:35:56]   [Step  3800000/10000000] ( 38.0%) | t =  7.600 ns | T: 314.9 K | Vol: 158.80 nm^3 | Density: 1.0222 g/cm^3 | PE:  -232578.1 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:36:33]   [Step  3850000/10000000] ( 38.5%) | t =  7.700 ns | T: 314.9 K | Vol: 159.24 nm^3 | Density: 1.0193 g/cm^3 | PE:  -232478.7 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:37:10]   [Step  3900000/10000000] ( 39.0%) | t =  7.800 ns | T: 307.3 K | Vol: 159.86 nm^3 | Density: 1.0154 g/cm^3 | PE:  -232564.0 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:37:47]   [Step  3950000/10000000] ( 39.5%) | t =  7.900 ns | T: 310.9 K | Vol: 158.94 nm^3 | Density: 1.0212 g/cm^3 | PE:  -232662.5 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:38:24]   [Step  4000000/10000000] ( 40.0%) | t =  8.000 ns | T: 308.8 K | Vol: 159.96 nm^3 | Density: 1.0147 g/cm^3 | PE:  -231953.9 kJ/mol | Pace: 234.4 ns/day
+[2026-11-14 15:38:25] Checkpoint saved at step 4000000 (t = 8.000 ns).
+[2026-11-14 15:39:02]   [Step  4050000/10000000] ( 40.5%) | t =  8.100 ns | T: 307.5 K | Vol: 159.57 nm^3 | Density: 1.0172 g/cm^3 | PE:  -232233.2 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:39:38]   [Step  4100000/10000000] ( 41.0%) | t =  8.200 ns | T: 306.9 K | Vol: 159.58 nm^3 | Density: 1.0172 g/cm^3 | PE:  -231532.3 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:40:15]   [Step  4150000/10000000] ( 41.5%) | t =  8.300 ns | T: 311.9 K | Vol: 158.41 nm^3 | Density: 1.0247 g/cm^3 | PE:  -232515.4 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:40:52]   [Step  4200000/10000000] ( 42.0%) | t =  8.400 ns | T: 312.6 K | Vol: 160.76 nm^3 | Density: 1.0097 g/cm^3 | PE:  -231730.4 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:41:29]   [Step  4250000/10000000] ( 42.5%) | t =  8.500 ns | T: 313.8 K | Vol: 159.37 nm^3 | Density: 1.0185 g/cm^3 | PE:  -231543.5 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:42:06]   [Step  4300000/10000000] ( 43.0%) | t =  8.600 ns | T: 312.3 K | Vol: 158.67 nm^3 | Density: 1.0230 g/cm^3 | PE:  -233457.5 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:42:43]   [Step  4350000/10000000] ( 43.5%) | t =  8.700 ns | T: 309.0 K | Vol: 159.07 nm^3 | Density: 1.0205 g/cm^3 | PE:  -232764.9 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:43:20]   [Step  4400000/10000000] ( 44.0%) | t =  8.800 ns | T: 309.7 K | Vol: 159.88 nm^3 | Density: 1.0153 g/cm^3 | PE:  -232670.2 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:43:56]   [Step  4450000/10000000] ( 44.5%) | t =  8.900 ns | T: 309.2 K | Vol: 159.23 nm^3 | Density: 1.0194 g/cm^3 | PE:  -232984.6 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:44:33]   [Step  4500000/10000000] ( 45.0%) | t =  9.000 ns | T: 312.3 K | Vol: 159.10 nm^3 | Density: 1.0202 g/cm^3 | PE:  -232049.0 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:44:34] Checkpoint saved at step 4500000 (t = 9.000 ns).
+[2026-11-14 15:45:11]   [Step  4550000/10000000] ( 45.5%) | t =  9.100 ns | T: 307.2 K | Vol: 158.42 nm^3 | Density: 1.0246 g/cm^3 | PE:  -232056.8 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:45:48]   [Step  4600000/10000000] ( 46.0%) | t =  9.200 ns | T: 310.1 K | Vol: 159.04 nm^3 | Density: 1.0206 g/cm^3 | PE:  -231651.4 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:46:24]   [Step  4650000/10000000] ( 46.5%) | t =  9.300 ns | T: 310.7 K | Vol: 158.49 nm^3 | Density: 1.0242 g/cm^3 | PE:  -232732.3 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:47:01]   [Step  4700000/10000000] ( 47.0%) | t =  9.400 ns | T: 312.4 K | Vol: 159.86 nm^3 | Density: 1.0154 g/cm^3 | PE:  -231986.2 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:47:38]   [Step  4750000/10000000] ( 47.5%) | t =  9.500 ns | T: 307.6 K | Vol: 160.32 nm^3 | Density: 1.0125 g/cm^3 | PE:  -232139.6 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:48:15]   [Step  4800000/10000000] ( 48.0%) | t =  9.600 ns | T: 316.6 K | Vol: 159.43 nm^3 | Density: 1.0182 g/cm^3 | PE:  -232952.9 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:48:52]   [Step  4850000/10000000] ( 48.5%) | t =  9.700 ns | T: 310.0 K | Vol: 159.55 nm^3 | Density: 1.0174 g/cm^3 | PE:  -232221.5 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:49:29]   [Step  4900000/10000000] ( 49.0%) | t =  9.800 ns | T: 311.1 K | Vol: 159.42 nm^3 | Density: 1.0182 g/cm^3 | PE:  -232109.2 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:50:06]   [Step  4950000/10000000] ( 49.5%) | t =  9.900 ns | T: 310.3 K | Vol: 159.88 nm^3 | Density: 1.0153 g/cm^3 | PE:  -231930.5 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:50:43]   [Step  5000000/10000000] ( 50.0%) | t = 10.000 ns | T: 308.6 K | Vol: 159.56 nm^3 | Density: 1.0173 g/cm^3 | PE:  -232289.7 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:50:43] Checkpoint saved at step 5000000 (t = 10.000 ns).
+[2026-11-14 15:51:20]   [Step  5050000/10000000] ( 50.5%) | t = 10.100 ns | T: 307.3 K | Vol: 159.27 nm^3 | Density: 1.0191 g/cm^3 | PE:  -232176.5 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:51:57]   [Step  5100000/10000000] ( 51.0%) | t = 10.200 ns | T: 308.3 K | Vol: 160.28 nm^3 | Density: 1.0127 g/cm^3 | PE:  -232106.3 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:52:33]   [Step  5150000/10000000] ( 51.5%) | t = 10.300 ns | T: 309.9 K | Vol: 159.41 nm^3 | Density: 1.0183 g/cm^3 | PE:  -232334.9 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:53:10]   [Step  5200000/10000000] ( 52.0%) | t = 10.400 ns | T: 316.2 K | Vol: 157.94 nm^3 | Density: 1.0277 g/cm^3 | PE:  -232918.7 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:53:47]   [Step  5250000/10000000] ( 52.5%) | t = 10.500 ns | T: 306.9 K | Vol: 159.80 nm^3 | Density: 1.0158 g/cm^3 | PE:  -231393.8 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:54:24]   [Step  5300000/10000000] ( 53.0%) | t = 10.600 ns | T: 312.4 K | Vol: 158.47 nm^3 | Density: 1.0243 g/cm^3 | PE:  -232202.2 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:55:01]   [Step  5350000/10000000] ( 53.5%) | t = 10.700 ns | T: 311.4 K | Vol: 158.71 nm^3 | Density: 1.0227 g/cm^3 | PE:  -233118.0 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:55:38]   [Step  5400000/10000000] ( 54.0%) | t = 10.800 ns | T: 310.2 K | Vol: 158.02 nm^3 | Density: 1.0273 g/cm^3 | PE:  -232547.4 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:56:15]   [Step  5450000/10000000] ( 54.5%) | t = 10.900 ns | T: 308.8 K | Vol: 158.63 nm^3 | Density: 1.0233 g/cm^3 | PE:  -232930.2 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:56:52]   [Step  5500000/10000000] ( 55.0%) | t = 11.000 ns | T: 311.1 K | Vol: 158.26 nm^3 | Density: 1.0257 g/cm^3 | PE:  -232617.7 kJ/mol | Pace: 234.3 ns/day
+[2026-11-14 15:56:52] Checkpoint saved at step 5500000 (t = 11.000 ns).
+[2026-11-14 15:57:29]   [Step  5550000/10000000] ( 55.5%) | t = 11.100 ns | T: 314.8 K | Vol: 160.10 nm^3 | Density: 1.0139 g/cm^3 | PE:  -232483.2 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 15:58:06]   [Step  5600000/10000000] ( 56.0%) | t = 11.200 ns | T: 315.0 K | Vol: 159.87 nm^3 | Density: 1.0153 g/cm^3 | PE:  -231335.4 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 15:58:43]   [Step  5650000/10000000] ( 56.5%) | t = 11.300 ns | T: 307.0 K | Vol: 160.80 nm^3 | Density: 1.0095 g/cm^3 | PE:  -231053.7 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 15:59:20]   [Step  5700000/10000000] ( 57.0%) | t = 11.400 ns | T: 307.8 K | Vol: 159.54 nm^3 | Density: 1.0175 g/cm^3 | PE:  -232469.0 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 15:59:57]   [Step  5750000/10000000] ( 57.5%) | t = 11.500 ns | T: 313.1 K | Vol: 160.46 nm^3 | Density: 1.0116 g/cm^3 | PE:  -232783.6 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:00:34]   [Step  5800000/10000000] ( 58.0%) | t = 11.600 ns | T: 310.8 K | Vol: 160.80 nm^3 | Density: 1.0094 g/cm^3 | PE:  -232536.3 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:01:11]   [Step  5850000/10000000] ( 58.5%) | t = 11.700 ns | T: 313.8 K | Vol: 159.24 nm^3 | Density: 1.0193 g/cm^3 | PE:  -232947.6 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:01:47]   [Step  5900000/10000000] ( 59.0%) | t = 11.800 ns | T: 307.9 K | Vol: 159.61 nm^3 | Density: 1.0170 g/cm^3 | PE:  -232484.4 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:02:24]   [Step  5950000/10000000] ( 59.5%) | t = 11.900 ns | T: 312.0 K | Vol: 158.88 nm^3 | Density: 1.0217 g/cm^3 | PE:  -232179.2 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:03:01]   [Step  6000000/10000000] ( 60.0%) | t = 12.000 ns | T: 311.1 K | Vol: 159.63 nm^3 | Density: 1.0168 g/cm^3 | PE:  -231925.5 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:03:02] Checkpoint saved at step 6000000 (t = 12.000 ns).
+[2026-11-14 16:03:39]   [Step  6050000/10000000] ( 60.5%) | t = 12.100 ns | T: 311.3 K | Vol: 158.91 nm^3 | Density: 1.0215 g/cm^3 | PE:  -232547.9 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:04:16]   [Step  6100000/10000000] ( 61.0%) | t = 12.200 ns | T: 308.8 K | Vol: 160.21 nm^3 | Density: 1.0132 g/cm^3 | PE:  -232830.6 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:04:52]   [Step  6150000/10000000] ( 61.5%) | t = 12.300 ns | T: 308.8 K | Vol: 159.71 nm^3 | Density: 1.0164 g/cm^3 | PE:  -232855.8 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:05:29]   [Step  6200000/10000000] ( 62.0%) | t = 12.400 ns | T: 308.9 K | Vol: 159.29 nm^3 | Density: 1.0190 g/cm^3 | PE:  -232651.6 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:06:06]   [Step  6250000/10000000] ( 62.5%) | t = 12.500 ns | T: 310.6 K | Vol: 159.71 nm^3 | Density: 1.0164 g/cm^3 | PE:  -233060.5 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:06:43]   [Step  6300000/10000000] ( 63.0%) | t = 12.600 ns | T: 310.7 K | Vol: 159.74 nm^3 | Density: 1.0162 g/cm^3 | PE:  -232162.4 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:07:20]   [Step  6350000/10000000] ( 63.5%) | t = 12.700 ns | T: 312.3 K | Vol: 157.30 nm^3 | Density: 1.0320 g/cm^3 | PE:  -232542.4 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:07:57]   [Step  6400000/10000000] ( 64.0%) | t = 12.800 ns | T: 307.2 K | Vol: 159.17 nm^3 | Density: 1.0198 g/cm^3 | PE:  -231736.8 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:08:34]   [Step  6450000/10000000] ( 64.5%) | t = 12.900 ns | T: 312.5 K | Vol: 158.81 nm^3 | Density: 1.0221 g/cm^3 | PE:  -232880.5 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:09:11]   [Step  6500000/10000000] ( 65.0%) | t = 13.000 ns | T: 306.4 K | Vol: 159.45 nm^3 | Density: 1.0180 g/cm^3 | PE:  -232782.0 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:09:11] Checkpoint saved at step 6500000 (t = 13.000 ns).
+[2026-11-14 16:09:48]   [Step  6550000/10000000] ( 65.5%) | t = 13.100 ns | T: 309.8 K | Vol: 159.08 nm^3 | Density: 1.0204 g/cm^3 | PE:  -232420.6 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:10:25]   [Step  6600000/10000000] ( 66.0%) | t = 13.200 ns | T: 309.6 K | Vol: 159.34 nm^3 | Density: 1.0187 g/cm^3 | PE:  -230752.5 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:11:02]   [Step  6650000/10000000] ( 66.5%) | t = 13.300 ns | T: 309.3 K | Vol: 160.48 nm^3 | Density: 1.0115 g/cm^3 | PE:  -231646.5 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:11:39]   [Step  6700000/10000000] ( 67.0%) | t = 13.400 ns | T: 310.0 K | Vol: 158.50 nm^3 | Density: 1.0241 g/cm^3 | PE:  -232426.9 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:12:16]   [Step  6750000/10000000] ( 67.5%) | t = 13.500 ns | T: 310.3 K | Vol: 158.25 nm^3 | Density: 1.0257 g/cm^3 | PE:  -233200.2 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:12:53]   [Step  6800000/10000000] ( 68.0%) | t = 13.600 ns | T: 308.4 K | Vol: 159.35 nm^3 | Density: 1.0187 g/cm^3 | PE:  -232362.6 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:13:30]   [Step  6850000/10000000] ( 68.5%) | t = 13.700 ns | T: 311.2 K | Vol: 159.05 nm^3 | Density: 1.0206 g/cm^3 | PE:  -232477.3 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:14:07]   [Step  6900000/10000000] ( 69.0%) | t = 13.800 ns | T: 315.6 K | Vol: 158.75 nm^3 | Density: 1.0225 g/cm^3 | PE:  -231835.3 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:14:43]   [Step  6950000/10000000] ( 69.5%) | t = 13.900 ns | T: 313.5 K | Vol: 159.53 nm^3 | Density: 1.0175 g/cm^3 | PE:  -232206.7 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:15:20]   [Step  7000000/10000000] ( 70.0%) | t = 14.000 ns | T: 311.9 K | Vol: 159.55 nm^3 | Density: 1.0174 g/cm^3 | PE:  -232358.8 kJ/mol | Pace: 234.2 ns/day
+[2026-11-14 16:15:21] Checkpoint saved at step 7000000 (t = 14.000 ns).
+[2026-11-14 16:15:58]   [Step  7050000/10000000] ( 70.5%) | t = 14.100 ns | T: 312.4 K | Vol: 159.90 nm^3 | Density: 1.0151 g/cm^3 | PE:  -231801.6 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:16:35]   [Step  7100000/10000000] ( 71.0%) | t = 14.200 ns | T: 307.6 K | Vol: 159.70 nm^3 | Density: 1.0164 g/cm^3 | PE:  -231689.5 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:17:12]   [Step  7150000/10000000] ( 71.5%) | t = 14.300 ns | T: 310.8 K | Vol: 159.19 nm^3 | Density: 1.0197 g/cm^3 | PE:  -232272.3 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:17:49]   [Step  7200000/10000000] ( 72.0%) | t = 14.400 ns | T: 310.6 K | Vol: 159.28 nm^3 | Density: 1.0191 g/cm^3 | PE:  -233148.4 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:18:25]   [Step  7250000/10000000] ( 72.5%) | t = 14.500 ns | T: 307.9 K | Vol: 158.74 nm^3 | Density: 1.0225 g/cm^3 | PE:  -232335.1 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:19:02]   [Step  7300000/10000000] ( 73.0%) | t = 14.600 ns | T: 309.4 K | Vol: 159.27 nm^3 | Density: 1.0192 g/cm^3 | PE:  -231395.0 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:19:39]   [Step  7350000/10000000] ( 73.5%) | t = 14.700 ns | T: 312.0 K | Vol: 159.01 nm^3 | Density: 1.0208 g/cm^3 | PE:  -231646.3 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:20:16]   [Step  7400000/10000000] ( 74.0%) | t = 14.800 ns | T: 312.5 K | Vol: 160.30 nm^3 | Density: 1.0126 g/cm^3 | PE:  -232856.0 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:20:53]   [Step  7450000/10000000] ( 74.5%) | t = 14.900 ns | T: 310.3 K | Vol: 159.42 nm^3 | Density: 1.0182 g/cm^3 | PE:  -231951.8 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:21:30]   [Step  7500000/10000000] ( 75.0%) | t = 15.000 ns | T: 308.1 K | Vol: 160.34 nm^3 | Density: 1.0123 g/cm^3 | PE:  -231625.3 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:21:30] Checkpoint saved at step 7500000 (t = 15.000 ns).
+[2026-11-14 16:22:07]   [Step  7550000/10000000] ( 75.5%) | t = 15.100 ns | T: 310.3 K | Vol: 161.20 nm^3 | Density: 1.0070 g/cm^3 | PE:  -232218.4 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:22:44]   [Step  7600000/10000000] ( 76.0%) | t = 15.200 ns | T: 306.6 K | Vol: 159.84 nm^3 | Density: 1.0155 g/cm^3 | PE:  -233278.8 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:23:21]   [Step  7650000/10000000] ( 76.5%) | t = 15.300 ns | T: 309.8 K | Vol: 159.01 nm^3 | Density: 1.0208 g/cm^3 | PE:  -231382.9 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:23:58]   [Step  7700000/10000000] ( 77.0%) | t = 15.400 ns | T: 311.0 K | Vol: 159.20 nm^3 | Density: 1.0196 g/cm^3 | PE:  -231228.3 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:24:35]   [Step  7750000/10000000] ( 77.5%) | t = 15.500 ns | T: 311.3 K | Vol: 160.19 nm^3 | Density: 1.0133 g/cm^3 | PE:  -231821.2 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:25:12]   [Step  7800000/10000000] ( 78.0%) | t = 15.600 ns | T: 313.8 K | Vol: 160.50 nm^3 | Density: 1.0113 g/cm^3 | PE:  -231558.6 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:25:49]   [Step  7850000/10000000] ( 78.5%) | t = 15.700 ns | T: 308.1 K | Vol: 160.12 nm^3 | Density: 1.0138 g/cm^3 | PE:  -232408.6 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:26:25]   [Step  7900000/10000000] ( 79.0%) | t = 15.800 ns | T: 308.6 K | Vol: 158.61 nm^3 | Density: 1.0234 g/cm^3 | PE:  -232872.9 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:27:02]   [Step  7950000/10000000] ( 79.5%) | t = 15.900 ns | T: 311.6 K | Vol: 159.23 nm^3 | Density: 1.0194 g/cm^3 | PE:  -231917.1 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:27:39]   [Step  8000000/10000000] ( 80.0%) | t = 16.000 ns | T: 307.6 K | Vol: 158.61 nm^3 | Density: 1.0234 g/cm^3 | PE:  -233155.1 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:27:40] Checkpoint saved at step 8000000 (t = 16.000 ns).
+[2026-11-14 16:28:17]   [Step  8050000/10000000] ( 80.5%) | t = 16.100 ns | T: 309.0 K | Vol: 159.91 nm^3 | Density: 1.0151 g/cm^3 | PE:  -231409.3 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:28:54]   [Step  8100000/10000000] ( 81.0%) | t = 16.200 ns | T: 313.0 K | Vol: 159.31 nm^3 | Density: 1.0189 g/cm^3 | PE:  -232289.4 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:29:31]   [Step  8150000/10000000] ( 81.5%) | t = 16.300 ns | T: 305.1 K | Vol: 159.57 nm^3 | Density: 1.0173 g/cm^3 | PE:  -232391.6 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:30:08]   [Step  8200000/10000000] ( 82.0%) | t = 16.400 ns | T: 311.8 K | Vol: 158.74 nm^3 | Density: 1.0225 g/cm^3 | PE:  -232797.5 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:30:44]   [Step  8250000/10000000] ( 82.5%) | t = 16.500 ns | T: 312.3 K | Vol: 159.48 nm^3 | Density: 1.0178 g/cm^3 | PE:  -232069.2 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:31:21]   [Step  8300000/10000000] ( 83.0%) | t = 16.600 ns | T: 311.2 K | Vol: 159.13 nm^3 | Density: 1.0201 g/cm^3 | PE:  -231541.2 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:31:58]   [Step  8350000/10000000] ( 83.5%) | t = 16.700 ns | T: 312.6 K | Vol: 160.00 nm^3 | Density: 1.0145 g/cm^3 | PE:  -231466.5 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:32:35]   [Step  8400000/10000000] ( 84.0%) | t = 16.800 ns | T: 309.5 K | Vol: 159.40 nm^3 | Density: 1.0183 g/cm^3 | PE:  -232841.9 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:33:12]   [Step  8450000/10000000] ( 84.5%) | t = 16.900 ns | T: 311.6 K | Vol: 159.58 nm^3 | Density: 1.0172 g/cm^3 | PE:  -232551.6 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:33:48]   [Step  8500000/10000000] ( 85.0%) | t = 17.000 ns | T: 306.9 K | Vol: 159.42 nm^3 | Density: 1.0182 g/cm^3 | PE:  -232018.3 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:33:49] Checkpoint saved at step 8500000 (t = 17.000 ns).
+[2026-11-14 16:34:26]   [Step  8550000/10000000] ( 85.5%) | t = 17.100 ns | T: 310.8 K | Vol: 159.00 nm^3 | Density: 1.0209 g/cm^3 | PE:  -231514.1 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:35:03]   [Step  8600000/10000000] ( 86.0%) | t = 17.200 ns | T: 309.5 K | Vol: 158.02 nm^3 | Density: 1.0272 g/cm^3 | PE:  -232956.5 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:35:39]   [Step  8650000/10000000] ( 86.5%) | t = 17.300 ns | T: 312.7 K | Vol: 158.84 nm^3 | Density: 1.0220 g/cm^3 | PE:  -232507.1 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:36:16]   [Step  8700000/10000000] ( 87.0%) | t = 17.400 ns | T: 308.4 K | Vol: 158.91 nm^3 | Density: 1.0215 g/cm^3 | PE:  -232575.0 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:36:53]   [Step  8750000/10000000] ( 87.5%) | t = 17.500 ns | T: 313.8 K | Vol: 160.11 nm^3 | Density: 1.0138 g/cm^3 | PE:  -232239.0 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:37:30]   [Step  8800000/10000000] ( 88.0%) | t = 17.600 ns | T: 310.6 K | Vol: 158.32 nm^3 | Density: 1.0252 g/cm^3 | PE:  -232695.8 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:38:07]   [Step  8850000/10000000] ( 88.5%) | t = 17.700 ns | T: 313.8 K | Vol: 160.16 nm^3 | Density: 1.0135 g/cm^3 | PE:  -231662.5 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:38:44]   [Step  8900000/10000000] ( 89.0%) | t = 17.800 ns | T: 313.1 K | Vol: 158.41 nm^3 | Density: 1.0247 g/cm^3 | PE:  -232303.4 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:39:21]   [Step  8950000/10000000] ( 89.5%) | t = 17.900 ns | T: 309.0 K | Vol: 159.62 nm^3 | Density: 1.0169 g/cm^3 | PE:  -231992.0 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:39:57]   [Step  9000000/10000000] ( 90.0%) | t = 18.000 ns | T: 310.9 K | Vol: 159.51 nm^3 | Density: 1.0176 g/cm^3 | PE:  -232489.0 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:39:58] Checkpoint saved at step 9000000 (t = 18.000 ns).
+[2026-11-14 16:40:35]   [Step  9050000/10000000] ( 90.5%) | t = 18.100 ns | T: 306.7 K | Vol: 160.35 nm^3 | Density: 1.0123 g/cm^3 | PE:  -231925.4 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:41:12]   [Step  9100000/10000000] ( 91.0%) | t = 18.200 ns | T: 310.9 K | Vol: 157.92 nm^3 | Density: 1.0279 g/cm^3 | PE:  -232629.7 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:41:49]   [Step  9150000/10000000] ( 91.5%) | t = 18.300 ns | T: 313.5 K | Vol: 158.79 nm^3 | Density: 1.0222 g/cm^3 | PE:  -232345.3 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:42:25]   [Step  9200000/10000000] ( 92.0%) | t = 18.400 ns | T: 314.5 K | Vol: 160.31 nm^3 | Density: 1.0126 g/cm^3 | PE:  -232160.9 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:43:02]   [Step  9250000/10000000] ( 92.5%) | t = 18.500 ns | T: 309.7 K | Vol: 159.33 nm^3 | Density: 1.0188 g/cm^3 | PE:  -231251.3 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:43:39]   [Step  9300000/10000000] ( 93.0%) | t = 18.600 ns | T: 305.4 K | Vol: 159.34 nm^3 | Density: 1.0187 g/cm^3 | PE:  -231865.2 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:44:16]   [Step  9350000/10000000] ( 93.5%) | t = 18.700 ns | T: 313.6 K | Vol: 159.34 nm^3 | Density: 1.0187 g/cm^3 | PE:  -232436.6 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:44:53]   [Step  9400000/10000000] ( 94.0%) | t = 18.800 ns | T: 312.6 K | Vol: 158.76 nm^3 | Density: 1.0225 g/cm^3 | PE:  -232336.7 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:45:30]   [Step  9450000/10000000] ( 94.5%) | t = 18.900 ns | T: 312.4 K | Vol: 159.09 nm^3 | Density: 1.0203 g/cm^3 | PE:  -232442.4 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:46:07]   [Step  9500000/10000000] ( 95.0%) | t = 19.000 ns | T: 310.9 K | Vol: 159.55 nm^3 | Density: 1.0173 g/cm^3 | PE:  -231916.8 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:46:07] Checkpoint saved at step 9500000 (t = 19.000 ns).
+[2026-11-14 16:46:44]   [Step  9550000/10000000] ( 95.5%) | t = 19.100 ns | T: 306.8 K | Vol: 159.00 nm^3 | Density: 1.0209 g/cm^3 | PE:  -232263.2 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:47:21]   [Step  9600000/10000000] ( 96.0%) | t = 19.200 ns | T: 308.1 K | Vol: 160.05 nm^3 | Density: 1.0142 g/cm^3 | PE:  -231728.5 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:47:58]   [Step  9650000/10000000] ( 96.5%) | t = 19.300 ns | T: 313.9 K | Vol: 159.89 nm^3 | Density: 1.0152 g/cm^3 | PE:  -231873.5 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:48:35]   [Step  9700000/10000000] ( 97.0%) | t = 19.400 ns | T: 308.9 K | Vol: 158.74 nm^3 | Density: 1.0225 g/cm^3 | PE:  -232496.2 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:49:12]   [Step  9750000/10000000] ( 97.5%) | t = 19.500 ns | T: 308.9 K | Vol: 159.55 nm^3 | Density: 1.0174 g/cm^3 | PE:  -233253.9 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:49:49]   [Step  9800000/10000000] ( 98.0%) | t = 19.600 ns | T: 313.4 K | Vol: 159.05 nm^3 | Density: 1.0206 g/cm^3 | PE:  -232493.4 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:50:27]   [Step  9850000/10000000] ( 98.5%) | t = 19.700 ns | T: 315.5 K | Vol: 160.23 nm^3 | Density: 1.0131 g/cm^3 | PE:  -232033.9 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:51:04]   [Step  9900000/10000000] ( 99.0%) | t = 19.800 ns | T: 310.2 K | Vol: 159.37 nm^3 | Density: 1.0185 g/cm^3 | PE:  -232837.9 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:51:41]   [Step  9950000/10000000] ( 99.5%) | t = 19.900 ns | T: 310.4 K | Vol: 160.28 nm^3 | Density: 1.0128 g/cm^3 | PE:  -233004.1 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:52:18]   [Step 10000000/10000000] (100.0%) | t = 20.000 ns | T: 308.0 K | Vol: 159.63 nm^3 | Density: 1.0169 g/cm^3 | PE:  -232593.3 kJ/mol | Pace: 234.1 ns/day
+[2026-11-14 16:52:18] Checkpoint saved at step 10000000 (t = 20.000 ns).
+[2026-11-14 16:52:18] Writing final production structure and state XML...
+[2026-11-14 16:52:19] Executing run-level QC verification...
+[2026-11-14 16:52:20] Run wt_rep3 finished with QC status: PASS

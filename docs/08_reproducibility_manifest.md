@@ -171,3 +171,18 @@ python scripts/03_visualize_asl_structures.py
   - CUA Final State XML: `simulations/cua/equilibration/final_state.xml` (SHA-256: `41b6cfe8ce3cb916aae7242342651df20f9c6ebae768dc9c13ec6d32f7ccb904`)
   - CUA NPT Thermo CSV: `simulations/cua/equilibration/npt/npt_thermo.csv` (SHA-256: `65da5a0f296336a5b6dca74251cb12c9b4e05b5f25a075e7a9b0c034ff66ea9d`)
 
+---
+
+## 10. Phase 5 Independent Production MD Execution & Provenance
+
+- **Date of Execution:** November 14, 2026
+- **Protocol:** Isothermal-isobaric ($NPT$) production MD at $T = 310.0\ \text{K}$, $P = 1.0\ \text{bar}$ (Monte Carlo barostat every 25 steps), Langevin Middle integrator ($\gamma = 1.0\ \text{ps}^{-1}$, $\Delta t = 2.0\ \text{fs}$), PME electrostatics ($1.0\ \text{nm}$ cutoff), 120.0 ns aggregate sampling ($6 \times 20.0\ \text{ns}$ = $60,000,000$ steps = $12,000$ DCD frames).
+- **Compute Hardware:** NVIDIA Tesla T4 GPU via OpenCL/CUDA (`Precision: mixed`).
+- **Deterministic Replicate Seeds:**
+  - Wild-Type (`wt`): `wt_rep1` (5101), `wt_rep2` (5102), `wt_rep3` (5103)
+  - CUA Suppressor (`cua`): `cua_rep1` (5201), `cua_rep2` (5202), `cua_rep3` (5203)
+- **Production Driver Script:** [scripts/07_run_production.py](file:///d:/trna-asl-md-stability/scripts/07_run_production.py)
+- **Quality Control Verdict:** 6/6 Replicates PASSED all run-level QC gates (see [docs/17_phase5_production.md](file:///d:/trna-asl-md-stability/docs/17_phase5_production.md)).
+- **Repository Hygiene:** Raw trajectory binaries (`*.dcd`) and checkpoints (`checkpoint/`) are excluded via `.gitignore`. Processed thermodynamic logs (`production_thermo.csv`), run logs (`production.log`), final structures (`final_state/`), and metadata are tracked.
+
+

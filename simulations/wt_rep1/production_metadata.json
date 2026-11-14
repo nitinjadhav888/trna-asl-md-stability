@@ -1,0 +1,64 @@
+{
+  "construct": "wt",
+  "construct_name": "Wild-Type ASL",
+  "replicate": 1,
+  "replicate_tag": "wt_rep1",
+  "seed": 5101,
+  "duration_ns": 20.0,
+  "total_steps": 10000000,
+  "timestep_fs": 2.0,
+  "trajectory_interval_ps": 10.0,
+  "checkpoint_interval_ns": 1.0,
+  "input_files": {
+    "starting_pdb": "/content/trna-asl-md-stability/simulations/wt/equilibration/final_equilibrated.pdb",
+    "starting_pdb_sha256": "f9823a709c37d5a0e8a2446930267eff1d10bd4cfba69a775ce9598b2b6f00bf",
+    "starting_state_xml": "/content/trna-asl-md-stability/simulations/wt/equilibration/final_state.xml",
+    "starting_state_xml_sha256": "12e0c15bf167ca1e7c25c3e30240f870a7064fedc37963550fc92663c6b74751",
+    "system_xml": "/content/trna-asl-md-stability/simulations/wt/system/system.xml",
+    "system_xml_sha256": "6d65bf2f11bf83013e2434f1374a25f76bc4bd2d2d13d6e2e9845ebc26f9b8d8"
+  },
+  "output_files": {
+    "trajectory_dcd": "/content/trna-asl-md-stability/simulations/wt_rep1/trajectory/trajectory.dcd",
+    "final_structure_pdb": "/content/trna-asl-md-stability/simulations/wt_rep1/final_state/final_structure.pdb",
+    "final_structure_pdb_sha256": "9b5aff8aca7b040c2ea9d0551a0b08f488379cc5af92553ac24e1e82b60250a1",
+    "final_state_xml": "/content/trna-asl-md-stability/simulations/wt_rep1/final_state/final_state.xml",
+    "final_state_xml_sha256": "d4a1381bd463119d006a4a24be1be646d0c62ea0513f5989f9549823dbd43b20",
+    "thermo_csv": "/content/trna-asl-md-stability/simulations/wt_rep1/production_thermo.csv",
+    "production_log": "/content/trna-asl-md-stability/simulations/wt_rep1/production.log"
+  },
+  "openmm_environment": {
+    "openmm_version": "8.6.1",
+    "platform_used": "OpenCL",
+    "platform_properties": {
+      "Precision": "mixed"
+    },
+    "platform_hardware": {
+      "platform_name": "OpenCL",
+      "DeviceIndex": "0",
+      "DeviceName": "Tesla T4",
+      "OpenCLPlatformIndex": "0",
+      "OpenCLPlatformName": "NVIDIA CUDA",
+      "Precision": "mixed",
+      "UseCpuPme": "false",
+      "DisablePmeStream": "false"
+    }
+  },
+  "qc_validation": {
+    "passed": false,
+    "errors": [
+      "Trajectory frame count mismatch: found 2029, expected 2000"
+    ],
+    "atom_count": 15693,
+    "nan_or_inf_detected": false,
+    "rna_sequence": "CCCGCCUGUCACGCGGG",
+    "trajectory_frames": 2029,
+    "expected_frames": 2000,
+    "thermo_records": 2029,
+    "final_simulated_time_ns": 20.0,
+    "mean_temperature_k": 310.31426318383444,
+    "std_temperature_k": 2.438430869979447,
+    "mean_density_g_cm3": 1.0186876293740759,
+    "std_density_g_cm3": 0.00410589735008414
+  },
+  "status": "FAIL"
+}

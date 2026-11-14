@@ -1,0 +1,62 @@
+{
+  "construct": "wt",
+  "construct_name": "Wild-Type ASL",
+  "replicate": 3,
+  "replicate_tag": "wt_rep3",
+  "seed": 5103,
+  "duration_ns": 20.0,
+  "total_steps": 10000000,
+  "timestep_fs": 2.0,
+  "trajectory_interval_ps": 10.0,
+  "checkpoint_interval_ns": 1.0,
+  "input_files": {
+    "starting_pdb": "/content/trna-asl-md-stability/simulations/wt/equilibration/final_equilibrated.pdb",
+    "starting_pdb_sha256": "f9823a709c37d5a0e8a2446930267eff1d10bd4cfba69a775ce9598b2b6f00bf",
+    "starting_state_xml": "/content/trna-asl-md-stability/simulations/wt/equilibration/final_state.xml",
+    "starting_state_xml_sha256": "12e0c15bf167ca1e7c25c3e30240f870a7064fedc37963550fc92663c6b74751",
+    "system_xml": "/content/trna-asl-md-stability/simulations/wt/system/system.xml",
+    "system_xml_sha256": "6d65bf2f11bf83013e2434f1374a25f76bc4bd2d2d13d6e2e9845ebc26f9b8d8"
+  },
+  "output_files": {
+    "trajectory_dcd": "/content/trna-asl-md-stability/simulations/wt_rep3/trajectory/trajectory.dcd",
+    "final_structure_pdb": "/content/trna-asl-md-stability/simulations/wt_rep3/final_state/final_structure.pdb",
+    "final_structure_pdb_sha256": "588219797b6022acf6b8db10384e357673f34a1cd19e254ea543b63703607400",
+    "final_state_xml": "/content/trna-asl-md-stability/simulations/wt_rep3/final_state/final_state.xml",
+    "final_state_xml_sha256": "29450f883526a831cdb3b5da69bd25b10f30bc2dfa413a7b368ca2c94183b792",
+    "thermo_csv": "/content/trna-asl-md-stability/simulations/wt_rep3/production_thermo.csv",
+    "production_log": "/content/trna-asl-md-stability/simulations/wt_rep3/production.log"
+  },
+  "openmm_environment": {
+    "openmm_version": "8.6.1",
+    "platform_used": "OpenCL",
+    "platform_properties": {
+      "Precision": "mixed"
+    },
+    "platform_hardware": {
+      "platform_name": "OpenCL",
+      "DeviceIndex": "0",
+      "DeviceName": "Tesla T4",
+      "OpenCLPlatformIndex": "0",
+      "OpenCLPlatformName": "NVIDIA CUDA",
+      "Precision": "mixed",
+      "UseCpuPme": "false",
+      "DisablePmeStream": "false"
+    }
+  },
+  "qc_validation": {
+    "passed": true,
+    "errors": [],
+    "atom_count": 15693,
+    "nan_or_inf_detected": false,
+    "rna_sequence": "CCCGCCUGUCACGCGGG",
+    "trajectory_frames": 2000,
+    "expected_frames": 2000,
+    "thermo_records": 2000,
+    "final_simulated_time_ns": 20.0,
+    "mean_temperature_k": 310.38160999999997,
+    "std_temperature_k": 2.4923656850269786,
+    "mean_density_g_cm3": 1.01850445,
+    "std_density_g_cm3": 0.00398004713508521
+  },
+  "status": "PASS"
+}
