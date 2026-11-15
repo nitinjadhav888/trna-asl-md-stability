@@ -1,0 +1,15 @@
+metric,wt_rep1,wt_rep2,wt_rep3,cua_rep1,cua_rep2,cua_rep3,direction_consistency,sampling_status
+Full ASL Backbone RMSD (Å),1.8448,1.8131,2.1388,2.5685,2.2929,2.5213,Consistent elevation in CUA (3/3),Locally stable overall; loop contributes elevated variance
+5-bp Stem Backbone RMSD (Å),0.8698,0.8635,0.9901,1.1628,1.1214,1.1421,Consistent modest elevation in CUA (3/3); both < 1.2 Å,Locally stable (helical stem intact in all 6 runs)
+7-nt Loop Global RMSD (Stem-Aligned) (Å),3.6139,3.4209,4.3594,5.5691,4.8648,5.3244,Consistent elevation in CUA (3/3),Not demonstrably converged over 20 ns (loop hinge drift)
+7-nt Loop Internal RMSD (Loop-Aligned) (Å),1.6192,1.7995,1.6349,2.2498,1.813,2.1413,Modest elevation in CUA (3/3),Not demonstrably converged over 20 ns (internal rearrangements)
+5-bp Stem Intact Occupancy (%),99.71,99.57,98.53,99.27,99.46,99.48,Consistent high persistence in both constructs (≥98.7%),Locally stable (helical base-pairing locked throughout 20 ns)
+U33–P36 U-Turn Intact HB Occupancy (%),97.0,98.3,67.5,0.0,0.05,0.05,Consistent complete loss in CUA (3/3: ≤0.05% vs ≥67.5% WT),Not demonstrably converged over 20 ns (loop breathing in wt_rep3)
+U33–P36 Contact (≤3.5 Å) Occupancy (%),97.7,99.5,70.3,0.0,0.3,0.05,Consistent loss in CUA (3/3: ≤0.30% vs ≥70.3% WT),Not demonstrably converged over 20 ns (transient opening in wt_rep3)
+U33–P36 Minimum Distance d_min (Å),2.8965,2.8665,3.4165,5.2721,6.2008,6.0082,Consistent distance dilation in CUA (3/3: ≥5.27 Å vs ≤3.42 Å WT),Locally stationary in wt1/2 and cua1; drifting in wt3 and cua2/3
+3'-Stacking Step 34–35 Occupancy (%),93.1,95.45,84.2,2.05,40.9,14.8,Consistent major reduction in CUA (3/3: max 40.9% CUA vs min 84.2% WT),Not demonstrably converged over 20 ns (unstacking transition in cua_rep2/3)
+3'-Stacking Step 35–36 Occupancy (%),51.85,50.75,40.25,50.65,55.6,50.85,Comparable occupancy in WT and CUA (~40-55%),Locally fluctuating dynamically in both constructs
+3'-Stacking Step 36–37 Occupancy (%),50.55,50.45,64.4,59.15,69.45,59.7,Comparable occupancy in WT and CUA (~50-70%),Locally fluctuating dynamically in both constructs
+3'-Stacking Step 37–38 Occupancy (%),77.75,90.4,87.25,98.75,76.0,96.7,Consistent high stacking in both constructs (≥76%),Locally stable (robust base-stacking scaffold at 3' boundary)
+Pos 34 Sugar Pucker North (C3'-endo) Occ (%),86.65,84.9,86.95,77.8,84.2,79.55,Predominantly North in both constructs (≥77%),Observed conformational occupancy over sampled trajectories
+Pos 34 Sugar Pucker East (O4'-endo) Occ (%),4.85,3.2,6.6,22.15,15.65,20.3,Consistent elevation in CUA (3/3: min 15.65% CUA vs max 6.60% WT),Observed conformational occupancy over sampled trajectories

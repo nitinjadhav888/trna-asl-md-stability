@@ -201,14 +201,16 @@ python scripts/03_visualize_asl_structures.py
   - Sugar Pucker at Nucleotide 34: [scripts/15_additional_metric.py](file:///d:/trna-asl-md-stability/scripts/15_additional_metric.py)
   - Replicate Statistics & Sampling Sufficiency: [scripts/16_statistics.py](file:///d:/trna-asl-md-stability/scripts/16_statistics.py)
   - Publication Figures: [scripts/17_generate_figures.py](file:///d:/trna-asl-md-stability/scripts/17_generate_figures.py)
+  - Replicate Consistency & Sampling Convergence Audit: [scripts/18_audit_replicate_consistency.py](file:///d:/trna-asl-md-stability/scripts/18_audit_replicate_consistency.py)
 - **Primary Data Artifacts Generated:**
-  - Machine-readable summary and time-series tables in [analysis/tables/](file:///d:/trna-asl-md-stability/analysis/tables)
+  - Machine-readable summary and time-series tables in [analysis/tables/](file:///d:/trna-asl-md-stability/analysis/tables) (including `replicate_consistency_audit.csv`)
   - Publication figures in [figures/](file:///d:/trna-asl-md-stability/figures) (`figure1_rmsd.png` through `figure6_sugar_pucker.png`)
   - Full scientific analysis document: [docs/18_phase6_trajectory_analysis.md](file:///d:/trna-asl-md-stability/docs/18_phase6_trajectory_analysis.md)
-- **Phase Boundary Verification:**
+- **Phase Boundary & Scientific Governance Verification:**
   - All comparisons evaluated using $N=3$ WT and $N=3$ CUA independent simulation replicates (Welch's $t$-test, Cohen's $d$, Benjamini-Hochberg FDR).
   - Trajectory frames were not pooled to inflate degrees of freedom.
   - Phase 6 is restricted to structural observables only; no cellular suppression efficiency or biological claims were made.
+  - Phase 6.1 scientific audit verified U-turn chemistry, stem H-bond language, stacking geometry, Altona-Sundaralingam sugar pucker calculations, and explicitly documented sampling convergence limitations.
 
 
 
