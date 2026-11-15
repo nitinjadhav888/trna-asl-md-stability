@@ -74,7 +74,9 @@ trna-asl-md-stability/
 │   ├── 07_limitations.md
 │   ├── 08_reproducibility_manifest.md
 │   ├── 09_risk_register.md
-│   └── 10_learning_checklist.md
+│   ├── 10_learning_checklist.md
+│   ├── 18_phase6_trajectory_analysis.md
+│   └── 19_phase6_2_compliance_audit.md
 └── report/                         # Final formal scientific report and manuscript
 ```
 
@@ -85,7 +87,13 @@ trna-asl-md-stability/
 - **No Fabricated Data or Premature Conclusions:** No simulation trajectories, results, or biological outcomes are assumed or reported without empirical execution.
 - **Exclusively Public Biological Data:** All structural and sequence references originate from open, public databases (GtRNAdb, RCSB PDB, MODOMICS). No proprietary Transloka Bio or KritRNA data is used.
 - **Transparent Decision-Making:** Every scientific assumption, parameter choice, and analytical decision is documented in `docs/04_scientific_decisions.md`.
-- **Lightweight Repository Hygiene:** Raw trajectories (`.dcd`, `.xtc`, `.nc`) are git-ignored; only lightweight processed tabular summaries and reproducible scripts are committed.
+- **Lightweight Repository Hygiene:** Raw trajectories (`.dcd`, `.xtc`, `.nc`) are git-ignored; only lightweight processed tabular summaries, figures, and reproducible scripts are committed.
+
+### 5.1 AI Assistant Disclosure
+In full compliance with Transloka Bio assessment guidelines:
+- **AI Tool Utilized:** Antigravity (Google DeepMind Gemini-powered agentic coding assistant).
+- **Scope of AI Assistance:** AI assistance was employed for boilerplate code generation, Python script orchestration (OpenMM simulation drivers, MDTraj analysis pipelines, NumPy/SciPy statistical testing, Matplotlib/Seaborn plotting), and technical Markdown documentation formatting.
+- **Scientific Oversight:** All biological hypotheses, candidate tRNA selection criteria, structural modeling decisions, force field selections, statistical testing architectures, and biophysical interpretations were independently designed, audited, and verified by the author. No automated claims were accepted without empirical execution.
 
 ---
 
@@ -126,4 +134,11 @@ trna-asl-md-stability/
   - Sampling sufficiency evaluated across four contiguous 5-ns time blocks: the six 20-ns simulations were numerically stable and provided consistent evidence for substantial WT–CUA differences in several local structural observables (consistent with local loop destabilization/reorganization); however, selected loop observables underwent time-dependent transitions within individual replicates (e.g., U-turn breathing in `wt_rep3`, unstacking in `cua_rep2`/`cua_rep3`), indicating that $3 \times 20\ \text{ns}$ does not establish exhaustive equilibrium sampling of the loop conformational landscape.
   - Six publication-quality figures (`figures/figure1_rmsd.png` through `figures/figure6_sugar_pucker.png`) and machine-readable tables in `analysis/tables/`.
   - Comprehensive documentation in `docs/18_phase6_trajectory_analysis.md`.
+- **Phase 6.2 (Complete - Take-Home Requirements Compliance Audit):**
+  - Item-by-item compliance audit completed against all original Transloka Bio take-home specifications (`docs/19_phase6_2_compliance_audit.md`).
+  - Verified natural modification profiles at positions 34 (Q34/manQ34), 37 ($m^1A37$), and 38 ($m^5C38$) and documented biophysical consequences of their omission.
+  - Documented equilibration/production cutoff separation (100% of the 1.2 ns equilibration frames excluded from production analysis).
+  - Formulated biophysical justification for nucleotide 34 sugar pucker; stated small-$N$ statistical limitations and sampling requirements for equilibrium claims.
+  - Articulated the translational boundary (why ASL MD cannot predict cellular suppression) and specified the physical cell-based dual-luciferase reporter assay.
+  - Confirmed AI assistant tool disclosure, path portability, and public repository reproducibility.
 - **Phase 7 (Pending Next Phase):** Final synthesis, mechanistic interpretation, and submission-ready $\le 4$-page publication report.
