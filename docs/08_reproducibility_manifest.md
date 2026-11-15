@@ -228,6 +228,35 @@ python scripts/03_visualize_asl_structures.py
   - AI assistant usage fully disclosed; zero proprietary Transloka/KritRNA material present.
 - **Phase 7 Readiness:** **PASS** (100% compliant across all 16 prompt requirement areas).
 
+---
+
+## 13. Phase 7 Final Scientific Report and Synthesis Provenance
+
+- **Date of Execution:** November 15, 2026
+- **Deliverables:**
+  - Final Publication-Ready Report: [report/report.md](file:///d:/trna-asl-md-stability/report/report.md) ($\le 4$ pages main text when rendered; ~2,000 words prose, ~2,600 words with master table).
+  - Compiled Report PDF: [report/report.pdf](file:///d:/trna-asl-md-stability/report/report.pdf) (6 pages total including all 6 embedded high-resolution figures).
+  - High-Resolution Report Figures: `report/figures/figure1_rmsd.png` through `report/figures/figure6_sugar_pucker.png`.
+- **Core Research Question Answered:**
+  - Canonical loop architecture is *not* retained in the CUA amber suppressor; the loop undergoes substantial local structural reorganization.
+  - The 5-bp helical stem remains completely intact, locked, and persistent ($\ge 98.5\%$ base-pairing, backbone RMSD $< 1.2\ \text{Å}$).
+  - Specific localized perturbations: near-total collapse of the U33–P36 U-turn interaction ($87.60 \pm 17.42\%$ in WT vs. $0.03 \pm 0.03\%$ in CUA; distance expands $+2.77\ \text{Å}$), severe uncoupling of 34–35 dinucleotide base stacking ($90.92 \pm 5.93\%$ in WT vs. $19.25 \pm 19.80\%$ in CUA), and a 4-fold elevation in position-34 East ($O4'\text{-endo}$) intermediate ribose sugar pucker ($4.88 \pm 1.70\%$ in WT vs. $19.37 \pm 3.36\%$ in CUA).
+- **Statistical Rigor & Sampling Hierarchy:**
+  - Inference conducted strictly at replicate level ($N=3$ independent production runs per construct, $120.0\ \text{ns}$ aggregate sampling).
+  - Zero frame-level pseudoreplication; Welch's $t$-test ($df \approx 2\text{--}4$), Cohen's $d$ effect sizes, Benjamini-Hochberg FDR correction.
+  - 100% directional consistency across all three independent random velocity seeds.
+  - Explicit sampling boundary: $3 \times 20\ \text{ns}$ demonstrates consistent local loop remodeling within a 20-ns window, but observed kinetic transitions (`wt_rep3` breathing, `cua_rep2`/`cua_rep3` unstacking) confirm that microsecond-scale enhanced sampling is required for equilibrium thermodynamic claims.
+- **Biochemical & Translational Synthesis:**
+  - Addressed biochemical consequences of omitted native modifications (Q34/manQ34, $m^1A37$, $m^5C38$).
+  - Articulated the translational boundary separating isolated ASL MD from whole-tRNA charging and cellular nonsense suppression.
+  - Specified a concrete experimental measurement: cell-based dual-luciferase UAG suppression reporter assay in HEK293T cells.
+- **Scientific Integrity & AI Disclosure:**
+  - AI assistance (Antigravity / Gemini) disclosed transparently.
+  - Zero proprietary Transloka or KritRNA material utilized.
+  - All computational pipelines fully documented and reproducible under the MIT License.
+- **Final Status:** **PHASE 7 COMPLETE — SUBMISSION READY.**
+
+
 
 
 
