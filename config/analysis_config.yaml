@@ -41,46 +41,43 @@ metrics:
     angle_cutoff_degrees: 120.0                           # [IMPLEMENTATION CHOICE] Standard hydrogen bond angle threshold
 
   u_turn_diagnostic:                                      # [PROMPT MANDATE]
-    description: "Structural integrity diagnostic of the canonical U-turn motif (U33 and P36)"
-    key_interactions:
-      - name: "u33_n3_to_p36_oxygen"
+    description: "Structural integrity diagnostic of canonical U-turn motif (U33 and P36)"
+    key_metrics:
+      - name: "u33_n3_to_p36_phosphate_hbond_intact"
         donor: "residue 33 N3 (H3)"
         acceptor: "residue 36 phosphate non-bridging oxygens (OP1/OP2)"
         distance_threshold_angstrom: 3.5
-      - name: "u33_o2prime_to_a36_n7"
-        donor: "residue 33 O2' (HO2')"
-        acceptor: "residue 36 purine/pyrimidine base acceptor"
+        angle_threshold_degrees: 120.0
+      - name: "u33_n3_to_p36_contact"
+        donor: "residue 33 N3"
+        acceptor: "residue 36 OP1/OP2"
         distance_threshold_angstrom: 3.5
-    torsion_angles:
-      - name: "alpha_34"
-      - name: "zeta_33"
+      - name: "u33_n3_to_p36_phosphorus_distance"
+        donor: "residue 33 N3"
+        acceptor: "residue 36 P"
+        metric: "minimum phosphorus reference distance d_min"
 
   anticodon_stacking:                                     # [PROMPT MANDATE]
-    description: "3'-stacking geometry of the anticodon bases (positions 34, 35, 36) and adjacent base 37"
-    pairs_to_evaluate:
+    description: "3'-stacking geometry across anticodon loop steps"
+    steps_evaluated:
       - [34, 35]
       - [35, 36]
       - [36, 37]
-    metrics:
-      - "center_of_mass_distance_angstrom"
-      - "inter_planar_angle_degrees"
+      - [37, 38]
+    criteria:
+      centroid_distance_angstrom: 4.5
+      inter_planar_angle_degrees: 30.0
 
   additional_metric:                                      # [PROMPT MANDATE] One additional justified metric
-    name: "<PENDING_JUSTIFIED_SELECTION_PHASE_2>"         # [PENDING VERIFICATION]
-    status: "proposed_candidates_under_evaluation"
-    candidates:
-      - id: "loop_radius_of_gyration"
-        name: "Anticodon Loop Radius of Gyration (Rg)"
-        status: "candidate"
-        preliminary_rationale: "Evaluates overall loop expansion vs compaction upon mutation"
-      - id: "anticodon_sasa"
-        name: "Anticodon Solvent-Accessible Surface Area"
-        status: "candidate"
-        preliminary_rationale: "Quantifies solvent exposure vs inward base flipping"
-      - id: "interhelical_tilt"
-        name: "Stem-Loop Interhelical Angle / Axis Tilt"
-        status: "candidate"
-        preliminary_rationale: "Measures coaxial bending of loop relative to stem"
+    name: "position_34_ribose_sugar_pucker"               # [EXECUTED PHASE 6]
+    description: "Ribose sugar pucker at wobble position 34 via Altona-Sundaralingam pseudorotation"
+    method: "Altona-Sundaralingam pseudorotation phase angle P and amplitude tau_m"
+    target_residue: 8                                     # 1-based residue index 8 (tRNA Sprinzl position 34)
+    states:
+      north_c3_prime_endo: [0.0, 36.0, 324.0, 360.0]     # Canonical A-form RNA
+      east_o4_prime_endo: [36.0, 144.0]                   # High-energy intermediate pucker
+      south_c2_prime_endo: [144.0, 216.0]                 # B-form / extended loop pucker
+      west_c1_prime_exo: [216.0, 324.0]
 
 statistics:
   protocol: "replicate_aware"                             # [PROMPT MANDATE]
@@ -88,16 +85,18 @@ statistics:
     wt_count: 3                                           # [PROMPT MANDATE]
     suppressor_count: 3                                   # [PROMPT MANDATE]
   primary_reporting:
-    - "replicate_level_effect_sizes"                      # [SCIENTIFIC ASSUMPTION] Hedges' g / Cohen's d
-    - "difference_in_replicate_means_and_medians"         # [SCIENTIFIC ASSUMPTION]
-    - "bootstrap_confidence_intervals_95pct"              # [IMPLEMENTATION CHOICE] 10,000 iterations
+    - "replicate_level_effect_sizes_cohens_d"             # [EXECUTED PHASE 6] Cohen's d
+    - "difference_in_replicate_means"                     # [EXECUTED PHASE 6] Delta (CUA - WT)
+    - "welch_two_tailed_t_test"                           # [EXECUTED PHASE 6] Two-sided Welch's t-test (df ~ 2-4)
+    - "benjamini_hochberg_fdr_correction"                 # [EXECUTED PHASE 6] False Discovery Rate (q < 0.05)
   power_limitation_statement: >
-    With N=3 independent replicates per construct, classical non-parametric two-sided
-    significance tests (e.g., Mann-Whitney U) cannot achieve p < 0.05 (minimum achievable
-    two-sided p-value is 0.10). Primary statistical reporting must rely on effect sizes
-    with bootstrap confidence intervals and explicit power limitation disclosures.
+    With N=3 independent replicates per construct, statistical power is constrained.
+    Primary statistical reporting relies on replicate-level Welch's t-tests, Cohen's d
+    effect sizes, Benjamini-Hochberg FDR correction, and 100% directional consistency
+    across independent velocity seeds, with explicit sampling limitation disclosures.
   trajectory_handling:
     distinguish_frames_from_replicates: true              # [SCIENTIFIC ASSUMPTION] Never pool frames as pseudo-replicates
+    equilibration_frames_excluded: true                   # [SCIENTIFIC REQUIREMENT] 100% of 1.2 ns equilibration excluded
     equilibration_discard_ns: 2.0                         # [IMPLEMENTATION CHOICE] Initial relaxation transient discard
     autocorrelation_correction: true                      # [SCIENTIFIC ASSUMPTION] Chodera statistical inefficiency calculation
     block_averaging: true                                 # [IMPLEMENTATION CHOICE] Stationary block evaluation

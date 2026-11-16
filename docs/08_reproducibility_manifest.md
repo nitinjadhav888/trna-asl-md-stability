@@ -123,7 +123,7 @@ python scripts/03_visualize_asl_structures.py
 ## 7. Phase 4A Solvation & System Preparation Provenance & Checksums
 
 - **Date of Execution:** November 13, 2026
-- **System Preparation Strategy:** Explicit TIP3P solvation in an orthogonal cubic periodic boundary ($L = 5.500\ \text{nm} = 55.00\ \text{Å}$) with $16\ \text{K}^+$ neutralizing counterions and $\approx 0.15\ \text{M}$ added physiological KCl ($14\ \text{K}^+ / 14\ \text{Cl}^-$ pairs).
+- **System Preparation Strategy:** Explicit TIP3P solvation in an orthogonal cubic periodic boundary ($L = 5.500\ \text{nm} = 55.00\ \text{Å}$) with $16\ \text{K}^+$ neutralizing counterions and approximately $150\ \text{mM}\ \text{KCl}$ (~154 mM solvent basis, ~140 mM total-box basis; $14\ \text{K}^+ / 14\ \text{Cl}^-$ pairs, totaling 30 $\text{K}^+$ and 14 $\text{Cl}^-$).
 - **Force Fields:**
   - RNA: `amber14/RNA.OL3.xml` (AMBER OL3 / `ff99bsc0chiOL3`)
   - Solvent: `amber14/tip3p.xml` (TIP3P)
@@ -220,7 +220,7 @@ python scripts/03_visualize_asl_structures.py
 - **Audit Scope:** Systematic compliance evaluation against all original Transloka Bio take-home assessment specifications.
 - **Audit Documentation:** [docs/19_phase6_2_compliance_audit.md](file:///d:/trna-asl-md-stability/docs/19_phase6_2_compliance_audit.md)
 - **Key Verifications:**
-  - Native modification profiles audited for positions 34 (Q34/manQ34), 37 ($m^1A37$), and 38 ($m^5C38$).
+  - Native modification profiles audited for positions 34 (Q34/manQ34), 37 (uncertain/unverified A37), and 38 ($m^5C38$).
   - Complete temporal separation between 1.2 ns equilibration and 20.0 ns production trajectories (zero equilibration frames in production analysis).
   - Explicit rationale for position-34 ribose sugar pucker selection documented.
   - Small-$N$ statistical evidence hierarchy and requirements for multi-microsecond equilibrium sampling specified.
@@ -247,7 +247,7 @@ python scripts/03_visualize_asl_structures.py
   - 100% directional consistency across all three independent random velocity seeds.
   - Explicit sampling boundary: $3 \times 20\ \text{ns}$ demonstrates consistent local loop remodeling within a 20-ns window, but observed kinetic transitions (`wt_rep3` breathing, `cua_rep2`/`cua_rep3` unstacking) confirm that microsecond-scale enhanced sampling is required for equilibrium thermodynamic claims.
 - **Biochemical & Translational Synthesis:**
-  - Addressed biochemical consequences of omitted native modifications (Q34/manQ34, $m^1A37$, $m^5C38$).
+  - Addressed biochemical consequences of omitted native modifications (Q34/manQ34, uncertain A37, $m^5C38$).
   - Articulated the translational boundary separating isolated ASL MD from whole-tRNA charging and cellular nonsense suppression.
   - Specified a concrete experimental measurement: cell-based dual-luciferase UAG suppression reporter assay in HEK293T cells.
 - **Scientific Integrity & AI Disclosure:**
